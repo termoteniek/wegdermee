@@ -8,7 +8,7 @@ export function About() {
   return (
     <section
       id="over-ons"
-      className="border-t-[3px] border-ink bg-lime py-20 sm:py-28"
+      className="border-t-[3px] border-ink bg-ink py-20 text-paper sm:py-28"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
@@ -35,19 +35,19 @@ export function About() {
 
           <FadeIn delay={0.1} className="lg:col-span-7">
             <SectionLabel variant="pink">Over ons</SectionLabel>
-            <h2 className="mt-5 font-display text-5xl uppercase leading-[0.9] text-ink sm:text-6xl">
+            <h2 className="mt-5 font-display text-5xl uppercase leading-[0.9] text-paper sm:text-6xl">
               Wie komt er langs?
             </h2>
 
-            <blockquote className="mt-8 border-l-[4px] border-ink pl-6">
-              <p className="font-display text-2xl uppercase leading-snug text-ink sm:text-3xl">
+            <blockquote className="mt-8 border-l-[4px] border-lime pl-6">
+              <p className="font-display text-2xl uppercase leading-snug text-lime sm:text-3xl">
                 &ldquo;Snel je rommel kwijt — zonder corporate gedoe.&rdquo;
               </p>
             </blockquote>
 
-            <div className="mt-8 space-y-4 text-lg font-medium leading-relaxed text-ink/80">
+            <div className="mt-8 space-y-4 text-lg font-medium leading-relaxed text-white/70">
               <p>
-                <strong className="font-display uppercase text-ink">wegdermee</strong> is
+                <strong className="font-display uppercase text-lime">wegdermee</strong> is
                 een jonge ophaaldienst met grote ambities. Van je zolderkamer tot een
                 volledige ontruiming — wij rollen op en rijden weer weg.
               </p>

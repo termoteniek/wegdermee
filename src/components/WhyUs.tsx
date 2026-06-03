@@ -35,7 +35,7 @@ const reasons = [
 export function WhyUs() {
   return (
     <section id="waarom" className="relative bg-ink text-paper">
-      <div className="text-lime">
+      <div className="text-paper">
         <Swoosh flip />
       </div>
 

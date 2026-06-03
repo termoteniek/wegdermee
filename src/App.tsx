@@ -6,7 +6,6 @@ import { Region } from './components/Region'
 import { About } from './components/About'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
-import { Marquee } from './components/ui/Marquee'
 
 function App() {
   return (
@@ -20,16 +19,6 @@ function App() {
       <Header />
       <main id="main">
         <Hero />
-        <Marquee
-          items={[
-            'INBOEDELS',
-            'ROMMELOPHAAL',
-            'GEEN GEDOE',
-            'LIMBURG',
-            'ANTWERPEN',
-            'VL-BRABANT',
-          ]}
-        />
         <Services />
         <WhyUs />
         <Region />

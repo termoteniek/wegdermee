@@ -1,21 +1,8 @@
-import { Marquee } from './ui/Marquee'
-
 export function Footer() {
   const year = new Date().getFullYear()
 
   return (
     <footer className="bg-ink text-paper">
-      <Marquee
-        items={[
-          'ROMMEL WEG',
-          'BOEK OPHALING',
-          'GEEN SORTEREN',
-          'STARTUP VIBES',
-          'WEGDERMEE',
-        ]}
-        className="!border-b-0"
-      />
-
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-5 py-12 sm:flex-row sm:px-8">
         <img src="/logo.png" alt="wegdermee" className="h-14 w-auto brightness-0 invert" />
         <p className="text-center font-medium text-white/60 sm:text-left">

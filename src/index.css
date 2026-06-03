@@ -1,17 +1,21 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-display: 'Barlow Condensed', ui-sans-serif, system-ui, sans-serif;
-  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
-  --color-ink: #0c0c0c;
-  --color-ink-soft: #1a1a1a;
-  --color-cream: #f4f1ea;
-  --color-cream-dark: #e8e4da;
-  --color-muted: #5c5c5c;
-  --color-muted-light: #9a9a9a;
-  --color-accent: #e85d04;
-  --color-accent-hover: #d45103;
-  --color-line: rgba(12, 12, 12, 0.12);
+  --font-serif: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Source Sans 3', ui-sans-serif, system-ui, sans-serif;
+  --color-ink: #1a2332;
+  --color-ink-soft: #2d3a4d;
+  --color-navy: #0f2744;
+  --color-navy-deep: #0a1c30;
+  --color-paper: #f7f6f3;
+  --color-paper-alt: #eceae5;
+  --color-muted: #5a6578;
+  --color-muted-light: #8b95a5;
+  --color-accent: #1e5a8c;
+  --color-accent-hover: #164a73;
+  --color-gold: #9a7b4f;
+  --color-line: rgba(26, 35, 50, 0.12);
+  --color-line-strong: rgba(26, 35, 50, 0.22);
 }
 
 html {
@@ -19,14 +23,18 @@ html {
 }
 
 body {
-  @apply bg-cream font-sans text-ink antialiased;
+  @apply bg-paper font-sans text-ink antialiased;
 }
 
 ::selection {
-  background: var(--color-accent);
+  background: var(--color-navy);
   color: white;
 }
 
-.font-display {
-  font-family: var(--font-display);
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.section-rule {
+  @apply border-t border-line;
 }

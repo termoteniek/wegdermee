@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import { FadeIn } from './FadeIn'
 import { SectionLabel } from './ui/SectionLabel'
 
@@ -7,83 +6,83 @@ const services = [
     num: '01',
     title: 'Rommelophaaldienst',
     description:
-      'Oude meubels, defecte elektronica, groenafval — wij hebben alles al gezien en nemen het mee.',
-    cta: 'Boek ophaling',
+      'Oude meubels, defecte elektronica en groenafval — wij verzorgen een efficiënte ophaling volgens de geldende regelgeving.',
+    cta: 'Afspraak aanvragen',
   },
   {
     num: '02',
     title: 'Volledige ontruiming',
     description:
-      'Woning, appartement of bedrijfspand: een zorgeloze, complete leeghaling van A tot Z.',
-    cta: 'Gratis offerte',
+      'Woning, appartement of bedrijfspand: een zorgvuldige, complete leeghaling van begin tot eind.',
+    cta: 'Offerte aanvragen',
   },
   {
     num: '03',
-    title: 'Werf opruiming',
+    title: 'Werfopruiming',
     description:
-      'Verbouwing? Alles verdwijnt zodat jij verder kunt bouwen aan iets nieuws.',
-    cta: 'Contact',
+      'Na een verbouwing ruimen wij het terrein op, zodat u ongestoord verder kunt werken.',
+    cta: 'Contact opnemen',
   },
   {
     num: '04',
-    title: 'Zakelijk',
+    title: 'Zakelijke dienstverlening',
     description:
-      'Kantoorverhuizing, stockafval of grotere B2B-operaties — wij schalen mee.',
-    cta: 'Offerte',
+      'Kantoorverhuizing, stockafval of grotere B2B-opdrachten — wij schalen mee met uw planning.',
+    cta: 'Offerte aanvragen',
   },
 ]
 
 export function Services() {
   return (
-    <section id="diensten" className="relative -mt-px py-24 pt-28 sm:py-32 sm:pt-36">
+    <section id="diensten" className="section-rule py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="flex flex-col gap-6 border-b-2 border-ink pb-10 lg:flex-row lg:items-end lg:justify-between">
+        <div className="grid gap-8 lg:grid-cols-[1fr_minmax(0,22rem)] lg:items-end lg:gap-16">
           <FadeIn>
             <SectionLabel>Diensten</SectionLabel>
-            <h2 className="mt-3 max-w-xl font-display text-5xl font-extrabold uppercase leading-none tracking-tight text-ink sm:text-6xl lg:text-7xl">
-              Alles wat weg moet
+            <h2 className="mt-3 font-serif text-3xl font-bold text-navy sm:text-4xl">
+              Ons aanbod
             </h2>
           </FadeIn>
-          <FadeIn delay={0.1} className="max-w-sm">
-            <p className="text-lg text-muted">
-              Van kleine ophaling tot volledige ontruiming — één team, één aanspreekpunt.
+          <FadeIn delay={0.08}>
+            <p className="text-base leading-relaxed text-muted lg:text-right">
+              Van een enkele ophaling tot een volledige ontruiming — één aanspreekpunt,
+              duidelijke afspraken en een vaste werkwijze.
             </p>
           </FadeIn>
         </div>
 
-        <ul className="mt-0 divide-y-2 divide-ink">
+        <ul className="mt-14 divide-y divide-line border-y border-line">
           {services.map((service, i) => (
-            <FadeIn key={service.num} delay={i * 0.06}>
-              <motion.li
-                className="group grid gap-6 py-10 sm:grid-cols-[auto_1fr_auto] sm:items-center sm:gap-10 sm:py-14"
-                whileHover={{ x: 4 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-              >
-                <span className="font-display text-6xl font-extrabold leading-none text-cream-dark transition-colors group-hover:text-accent sm:text-7xl">
+            <FadeIn key={service.num} delay={i * 0.05}>
+              <li className="group grid gap-6 py-10 transition-colors hover:bg-paper-alt/60 sm:grid-cols-[4.5rem_1fr_auto] sm:items-start sm:gap-10 sm:py-12 sm:px-4">
+                <span className="font-serif text-2xl font-bold text-gold/80">
                   {service.num}
                 </span>
                 <div>
-                  <h3 className="font-display text-3xl font-bold uppercase tracking-tight text-ink sm:text-4xl">
+                  <h3 className="text-xl font-semibold text-navy sm:text-2xl">
                     {service.title}
                   </h3>
-                  <p className="mt-3 max-w-2xl text-lg text-muted">{service.description}</p>
+                  <p className="mt-3 max-w-2xl leading-relaxed text-muted">
+                    {service.description}
+                  </p>
                 </div>
                 <a
                   href="#contact"
-                  className="font-display text-sm font-bold uppercase tracking-widest text-accent underline-offset-4 transition-colors hover:text-accent-hover hover:underline sm:text-right"
+                  className="self-center text-sm font-semibold text-accent transition-colors hover:text-accent-hover sm:self-start sm:pt-1 sm:text-right"
                 >
                   {service.cta} →
                 </a>
-              </motion.li>
+              </li>
             </FadeIn>
           ))}
         </ul>
 
         <FadeIn className="mt-12">
-          <p className="border-l-4 border-accent bg-cream-dark px-6 py-5 text-ink">
-            <strong className="font-display uppercase tracking-wide">Opgelet —</strong>{' '}
-            wij verwerken geen gevaarlijk afval (asbest, vloeistoffen, gas).
-          </p>
+          <aside className="rounded-sm border border-line bg-paper-alt px-6 py-5 text-sm leading-relaxed text-ink-soft">
+            <strong className="font-semibold text-navy">Let op:</strong> wij verwerken
+            geen gevaarlijk afval (onder meer asbest, vloeistoffen en gasflessen).
+            Voor dergelijk materiaal verwijzen wij u door naar een erkende instantie.
+          </aside>
         </FadeIn>
       </div>
     </section>

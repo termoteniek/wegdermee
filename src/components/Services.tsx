@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { FadeIn } from './FadeIn'
 import { SectionLabel } from './ui/SectionLabel'
+import { StripeBand } from './ui/StripeBand'
 
 const services = [
   {
@@ -35,44 +36,51 @@ const services = [
 
 export function Services() {
   return (
-    <section id="diensten" className="relative -mt-px py-24 pt-28 sm:py-32 sm:pt-36">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="flex flex-col gap-6 border-b-2 border-ink pb-10 lg:flex-row lg:items-end lg:justify-between">
-          <FadeIn>
-            <SectionLabel>Diensten</SectionLabel>
-            <h2 className="mt-3 max-w-xl font-display text-5xl font-extrabold uppercase leading-none tracking-tight text-ink sm:text-6xl lg:text-7xl">
-              Alles wat weg moet
-            </h2>
-          </FadeIn>
-          <FadeIn delay={0.1} className="max-w-sm">
-            <p className="text-lg text-muted">
-              Van kleine ophaling tot volledige ontruiming — één team, één aanspreekpunt.
-            </p>
-          </FadeIn>
-        </div>
+    <section id="diensten" className="relative bg-paper">
+      <StripeBand />
 
-        <ul className="mt-0 divide-y-2 divide-ink">
+      <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 sm:py-28">
+        <FadeIn className="flex flex-col gap-6 border-b-[3px] border-ink pb-10 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <SectionLabel index="01">Diensten</SectionLabel>
+            <h2 className="mt-4 font-display text-5xl font-extrabold leading-none tracking-tight text-ink sm:text-6xl lg:text-7xl">
+              Alles wat
+              <br />
+              <span className="italic text-heat">weg moet</span>
+            </h2>
+          </div>
+          <p className="max-w-sm font-mono text-sm leading-relaxed text-muted lg:text-right">
+            Van kleine ophaling tot volledige ontruiming — één team, één aanspreekpunt.
+          </p>
+        </FadeIn>
+
+        <ul className="mt-0">
           {services.map((service, i) => (
-            <FadeIn key={service.num} delay={i * 0.06}>
+            <FadeIn key={service.num} delay={i * 0.05}>
               <motion.li
-                className="group grid gap-6 py-10 sm:grid-cols-[auto_1fr_auto] sm:items-center sm:gap-10 sm:py-14"
-                whileHover={{ x: 4 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                className={`group grid border-b-[3px] border-ink py-12 sm:grid-cols-[minmax(5rem,8rem)_1fr_auto] sm:items-center sm:gap-10 sm:py-16 ${
+                  i === 0 ? 'border-t-[3px]' : ''
+                }`}
+                whileHover={{ x: 6 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 28 }}
               >
-                <span className="font-display text-6xl font-extrabold leading-none text-cream-dark transition-colors group-hover:text-accent sm:text-7xl">
+                <span className="font-display text-[clamp(4rem,12vw,7rem)] font-black leading-none text-paper-dark transition-colors group-hover:text-punch">
                   {service.num}
                 </span>
                 <div>
-                  <h3 className="font-display text-3xl font-bold uppercase tracking-tight text-ink sm:text-4xl">
+                  <h3 className="font-display text-3xl font-bold text-ink sm:text-4xl">
                     {service.title}
                   </h3>
-                  <p className="mt-3 max-w-2xl text-lg text-muted">{service.description}</p>
+                  <p className="mt-3 max-w-2xl font-mono text-sm leading-relaxed text-muted sm:text-base">
+                    {service.description}
+                  </p>
                 </div>
                 <a
                   href="#contact"
-                  className="font-display text-sm font-bold uppercase tracking-widest text-accent underline-offset-4 transition-colors hover:text-accent-hover hover:underline sm:text-right"
+                  className="mt-6 inline-flex items-center gap-2 border-[3px] border-ink bg-punch px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-widest text-ink shadow-[4px_4px_0_0_#11100e] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_0_#11100e] sm:mt-0"
                 >
-                  {service.cta} →
+                  {service.cta}
+                  <span aria-hidden>→</span>
                 </a>
               </motion.li>
             </FadeIn>
@@ -80,9 +88,13 @@ export function Services() {
         </ul>
 
         <FadeIn className="mt-12">
-          <p className="border-l-4 border-accent bg-cream-dark px-6 py-5 text-ink">
-            <strong className="font-display uppercase tracking-wide">Opgelet —</strong>{' '}
-            wij verwerken geen gevaarlijk afval (asbest, vloeistoffen, gas).
+          <p className="flex gap-4 border-[3px] border-ink bg-ink px-6 py-5 font-mono text-sm text-paper sm:items-center">
+            <span className="shrink-0 bg-heat px-3 py-1 font-bold uppercase text-paper">
+              Opgelet
+            </span>
+            <span>
+              wij verwerken geen gevaarlijk afval (asbest, vloeistoffen, gas).
+            </span>
           </p>
         </FadeIn>
       </div>

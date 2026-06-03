@@ -1,9 +1,8 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { Button } from './ui/Button'
-import { Swoosh } from './ui/Swoosh'
-
-const headlineWords = ['Jouw', 'rommel?', 'Weg', 'ermee.']
+import { Marquee } from './ui/Marquee'
+import { Sticker } from './ui/Sticker'
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null)
@@ -11,114 +10,105 @@ export function Hero() {
     target: ref,
     offset: ['start start', 'end start'],
   })
-  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '12%'])
-  const textY = useTransform(scrollYProgress, [0, 1], ['0%', '6%'])
+  const watermarkX = useTransform(scrollYProgress, [0, 1], ['0%', '-8%'])
+  const imageRotate = useTransform(scrollYProgress, [0, 1], [2, -2])
 
   return (
     <section
       ref={ref}
-      className="relative min-h-svh overflow-hidden bg-ink text-cream lg:h-svh lg:min-h-0"
+      className="relative min-h-svh overflow-hidden bg-ink text-paper"
     >
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-        }}
+      <motion.p
+        className="pointer-events-none absolute -left-[0.08em] top-[18%] select-none font-display text-[clamp(7rem,28vw,22rem)] font-black leading-[0.82] tracking-tighter text-outline opacity-90"
+        style={{ x: watermarkX }}
         aria-hidden
-      />
+      >
+        WEG
+      </motion.p>
 
-      <div className="relative z-10 flex min-h-svh w-full items-center px-5 py-24 sm:px-8 lg:h-full lg:min-h-0 lg:py-0 lg:pt-24 lg:pb-12">
-        <div className="mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-12 lg:gap-12">
-          <motion.div className="lg:col-span-6" style={{ y: textY }}>
-            <motion.p
-              className="font-display text-sm font-semibold uppercase tracking-[0.3em] text-accent"
-              initial={{ opacity: 0, x: -24 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.15, duration: 0.5 }}
-            >
-              Inboedels & rommelophaal
-            </motion.p>
+      <div className="pattern-dots pointer-events-none absolute inset-0 opacity-[0.07]" aria-hidden />
 
-            <h1 className="mt-4 font-display text-[clamp(2.75rem,10vw,6.5rem)] font-extrabold uppercase leading-[0.9] tracking-tight">
-              {headlineWords.map((word, i) => (
-                <motion.span
-                  key={word}
-                  className={`mr-[0.15em] inline-block ${
-                    i >= 2 ? 'text-accent italic' : ''
-                  }`}
-                  initial={{ opacity: 0, y: 60, rotate: i >= 2 ? -2 : 0 }}
-                  animate={{ opacity: 1, y: 0, rotate: 0 }}
-                  transition={{
-                    delay: 0.25 + i * 0.1,
-                    duration: 0.7,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                >
-                  {word}
-                </motion.span>
-              ))}
+      <div className="relative z-10 flex min-h-svh flex-col justify-between pt-20 pb-0">
+        <div className="mx-auto grid w-full max-w-[1400px] flex-1 items-end gap-8 px-5 pb-12 sm:px-8 lg:grid-cols-12 lg:gap-0 lg:pb-16">
+          <motion.div
+            className="lg:col-span-7 lg:pb-8"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.35em] text-punch">
+              Inboedels & rommelophaal — België
+            </p>
+
+            <h1 className="mt-5 font-display text-[clamp(2.75rem,9vw,5.5rem)] font-extrabold leading-[0.95] tracking-tight">
+              <span className="block">Jouw rommel?</span>
+              <span className="mt-1 block italic text-punch">Weg ermee.</span>
             </h1>
 
-            <motion.p
-              className="mt-6 max-w-md text-lg leading-relaxed text-white/70"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7 }}
-            >
+            <p className="mt-7 max-w-md text-base leading-relaxed text-paper/70 sm:text-lg">
               Meubels, elektronica, volledige ontruimingen — wij halen alles op. Jij
               sorteert niet. Wij regelen de rest.
-            </motion.p>
+            </p>
 
-            <motion.div
-              className="mt-10 flex flex-wrap gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.85 }}
-            >
-              <Button href="#contact">Boek ophaling</Button>
-              <Button
-                href="#diensten"
-                variant="outline"
-                className="!border-white/40 !text-white hover:!bg-white hover:!text-ink"
-              >
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <Button href="#contact" variant="punch">
+                Boek ophaling
+              </Button>
+              <Button href="#diensten" variant="ghost">
                 Diensten
               </Button>
-            </motion.div>
+            </div>
           </motion.div>
 
           <motion.div
-            className="relative lg:col-span-6 lg:col-start-7"
-            style={{ y: imageY }}
-            initial={{ opacity: 0, x: 80 }}
+            className="relative lg:col-span-5 lg:col-start-8 lg:self-center"
+            style={{ rotate: imageRotate }}
+            initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: 0.25, duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="relative">
-              <div className="absolute -inset-4 bg-accent/20 blur-3xl" aria-hidden />
-              <div className="relative overflow-hidden border-2 border-white/10">
+            <div className="relative ml-auto max-w-md lg:max-w-none">
+              <div className="box-brutal relative overflow-hidden bg-paper">
                 <img
                   src="/camionette.png"
                   alt="wegdermee bestelwagen"
-                  className="aspect-[4/3] w-full object-cover object-center lg:aspect-[16/11] lg:max-h-[min(52vh,520px)]"
+                  className="aspect-[4/3] w-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent lg:bg-gradient-to-l lg:from-ink/60 lg:via-transparent lg:to-transparent" />
               </div>
-              <motion.div
-                className="absolute -bottom-4 -left-2 border-2 border-ink bg-cream p-3 sm:-left-4"
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 1.1 }}
-              >
-                <img src="/logo.png" alt="" className="h-12 w-auto sm:h-14" aria-hidden />
-              </motion.div>
+
+              <div className="absolute -left-4 top-8 sm:-left-8">
+                <Sticker rotate={-8} variant="punch">
+                  Vandaag mogelijk
+                </Sticker>
+              </div>
+
+              <div className="absolute -bottom-6 -right-2 flex items-center gap-3 border-[3px] border-ink bg-paper px-4 py-3 shadow-[var(--shadow-brutal)] sm:-right-6">
+                <img src="/logo.png" alt="" className="h-11 w-auto" aria-hidden />
+                <div>
+                  <p className="font-display text-base font-bold text-ink">wegdermee</p>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-muted">
+                    Ophaling & ontruiming
+                  </p>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
-      </div>
 
-      {/* Wave sits below the viewport so the hero stays full-screen dark */}
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 translate-y-full text-cream">
-        <Swoosh />
+        <div className="border-t-[3px] border-punch bg-ink">
+          <Marquee
+            items={[
+              'Limburg',
+              'Antwerpen',
+              'Vlaams-Brabant',
+              'Brussel',
+              'Snel ter plaatse',
+              'Geen sorteren',
+              'Volledig ontzorgd',
+            ]}
+            className="py-4 text-paper"
+          />
+        </div>
       </div>
     </section>
   )

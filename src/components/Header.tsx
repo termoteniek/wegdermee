@@ -3,11 +3,11 @@ import { useState } from 'react'
 import { Button } from './ui/Button'
 
 const navLinks = [
-  { href: '#diensten', label: 'Diensten' },
-  { href: '#waarom', label: 'Waarom' },
-  { href: '#regio', label: 'Regio' },
-  { href: '#over-ons', label: 'Over ons' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#diensten', label: 'Diensten', num: '01' },
+  { href: '#waarom', label: 'Waarom', num: '02' },
+  { href: '#regio', label: 'Regio', num: '03' },
+  { href: '#over-ons', label: 'Over ons', num: '04' },
+  { href: '#contact', label: 'Contact', num: '05' },
 ]
 
 export function Header() {
@@ -16,53 +16,74 @@ export function Header() {
   const { scrollY } = useScroll()
 
   useMotionValueEvent(scrollY, 'change', (y) => {
-    setScrolled(y > 60)
+    setScrolled(y > 50)
   })
 
   return (
     <motion.header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled
-          ? 'border-b border-line bg-cream/95 backdrop-blur-md'
-          : 'bg-transparent'
+      className={`fixed inset-x-0 top-0 z-50 border-b-[3px] transition-colors duration-200 ${
+        scrolled ? 'border-ink bg-paper' : 'border-transparent bg-transparent'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
-        <a href="#" className="relative z-10 flex shrink-0 items-center">
+      <div className="mx-auto flex max-w-[1400px] items-stretch justify-between">
+        <a
+          href="#"
+          className={`flex items-center gap-3 border-r-[3px] px-5 py-4 transition-colors sm:px-8 ${
+            scrolled ? 'border-ink' : 'border-paper/30'
+          }`}
+        >
           <img
             src="/logo.png"
             alt="wegdermee"
-            className={`h-11 w-auto transition-all sm:h-12 ${scrolled ? '' : 'brightness-0 invert'}`}
+            className={`h-10 w-auto sm:h-11 ${scrolled ? '' : 'brightness-0 invert'}`}
           />
+          <span
+            className={`hidden font-mono text-xs font-bold uppercase tracking-widest sm:inline ${
+              scrolled ? 'text-ink' : 'text-paper'
+            }`}
+          >
+            wegdermee.be
+          </span>
         </a>
 
-        <nav
-          className="hidden items-center gap-10 lg:flex"
-          aria-label="Hoofdnavigatie"
-        >
+        <nav className="hidden items-stretch lg:flex" aria-label="Hoofdnavigatie">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className={`font-display text-sm font-semibold uppercase tracking-widest transition-colors ${
+              className={`group flex flex-col justify-center border-r-[3px] px-5 transition-colors last:border-r-0 ${
                 scrolled
-                  ? 'text-muted hover:text-ink'
-                  : 'text-white/80 hover:text-white'
+                  ? 'border-ink hover:bg-punch'
+                  : 'border-paper/20 hover:bg-paper/10'
               }`}
             >
-              {link.label}
+              <span
+                className={`font-mono text-[10px] font-medium ${
+                  scrolled ? 'text-muted' : 'text-paper/50'
+                }`}
+              >
+                {link.num}
+              </span>
+              <span
+                className={`font-display text-sm font-semibold ${
+                  scrolled ? 'text-ink' : 'text-paper'
+                }`}
+              >
+                {link.label}
+              </span>
             </a>
           ))}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden items-center px-6 lg:flex">
           <Button
             href="#contact"
-            variant={scrolled ? 'primary' : 'ghost'}
-            className="!px-6 !py-2.5 !text-base"
+            variant={scrolled ? 'punch' : 'punch'}
+            size="md"
+            className={scrolled ? '' : '!shadow-[6px_6px_0_0_#c6ef00]'}
           >
             Boek ophaling
           </Button>
@@ -70,41 +91,44 @@ export function Header() {
 
         <button
           type="button"
-          className={`relative z-10 inline-flex flex-col gap-1.5 p-2 lg:hidden ${scrolled ? '' : '[&_span]:bg-white'}`}
+          className={`flex flex-col justify-center gap-1.5 px-5 lg:hidden ${
+            scrolled ? '' : '[&_span]:bg-paper'
+          }`}
           aria-expanded={open}
           aria-label={open ? 'Menu sluiten' : 'Menu openen'}
           onClick={() => setOpen(!open)}
         >
           <span
-            className={`block h-0.5 w-7 bg-ink transition-transform ${open ? 'translate-y-2 rotate-45' : ''}`}
+            className={`block h-[3px] w-8 bg-ink transition-transform ${open ? 'translate-y-[9px] rotate-45' : ''}`}
           />
-          <span className={`block h-0.5 w-7 bg-ink transition-opacity ${open ? 'opacity-0' : ''}`} />
+          <span className={`block h-[3px] w-8 bg-ink transition-opacity ${open ? 'opacity-0' : ''}`} />
           <span
-            className={`block h-0.5 w-7 bg-ink transition-transform ${open ? '-translate-y-2 -rotate-45' : ''}`}
+            className={`block h-[3px] w-8 bg-ink transition-transform ${open ? '-translate-y-[9px] -rotate-45' : ''}`}
           />
         </button>
       </div>
 
       {open && (
         <motion.nav
-          className="border-t border-line bg-cream px-5 py-6 lg:hidden"
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
+          className="border-t-[3px] border-ink bg-paper lg:hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
         >
-          <ul className="flex flex-col gap-1">
+          <ul>
             {navLinks.map((link) => (
-              <li key={link.href}>
+              <li key={link.href} className="border-b-[3px] border-ink last:border-b-0">
                 <a
                   href={link.href}
-                  className="block py-3 font-display text-xl font-bold uppercase tracking-wide text-ink"
+                  className="flex items-center gap-4 px-6 py-4 transition-colors hover:bg-punch"
                   onClick={() => setOpen(false)}
                 >
-                  {link.label}
+                  <span className="font-mono text-xs font-bold text-muted">{link.num}</span>
+                  <span className="font-display text-xl font-bold">{link.label}</span>
                 </a>
               </li>
             ))}
-            <li className="mt-4">
-              <Button href="#contact" className="w-full" onClick={() => setOpen(false)}>
+            <li className="p-4">
+              <Button href="#contact" className="w-full justify-center" onClick={() => setOpen(false)}>
                 Boek ophaling
               </Button>
             </li>

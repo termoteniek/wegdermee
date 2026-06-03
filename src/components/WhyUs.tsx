@@ -1,77 +1,92 @@
+import { motion } from 'framer-motion'
 import { FadeIn } from './FadeIn'
 import { SectionLabel } from './ui/SectionLabel'
+import { Sticker } from './ui/Sticker'
 import { Swoosh } from './ui/Swoosh'
 
 const reasons = [
   {
     title: 'Licenties & verzekering',
-    description: 'Alle vergunningen en een degelijke verzekering — zonder zorgen.',
+    description: 'Alles in orde — jij hoeft niet te stressen.',
+    emoji: '✓',
   },
   {
-    title: 'Alle type klanten',
-    description: 'Particulier, VME of bedrijf — iedereen welkom.',
+    title: 'Iedereen welkom',
+    description: 'Particulier, VME of bedrijf — geen snobisme.',
+    emoji: '★',
   },
   {
     title: 'Geen sorteren',
-    description: 'Alles bij elkaar. Wij zorgen voor de rest.',
+    description: 'Alles door elkaar gooien mag. Serieus.',
+    emoji: '🔥',
   },
   {
-    title: 'Vlotte service',
-    description: 'Snel ter plaatse, stipt en correct.',
+    title: 'Snel ter plaatse',
+    description: 'Geen "we bellen u terug over 2 weken".',
+    emoji: '⚡',
   },
   {
     title: 'Volledig ontzorgd',
-    description: 'Van ophaling tot afvoer — jij hoeft nergens aan te denken.',
+    description: 'Ophaling tot afvoer — jij doet niks meer.',
+    emoji: '💪',
   },
 ]
 
 export function WhyUs() {
   return (
-    <section id="waarom" className="relative bg-ink text-cream">
-      <div className="bg-creamtext-cream-dark">
+    <section id="waarom" className="relative bg-ink text-paper">
+      <div className="text-lime">
         <Swoosh flip />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
-        <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
+      <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
+        <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
           <FadeIn direction="left">
-            <SectionLabel light>Waarom wij</SectionLabel>
-            <h2 className="mt-4 font-display text-5xl font-extrabold uppercase leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
-              Geen gedoe.
+            <SectionLabel variant="lime">Waarom wij</SectionLabel>
+            <h2 className="mt-5 font-display text-5xl uppercase leading-[0.9] sm:text-6xl lg:text-7xl">
+              Geen saaie
               <br />
-              <span className="text-accent italic">Gewoon weg.</span>
+              <span className="text-lime">corporate gezeik.</span>
             </h2>
-            <p className="mt-6 max-w-md text-lg text-white/60">
-              Betrouwbaar, transparant en met oog voor detail — zoals een goede
-              ophaaldienst hoort te zijn.
+            <p className="mt-6 max-w-md text-lg font-medium text-white/70">
+              Jong team dat wel serieus werk levert. Snel, eerlijk, en met een bakwagen
+              die je niet mist.
             </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Sticker variant="orange" rotate={-6}>
+                No BS
+              </Sticker>
+              <Sticker variant="pink" rotate={5}>
+                100% ontzorgd
+              </Sticker>
+            </div>
           </FadeIn>
 
-          <ul className="space-y-0">
+          <ul className="grid gap-4">
             {reasons.map((item, i) => (
               <FadeIn key={item.title} delay={i * 0.05}>
-                <li className="group border-t border-white/15 py-8 first:border-t-0 sm:py-10">
-                  <div className="flex gap-6 sm:gap-8">
-                    <span className="font-display text-4xl font-extrabold text-accent/80 transition-colors group-hover:text-accent">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <div>
-                      <h3 className="font-display text-2xl font-bold uppercase tracking-tight">
-                        {item.title}
-                      </h3>
-                      <p className="mt-2 text-base leading-relaxed text-white/55">
-                        {item.description}
-                      </p>
-                    </div>
+                <motion.li
+                  className="group flex gap-5 border-[3px] border-white/20 bg-white/5 p-6 transition-colors hover:border-lime hover:bg-lime/10"
+                  whileHover={{ x: 8 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 22 }}
+                >
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center border-[3px] border-lime bg-lime font-display text-xl text-ink">
+                    {item.emoji}
+                  </span>
+                  <div>
+                    <h3 className="font-display text-xl uppercase sm:text-2xl">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 font-medium text-white/60">{item.description}</p>
                   </div>
-                </li>
+                </motion.li>
               </FadeIn>
             ))}
           </ul>
         </div>
       </div>
 
-      <div className="text-cream">
+      <div className="text-paper">
         <Swoosh />
       </div>
     </section>

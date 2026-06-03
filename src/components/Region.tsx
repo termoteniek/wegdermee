@@ -1,37 +1,44 @@
+import { motion } from 'framer-motion'
 import { FadeIn } from './FadeIn'
 import { SectionLabel } from './ui/SectionLabel'
 
-const regions = ['Limburg', 'Antwerpen', 'Vlaams-Brabant', 'Brussel']
+const regions = [
+  { name: 'Limburg', vibe: 'thuisbasis' },
+  { name: 'Antwerpen', vibe: 'altijd busy' },
+  { name: 'Vlaams-Brabant', vibe: 'we rijden' },
+  { name: 'Brussel', vibe: 'challenge accepted' },
+]
 
 export function Region() {
   return (
-    <section id="regio" className="py-24 sm:py-32">
+    <section id="regio" className="bg-paper py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeIn className="text-center">
-          <SectionLabel>Regio</SectionLabel>
-          <h2 className="mt-3 font-display text-5xl font-extrabold uppercase tracking-tight text-ink sm:text-6xl">
-            Waar we rijden
+          <SectionLabel variant="pink">Regio</SectionLabel>
+          <h2 className="mt-5 font-display text-5xl uppercase text-ink sm:text-6xl">
+            Waar rijden we?
           </h2>
-          <p className="mx-auto mt-4 max-w-lg text-lg text-muted">
-            Actief in heel België — met focus op onderstaande provincies. Sta je er
-            niet bij? Vraag gerust.
+          <p className="mx-auto mt-4 max-w-lg text-lg font-medium text-muted">
+            Heel België — focus op deze zones. Ergens anders? Ping ons anyway.
           </p>
         </FadeIn>
 
-        <FadeIn delay={0.15} className="mt-14">
-          <ul className="flex flex-col divide-y-2 divide-ink border-y-2 border-ink sm:flex-row sm:divide-x-2 sm:divide-y-0">
+        <FadeIn delay={0.12} className="mt-14">
+          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {regions.map((region, i) => (
-              <li
-                key={region}
-                className="group flex flex-1 flex-col items-center justify-center px-6 py-10 transition-colors hover:bg-ink hover:text-cream sm:py-14"
+              <motion.li
+                key={region.name}
+                className="group relative border-[3px] border-ink bg-paper-dark p-6 text-center shadow-[6px_6px_0_0_#0a0a0a] transition-colors hover:bg-lime hover:shadow-[3px_3px_0_0_#0a0a0a]"
+                whileHover={{ rotate: i % 2 === 0 ? -2 : 2, y: -6 }}
+                transition={{ type: 'spring', stiffness: 350, damping: 18 }}
               >
-                <span className="font-display text-xs font-semibold uppercase tracking-[0.3em] text-muted group-hover:text-accent">
-                  {String(i + 1).padStart(2, '0')}
+                <span className="font-display text-3xl uppercase text-ink sm:text-4xl">
+                  {region.name}
                 </span>
-                <span className="mt-2 font-display text-3xl font-extrabold uppercase tracking-tight sm:text-4xl">
-                  {region}
-                </span>
-              </li>
+                <p className="mt-2 font-display text-xs uppercase tracking-wider text-accent opacity-0 transition-opacity group-hover:opacity-100">
+                  {region.vibe}
+                </p>
+              </motion.li>
             ))}
           </ul>
         </FadeIn>

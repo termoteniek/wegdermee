@@ -1,23 +1,36 @@
+import { Marquee } from './ui/Marquee'
+
 export function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="bg-cream">
+    <footer className="bg-ink text-paper">
+      <Marquee
+        items={[
+          'ROMMEL WEG',
+          'BOEK OPHALING',
+          'GEEN SORTEREN',
+          'STARTUP VIBES',
+          'WEGDERMEE',
+        ]}
+        className="!border-b-0"
+      />
+
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-5 py-12 sm:flex-row sm:px-8">
-        <img src="/logo.png" alt="wegdermee" className="h-12 w-auto" />
-        <p className="text-center text-sm text-muted sm:text-left">
-          © {year} wegdermee — Inboedels & rommelophaal
+        <img src="/logo.png" alt="wegdermee" className="h-14 w-auto brightness-0 invert" />
+        <p className="text-center font-medium text-white/60 sm:text-left">
+          © {year} wegdermee — Jong team, grote bakwagens
         </p>
-        <nav className="flex gap-8" aria-label="Footer">
+        <nav className="flex gap-6" aria-label="Footer">
           <a
             href="#"
-            className="font-display text-sm font-semibold uppercase tracking-widest text-muted transition-colors hover:text-ink"
+            className="font-display text-sm uppercase text-lime transition-colors hover:text-accent"
           >
             Privacy
           </a>
           <a
             href="#"
-            className="font-display text-sm font-semibold uppercase tracking-widest text-muted transition-colors hover:text-ink"
+            className="font-display text-sm uppercase text-lime transition-colors hover:text-accent"
           >
             Voorwaarden
           </a>

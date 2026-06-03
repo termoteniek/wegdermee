@@ -6,19 +6,30 @@ import { Region } from './components/Region'
 import { About } from './components/About'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
+import { Marquee } from './components/ui/Marquee'
 
 function App() {
   return (
     <>
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:bg-accent focus:px-4 focus:py-2 focus:font-display focus:font-bold focus:uppercase focus:text-white"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:border-[3px] focus:border-ink focus:bg-lime focus:px-4 focus:py-2 focus:font-display focus:uppercase focus:text-ink"
       >
         Ga direct naar de hoofdinhoud
       </a>
       <Header />
       <main id="main">
         <Hero />
+        <Marquee
+          items={[
+            'INBOEDELS',
+            'ROMMELOPHAAL',
+            'GEEN GEDOE',
+            'LIMBURG',
+            'ANTWERPEN',
+            'VL-BRABANT',
+          ]}
+        />
         <Services />
         <WhyUs />
         <Region />

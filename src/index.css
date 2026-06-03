@@ -1,17 +1,21 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-display: 'Barlow Condensed', ui-sans-serif, system-ui, sans-serif;
-  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
-  --color-ink: #0c0c0c;
+  --font-display: 'Bungee', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Rubik', ui-sans-serif, system-ui, sans-serif;
+  --color-ink: #0a0a0a;
   --color-ink-soft: #1a1a1a;
-  --color-cream: #f4f1ea;
-  --color-cream-dark: #e8e4da;
-  --color-muted: #5c5c5c;
-  --color-muted-light: #9a9a9a;
-  --color-accent: #e85d04;
-  --color-accent-hover: #d45103;
-  --color-line: rgba(12, 12, 12, 0.12);
+  --color-paper: #fffef2;
+  --color-paper-dark: #f5f0c8;
+  --color-muted: #4a4a4a;
+  --color-muted-light: #7a7a7a;
+  --color-accent: #ff5500;
+  --color-accent-hover: #e64a00;
+  --color-lime: #ccff00;
+  --color-lime-dark: #a8d600;
+  --color-hot: #ff2070;
+  --color-cyan: #00e5ff;
+  --color-line: rgba(10, 10, 10, 0.15);
 }
 
 html {
@@ -19,14 +23,58 @@ html {
 }
 
 body {
-  @apply bg-cream font-sans text-ink antialiased;
+  @apply bg-paper font-sans text-ink antialiased;
 }
 
 ::selection {
-  background: var(--color-accent);
-  color: white;
+  background: var(--color-lime);
+  color: var(--color-ink);
 }
 
 .font-display {
   font-family: var(--font-display);
+}
+
+.sticker {
+  @apply border-[3px] border-ink bg-lime shadow-[5px_5px_0_0_#0a0a0a];
+}
+
+.sticker-orange {
+  @apply border-[3px] border-ink bg-accent text-white shadow-[5px_5px_0_0_#0a0a0a];
+}
+
+.sticker-pink {
+  @apply border-[3px] border-ink bg-hot text-white shadow-[5px_5px_0_0_#0a0a0a];
+}
+
+.bg-halftone {
+  background-image: radial-gradient(circle, #0a0a0a 1px, transparent 1px);
+  background-size: 12px 12px;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 22s linear infinite;
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+.group:hover .group-hover-wiggle {
+  animation: wiggle 0.35s ease-in-out;
 }

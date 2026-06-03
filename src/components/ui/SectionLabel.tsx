@@ -1,16 +1,14 @@
+import { Sticker } from './Sticker'
+
 type SectionLabelProps = {
   children: string
-  light?: boolean
+  variant?: 'lime' | 'orange' | 'pink'
 }
 
-export function SectionLabel({ children, light }: SectionLabelProps) {
+export function SectionLabel({ children, variant = 'orange' }: SectionLabelProps) {
   return (
-    <p
-      className={`font-display text-sm font-semibold uppercase tracking-[0.25em] ${
-        light ? 'text-accent' : 'text-accent'
-      }`}
-    >
+    <Sticker variant={variant} rotate={-4} className="!text-sm sm:!text-base">
       {children}
-    </p>
+    </Sticker>
   )
 }

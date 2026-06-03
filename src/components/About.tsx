@@ -1,48 +1,63 @@
+import { motion } from 'framer-motion'
 import { FadeIn } from './FadeIn'
 import { Button } from './ui/Button'
 import { SectionLabel } from './ui/SectionLabel'
+import { Sticker } from './ui/Sticker'
 
 export function About() {
   return (
-    <section id="over-ons" className="border-t-2 border-ink bg-cream-dark py-24 sm:py-32">
+    <section
+      id="over-ons"
+      className="border-t-[3px] border-ink bg-lime py-20 sm:py-28"
+    >
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           <FadeIn className="lg:col-span-5">
-            <div className="relative border-2 border-ink bg-ink p-10 sm:p-14">
+            <motion.div
+              className="relative border-[4px] border-ink bg-ink p-10 shadow-[14px_14px_0_0_#ff5500] sm:p-14"
+              whileHover={{ rotate: -2, scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            >
               <img
                 src="/logo.png"
                 alt="wegdermee logo"
                 className="mx-auto w-full max-w-[220px] brightness-0 invert"
               />
-              <div className="absolute -right-3 -top-3 h-full w-full border-2 border-accent" aria-hidden />
-            </div>
+              <Sticker
+                variant="pink"
+                rotate={-8}
+                className="absolute -right-3 -top-4 !text-sm sm:!text-base"
+              >
+                Jong team
+              </Sticker>
+            </motion.div>
           </FadeIn>
 
           <FadeIn delay={0.1} className="lg:col-span-7">
-            <SectionLabel>Over ons</SectionLabel>
-            <h2 className="mt-3 font-display text-5xl font-extrabold uppercase leading-none tracking-tight text-ink sm:text-6xl">
+            <SectionLabel variant="pink">Over ons</SectionLabel>
+            <h2 className="mt-5 font-display text-5xl uppercase leading-[0.9] text-ink sm:text-6xl">
               Wie komt er langs?
             </h2>
 
-            <blockquote className="mt-8 border-l-4 border-accent pl-6">
-              <p className="font-display text-2xl font-bold uppercase italic leading-snug text-ink sm:text-3xl">
-                &ldquo;Klanten snel en correct ontzorgen van hun rommel.&rdquo;
+            <blockquote className="mt-8 border-l-[4px] border-ink pl-6">
+              <p className="font-display text-2xl uppercase leading-snug text-ink sm:text-3xl">
+                &ldquo;Snel je rommel kwijt — zonder corporate gedoe.&rdquo;
               </p>
             </blockquote>
 
-            <div className="mt-8 space-y-4 text-lg leading-relaxed text-muted">
+            <div className="mt-8 space-y-4 text-lg font-medium leading-relaxed text-ink/80">
               <p>
-                <strong className="text-ink">wegdermee</strong> is jouw partner voor
-                inboedels en rommelophaal — van een kleine ophaling tot een volledige
-                ontruiming of grotere B2B-operatie.
+                <strong className="font-display uppercase text-ink">wegdermee</strong> is
+                een jonge ophaaldienst met grote ambities. Van je zolderkamer tot een
+                volledige ontruiming — wij rollen op en rijden weer weg.
               </p>
               <p>
-                Transparante prijzen, vriendelijke service en geen verrassingen
-                achteraf. Zo hoort het.
+                Eerlijke prijzen, geen verrassingen, en een crew die lacht terwijl ze
+                sjouwen. Zo hoort een startup te werken.
               </p>
             </div>
 
-            <Button href="#contact" className="mt-10">
+            <Button href="#contact" variant="primary" className="mt-10">
               Boek een ophaling
             </Button>
           </FadeIn>

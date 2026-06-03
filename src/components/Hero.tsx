@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { Button } from './ui/Button'
+import { Sticker } from './ui/Sticker'
 import { Swoosh } from './ui/Swoosh'
 
 const headlineWords = ['Jouw', 'rommel?', 'Weg', 'ermee.']
@@ -11,48 +12,52 @@ export function Hero() {
     target: ref,
     offset: ['start start', 'end start'],
   })
-  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '12%'])
-  const textY = useTransform(scrollYProgress, [0, 1], ['0%', '6%'])
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '18%'])
+  const imageRotate = useTransform(scrollYProgress, [0, 1], [2, -2])
 
   return (
     <section
       ref={ref}
-      className="relative min-h-svh overflow-hidden bg-ink text-cream lg:h-svh lg:min-h-0"
+      className="relative min-h-svh overflow-hidden bg-ink text-paper lg:h-svh lg:min-h-0"
     >
+      <div className="pointer-events-none absolute inset-0 bg-halftone opacity-[0.08]" aria-hidden />
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-        }}
+        className="pointer-events-none absolute -right-20 top-1/4 h-64 w-64 rounded-full bg-lime/30 blur-3xl"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute -left-10 bottom-1/3 h-48 w-48 rounded-full bg-hot/25 blur-3xl"
         aria-hidden
       />
 
-      <div className="relative z-10 flex min-h-svh w-full items-center px-5 py-24 sm:px-8 lg:h-full lg:min-h-0 lg:py-0 lg:pt-24 lg:pb-12">
-        <div className="mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-12 lg:gap-12">
-          <motion.div className="lg:col-span-6" style={{ y: textY }}>
-            <motion.p
-              className="font-display text-sm font-semibold uppercase tracking-[0.3em] text-accent"
-              initial={{ opacity: 0, x: -24 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.15, duration: 0.5 }}
-            >
-              Inboedels & rommelophaal
-            </motion.p>
+      <div className="relative z-10 flex min-h-svh w-full items-center px-5 py-28 sm:px-8 lg:h-full lg:min-h-0 lg:py-0 lg:pt-28 lg:pb-16">
+        <div className="mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-12 lg:gap-10">
+          <motion.div className="lg:col-span-6">
+            <div className="flex flex-wrap items-center gap-3">
+              <Sticker variant="lime" rotate={-5}>
+                Startup crew
+              </Sticker>
+              <Sticker variant="cyan" rotate={4}>
+                Geen gedoe
+              </Sticker>
+            </div>
 
-            <h1 className="mt-4 font-display text-[clamp(2.75rem,10vw,6.5rem)] font-extrabold uppercase leading-[0.9] tracking-tight">
+            <h1 className="mt-6 font-display text-[clamp(2.5rem,11vw,6.75rem)] uppercase leading-[0.88] tracking-tight">
               {headlineWords.map((word, i) => (
                 <motion.span
                   key={word}
-                  className={`mr-[0.15em] inline-block ${
-                    i >= 2 ? 'text-accent italic' : ''
+                  className={`mr-[0.12em] inline-block ${
+                    i >= 2 ? 'text-lime' : i === 1 ? 'text-accent' : ''
                   }`}
-                  initial={{ opacity: 0, y: 60, rotate: i >= 2 ? -2 : 0 }}
-                  animate={{ opacity: 1, y: 0, rotate: 0 }}
+                  initial={{ opacity: 0, y: 80, rotate: i % 2 === 0 ? -8 : 8 }}
+                  animate={{ opacity: 1, y: 0, rotate: i >= 2 ? -2 : 0 }}
                   transition={{
-                    delay: 0.25 + i * 0.1,
-                    duration: 0.7,
-                    ease: [0.16, 1, 0.3, 1],
+                    type: 'spring',
+                    stiffness: 200,
+                    damping: 14,
+                    delay: 0.1 + i * 0.08,
                   }}
+                  whileHover={{ scale: 1.05, rotate: i >= 2 ? 2 : -2 }}
                 >
                   {word}
                 </motion.span>
@@ -60,64 +65,67 @@ export function Hero() {
             </h1>
 
             <motion.p
-              className="mt-6 max-w-md text-lg leading-relaxed text-white/70"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7 }}
+              className="mt-6 max-w-md text-lg font-medium leading-relaxed text-white/80"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.55 }}
             >
-              Meubels, elektronica, volledige ontruimingen — wij halen alles op. Jij
-              sorteert niet. Wij regelen de rest.
+              Jong team, grote bakwagens. Meubels, elektronica, volledige ontruimingen —
+              jij gooit alles bij elkaar, wij rijden weg. Zo simpel.
             </motion.p>
 
             <motion.div
               className="mt-10 flex flex-wrap gap-4"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.85 }}
+              transition={{ delay: 0.65, type: 'spring' }}
             >
               <Button href="#contact">Boek ophaling</Button>
-              <Button
-                href="#diensten"
-                variant="outline"
-                className="!border-white/40 !text-white hover:!bg-white hover:!text-ink"
-              >
-                Diensten
+              <Button href="#diensten" variant="ghost">
+                Wat halen we op?
               </Button>
             </motion.div>
           </motion.div>
 
           <motion.div
-            className="relative lg:col-span-6 lg:col-start-7"
-            style={{ y: imageY }}
-            initial={{ opacity: 0, x: 80 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="relative lg:col-span-6"
+            style={{ y: imageY, rotate: imageRotate }}
+            initial={{ opacity: 0, scale: 0.85, rotate: 6 }}
+            animate={{ opacity: 1, scale: 1, rotate: 3 }}
+            transition={{ type: 'spring', stiffness: 120, damping: 14, delay: 0.3 }}
           >
             <div className="relative">
-              <div className="absolute -inset-4 bg-accent/20 blur-3xl" aria-hidden />
-              <div className="relative overflow-hidden border-2 border-white/10">
+              <div className="absolute -inset-3 bg-lime blur-2xl opacity-40" aria-hidden />
+              <div className="relative overflow-hidden border-[4px] border-lime bg-ink shadow-[12px_12px_0_0_#ccff00]">
                 <img
                   src="/camionette.png"
                   alt="wegdermee bestelwagen"
-                  className="aspect-[4/3] w-full object-cover object-center lg:aspect-[16/11] lg:max-h-[min(52vh,520px)]"
+                  className="aspect-[4/3] w-full object-cover object-center lg:aspect-[16/11] lg:max-h-[min(54vh,540px)]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent lg:bg-gradient-to-l lg:from-ink/60 lg:via-transparent lg:to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-ink/70 via-transparent to-hot/20" />
               </div>
+
               <motion.div
-                className="absolute -bottom-4 -left-2 border-2 border-ink bg-cream p-3 sm:-left-4"
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 1.1 }}
+                className="absolute -bottom-5 -left-3 sticker sm:-left-6"
+                animate={{ rotate: [-4, 4, -4] }}
+                transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
               >
-                <img src="/logo.png" alt="" className="h-12 w-auto sm:h-14" aria-hidden />
+                <img src="/logo.png" alt="" className="h-14 w-auto sm:h-16" aria-hidden />
               </motion.div>
+
+              <Sticker
+                variant="pink"
+                rotate={8}
+                className="absolute -right-2 -top-3 sm:-right-4 sm:-top-5 !text-base sm:!text-lg"
+              >
+                Snel!
+              </Sticker>
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* Wave sits below the viewport so the hero stays full-screen dark */}
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 translate-y-full text-cream">
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 translate-y-full text-paper">
         <Swoosh />
       </div>
     </section>

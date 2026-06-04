@@ -105,7 +105,7 @@ Gebruik dit document tijdens het kickoff-gesprek. Vul antwoorden in of noteer ze
 | #    | Vraag                                                                                            | Antwoord                                                                                                                           |
 | ---- | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
 | 8.1  | Sectietitel + intro?                                                                             | Goed                                                                                                                               |
-| 8.2  | **E-mailadres**                                                                                  | info@wegdermee.be                                                                                                                  |
+| 8.2  | **E-mailadres**                                                                                  | [info@wegdermee.be](mailto:info@wegdermee.be)                                                                                      |
 | 8.3  | **Telefoonnummer(s)**                                                                            | +32 498438878                                                                                                                      |
 | 8.4  | **Openingstijden**                                                                               | ALTIJD, duidelijk maken, flexibiliteit                                                                                             |
 | 8.5  | Contactformulier: welke velden? (naam, e-mail, telefoon, postcode, type klant, upload foto’s, …) | Naam, email, adress, telefoonnummer, beschrijving, dropdown : geschattehoeveelhied, agenda tijdstip selectie Telefonisch bevestigd |
@@ -135,9 +135,9 @@ Gebruik dit document tijdens het kickoff-gesprek. Vul antwoorden in of noteer ze
 ## 10. Huisstijl & design
 
 
-| #    | Vraag    | Antwoord |
-| ---- | -------- | -------- |
-| 10.1 | Design ? |          |
+| #    | Vraag    | Antwoord    |
+| ---- | -------- | ----------- |
+| 10.1 | Design ? | Add reviews |
 
 
 ---

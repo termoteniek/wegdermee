@@ -145,10 +145,10 @@ Gebruik dit document tijdens het kickoff-gesprek. Vul antwoorden in of noteer ze
 ## 11. Techniek, domein & hosting
 
 
-| #    | Vraag          | Antwoord |
-| ---- | -------------- | -------- |
-| 13.1 | **Domeinnaam** |          |
-| 13.2 | **E-mail**     |          |
+| #    | Vraag          | Antwoord          |
+| ---- | -------------- | ----------------- |
+| 13.1 | **Domeinnaam** | wegdermee.be      |
+| 13.2 | **E-mail**     | info@wegdermee.be |
 
 
 ---
@@ -158,9 +158,9 @@ Gebruik dit document tijdens het kickoff-gesprek. Vul antwoorden in of noteer ze
 
 | #    | Vraag                         | Antwoord |
 | ---- | ----------------------------- | -------- |
-| 14.1 | SEO ?                         |          |
-| 14.2 | **Paginatitel**               |          |
-| 14.2 | Belangrijkste **zoekwoorden** |          |
+| 14.1 | SEO ?                         | beetje   |
+| 14.2 | **Paginatitel**               | /        |
+| 14.2 | Belangrijkste **zoekwoorden** | /        |
 
 
 ---

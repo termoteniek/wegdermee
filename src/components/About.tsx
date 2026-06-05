@@ -31,13 +31,16 @@ export function About() {
 
             <div className="mt-8 space-y-4 text-lg leading-relaxed text-muted">
               <p>
-                <strong className="text-ink">wegdermee</strong> is jouw partner voor
-                inboedels en rommelophaal — van een kleine ophaling tot een volledige
-                ontruiming of grotere B2B-operatie.
+                Hey! Wij zijn Siebe en Lars, 20 en studentondernemers.
               </p>
               <p>
-                Transparante prijzen, vriendelijke service en geen verrassingen
-                achteraf. Zo hoort het.
+                Zo startten we samen <strong className="text-ink">wegdermee</strong> — een
+                ophaaldienst voor rommel en inboedels.
+              </p>
+              <p>
+                Ons doel? Klanten snel en correct ontzorgen van hun rommel. Of het nu gaat
+                om een volledige ontruiming, werf opruiming, een kleine ophaling of
+                verhuizing — wij staan klaar.
               </p>
             </div>
           </FadeIn>

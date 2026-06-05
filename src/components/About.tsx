@@ -1,5 +1,4 @@
 import { FadeIn } from './FadeIn'
-import { Button } from './ui/Button'
 import { SectionLabel } from './ui/SectionLabel'
 
 export function About() {
@@ -41,10 +40,6 @@ export function About() {
                 achteraf. Zo hoort het.
               </p>
             </div>
-
-            <Button href="#contact" className="mt-10">
-              Boek een ophaling
-            </Button>
           </FadeIn>
         </div>
       </div>

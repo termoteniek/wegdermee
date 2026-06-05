@@ -75,7 +75,7 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.85 }}
             >
-              <Button href="#contact">Boek ophaling</Button>
+              <Button href="/contact">Boek ophaling</Button>
               <Button
                 href="#diensten"
                 variant="outline"

@@ -69,7 +69,7 @@ export function Services() {
                   <p className="mt-3 max-w-2xl text-lg text-muted">{service.description}</p>
                 </div>
                 <a
-                  href="#contact"
+                  href="/contact"
                   className="font-display text-sm font-bold uppercase tracking-widest text-accent underline-offset-4 transition-colors hover:text-accent-hover hover:underline sm:text-right"
                 >
                   {service.cta} →

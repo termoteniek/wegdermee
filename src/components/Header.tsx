@@ -3,11 +3,11 @@ import { useState } from 'react'
 import { Button } from './ui/Button'
 
 const navLinks = [
-  { href: '#diensten', label: 'Diensten' },
-  { href: '#waarom', label: 'Waarom' },
-  { href: '#regio', label: 'Regio' },
-  { href: '#over-ons', label: 'Over ons' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/#diensten', label: 'Diensten' },
+  { href: '/#waarom', label: 'Waarom' },
+  { href: '/#regio', label: 'Regio' },
+  { href: '/#over-ons', label: 'Over ons' },
+  { href: '/#te-werk', label: 'Hoe gaan we te werk' },
 ]
 
 export function Header() {
@@ -32,7 +32,7 @@ export function Header() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
         <a
-          href="#"
+          href="/"
           className={`relative z-10 shrink-0 font-display text-2xl font-bold uppercase tracking-wide transition-colors duration-200 ${
             scrolled ? 'text-white/80 hover:text-white' : 'text-accent hover:text-accent-hover'
           }`}
@@ -54,7 +54,7 @@ export function Header() {
 
         <div className="hidden lg:block">
           <Button
-            href="#contact"
+            href="/contact"
             variant={scrolled ? 'ghost' : 'primary'}
             className="!px-6 !py-2.5 !text-base"
           >
@@ -100,7 +100,7 @@ export function Header() {
               </li>
             ))}
             <li className="mt-4">
-              <Button href="#contact" className="w-full" onClick={() => setOpen(false)}>
+              <Button href="/contact" className="w-full" onClick={() => setOpen(false)}>
                 Boek ophaling
               </Button>
             </li>

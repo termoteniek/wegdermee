@@ -3,7 +3,7 @@ import { useRef } from 'react'
 import { Button } from './ui/Button'
 import { Swoosh } from './ui/Swoosh'
 
-const headlineWords = ['Jouw', 'rommel?', 'Weg', 'ermee.']
+const headlineWords = ['Jouw', 'rommel?', 'Weg', 'ermee!']
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null)
@@ -36,7 +36,7 @@ export function Hero() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.15, duration: 0.5 }}
             >
-              Inboedels & rommelophaal
+              Inboedel & rommelophaal
             </motion.p>
 
             <h1 className="mt-4 font-display text-[clamp(2.75rem,10vw,6.5rem)] font-extrabold uppercase leading-[0.9] tracking-tight">
@@ -65,7 +65,7 @@ export function Hero() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7 }}
             >
-              Meubels, elektronica, volledige ontruimingen — wij halen alles op. Jij
+              Meubels, elektronica, volledige ontruimingen — wij halen alles op. U
               sorteert niet. Wij regelen de rest.
             </motion.p>
 

@@ -8,28 +8,24 @@ const services = [
     title: 'Rommelophaaldienst',
     description:
       'Oude meubels, defecte elektronica, groenafval — wij hebben alles al gezien en nemen het mee.',
-    cta: 'Boek ophaling',
   },
   {
     num: '02',
     title: 'Volledige ontruiming',
     description:
       'Woning, appartement of bedrijfspand: een zorgeloze, complete leeghaling van A tot Z.',
-    cta: 'Gratis offerte',
   },
   {
     num: '03',
     title: 'Werf opruiming',
     description:
       'Verbouwing? Alles verdwijnt zodat jij verder kunt bouwen aan iets nieuws.',
-    cta: 'Contact',
   },
   {
     num: '04',
-    title: 'Zakelijk',
+    title: 'Kleine verhuizingen',
     description:
-      'Kantoorverhuizing, stockafval of grotere B2B-operaties — wij schalen mee.',
-    cta: 'Offerte',
+      'Een paar meubels of dozen van A naar B, snel en correct geregeld.'
   },
 ]
 
@@ -44,11 +40,11 @@ export function Services() {
               Alles wat weg moet
             </h2>
           </FadeIn>
-          <FadeIn delay={0.1} className="max-w-sm">
+          {/* <FadeIn delay={0.1} className="max-w-sm">
             <p className="text-lg text-muted">
               Van kleine ophaling tot volledige ontruiming — één team, één aanspreekpunt.
             </p>
-          </FadeIn>
+          </FadeIn> */}
         </div>
 
         <ul className="mt-0 divide-y-2 divide-ink">
@@ -70,9 +66,9 @@ export function Services() {
                 </div>
                 <a
                   href="/contact"
-                  className="font-display text-sm font-bold uppercase tracking-widest text-accent underline-offset-4 transition-colors hover:text-accent-hover hover:underline sm:text-right"
+                  className="font-display text-base font-bold uppercase tracking-widest text-accent underline-offset-4 transition-colors hover:text-accent-hover hover:underline sm:text-right"
                 >
-                  {service.cta} →
+                  MEER INFO →
                 </a>
               </motion.li>
             </FadeIn>

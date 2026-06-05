@@ -1,20 +1,20 @@
 import { FadeIn } from './FadeIn'
 import { SectionLabel } from './ui/SectionLabel'
 
-const regions = ['Limburg', 'Antwerpen', 'Vlaams-Brabant', 'Brussel']
+const regions = ['Oost-Vlaanderen', 'West-Vlaanderen', 'Antwerpen', 'Brussel']
 
 export function Region() {
   return (
-    <section id="regio" className="py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+    <section id="regio" className="relative overflow-hidden py-24 sm:py-32">
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8">
         <FadeIn className="text-center">
           <SectionLabel>Regio</SectionLabel>
           <h2 className="mt-3 font-display text-5xl font-extrabold uppercase tracking-tight text-ink sm:text-6xl">
             Waar we rijden
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-lg text-muted">
-            Actief in heel België — met focus op onderstaande provincies. Sta je er
-            niet bij? Vraag gerust.
+            Onze focus ligt op onderstaande provincies. Staat uw regio er
+            niet bij? Neem gerust contact op, we helpen u graag verder.
           </p>
         </FadeIn>
 

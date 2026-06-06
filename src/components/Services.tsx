@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { FadeIn } from './FadeIn'
 import { SectionLabel } from './ui/SectionLabel'
 
@@ -8,24 +9,28 @@ const services = [
     title: 'Rommelophaaldienst',
     description:
       'Oude meubels, defecte elektronica, groenafval — wij hebben alles al gezien en nemen het mee.',
+    href: '/diensten/rommelophaaldienst',
   },
   {
     num: '02',
     title: 'Volledige ontruiming',
     description:
       'Woning, appartement of bedrijfspand: een zorgeloze, complete leeghaling van A tot Z.',
+    href: '/diensten/volledige-ontruiming',
   },
   {
     num: '03',
     title: 'Werf opruiming',
     description:
       'Verbouwing? Alles verdwijnt zodat jij verder kunt bouwen aan iets nieuws.',
+    href: '/diensten/werf-opruiming',
   },
   {
     num: '04',
     title: 'Kleine verhuizingen',
     description:
-      'Een paar meubels of dozen van A naar B, snel en correct geregeld.'
+      'Een paar meubels of dozen van A naar B, snel en correct geregeld.',
+    href: '/diensten/kleine-verhuizingen',
   },
 ]
 
@@ -40,11 +45,6 @@ export function Services() {
               Alles wat weg moet
             </h2>
           </FadeIn>
-          {/* <FadeIn delay={0.1} className="max-w-sm">
-            <p className="text-lg text-muted">
-              Van kleine ophaling tot volledige ontruiming — één team, één aanspreekpunt.
-            </p>
-          </FadeIn> */}
         </div>
 
         <ul className="mt-0 divide-y-2 divide-ink">
@@ -64,12 +64,12 @@ export function Services() {
                   </h3>
                   <p className="mt-3 max-w-2xl text-lg text-muted">{service.description}</p>
                 </div>
-                <a
-                  href="/contact"
+                <Link
+                  to={service.href}
                   className="font-display text-base font-bold uppercase tracking-widest text-accent underline-offset-4 transition-colors hover:text-accent-hover hover:underline sm:text-right"
                 >
-                  MEER INFO →
-                </a>
+                  Meer info →
+                </Link>
               </motion.li>
             </FadeIn>
           ))}

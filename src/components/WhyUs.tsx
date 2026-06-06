@@ -32,7 +32,7 @@ export function WhyUs() {
         <Swoosh flip />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+      <div className="relative mx-auto max-w-7xl px-5 pt-24 pb-0 sm:px-8 sm:pt-32">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
           <FadeIn direction="left">
             <SectionLabel light>Waarom wij</SectionLabel>
@@ -69,10 +69,6 @@ export function WhyUs() {
             ))}
           </ul>
         </div>
-      </div>
-
-      <div className="text-cream">
-        <Swoosh />
       </div>
     </section>
   )

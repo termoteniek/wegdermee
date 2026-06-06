@@ -1,6 +1,7 @@
 import { FadeIn } from './FadeIn'
 import { Button } from './ui/Button'
 import { SectionLabel } from './ui/SectionLabel'
+import { Swoosh } from './ui/Swoosh'
 
 const steps = [
   {
@@ -31,9 +32,10 @@ const steps = [
 
 export function HowWeWork() {
   return (
-    <section id="te-werk" className="bg-ink py-24 text-cream sm:py-32">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <FadeIn className="border-b border-white/15 pb-10 text-center">
+    <section id="te-werk" className="relative bg-ink text-cream">
+      <div className="py-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">        
+          <FadeIn className="border-b border-white/15 pb-10 text-center">
           <SectionLabel light>Hoe gaan we te werk</SectionLabel>
           <h2 className="mx-auto mt-3 max-w-2xl font-display text-5xl font-extrabold uppercase leading-none tracking-tight sm:text-6xl">
             Van eerste contact tot{' '}
@@ -63,6 +65,11 @@ export function HowWeWork() {
         <FadeIn className="mt-14 flex justify-center">
           <Button href="/contact">Boek een ophaling</Button>
         </FadeIn>
+        </div>
+      </div>
+
+      <div className="text-cream">
+        <Swoosh />
       </div>
     </section>
   )

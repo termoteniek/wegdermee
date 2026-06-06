@@ -5,9 +5,9 @@ import { Button } from './ui/Button'
 const navLinks = [
   { href: '/#diensten', label: 'Diensten' },
   { href: '/#waarom', label: 'Waarom' },
+  { href: '/#te-werk', label: 'Hoe gaan we te werk' },
   { href: '/#regio', label: 'Regio' },
   { href: '/#over-ons', label: 'Over ons' },
-  { href: '/#te-werk', label: 'Hoe gaan we te werk' },
 ]
 
 export function Header() {

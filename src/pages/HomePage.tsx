@@ -11,9 +11,9 @@ export function HomePage() {
       <Hero />
       <Services />
       <WhyUs />
+      <HowWeWork />
       <Region />
       <About />
-      <HowWeWork />
     </>
   )
 }

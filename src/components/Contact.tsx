@@ -12,7 +12,7 @@ export function Contact() {
   }
 
   return (
-    <section className="bg-ink py-24 text-cream sm:py-32">
+    <section className="flex flex-1 flex-col bg-ink py-24 text-cream sm:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
           <FadeIn direction="left">

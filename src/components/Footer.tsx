@@ -52,8 +52,8 @@ export function Footer() {
     <footer className="bg-ink text-cream">
       <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:items-stretch lg:gap-8">
-          <a
-            href="/"
+          <Link
+            to="/"
             className="flex h-full items-center justify-center sm:col-span-2 lg:col-span-1"
           >
             <img
@@ -61,7 +61,7 @@ export function Footer() {
               alt="wegdermee"
               className="h-12 w-auto brightness-0 invert"
             />
-          </a>
+          </Link>
 
           <div>
             <h3 className="font-display text-sm font-semibold uppercase tracking-[0.25em] text-accent">

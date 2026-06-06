@@ -1,0 +1,17 @@
+- Service uitbereiding, voor en na fotos, prijsvermelden en CTA naar contact pagina.
+- Kleine verhuizing nog zien wat mogelijk
+- 5de diesnt, transport ?
+- OPGELET, misschien PARTNER vermelden.
+- Licentie en verzekering, subtitle aanpassen. Beter verwoorden dat alles voor hun geregeld is. 
+- Licentie en verzekering later vermelden, Vlotte Service eerst.
+- Geen sorteren -> Niet Sorteren, subtitle veranderen. Alles doorelkaar.
+- WEGDERMEE in navbar, animeren.
+- Tiktok in socials
+- Hoe gaan we te werk, 01. Vertel ons waar we moeten zijn en wat weg moet. 
+- Hoe gaan we te werk, 02. Daarna plannen we een moment dat voor u past. 
+- Hoe gaan we te werk, 03. U hoeft niet te sorteren... . 
+- Hoe gaan we te werk, 04. Vermelden dat betaling onmiddelijk is. 
+- Over ons:
+    - Vermelden ervaring nij verschillende verhuisfirmas, jaren in sector
+    - Kleinsaf aan ondernemings droom
+    - Die ook verhuizingen aanbied

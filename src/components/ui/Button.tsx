@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 
 type ButtonProps = {
   href: string
@@ -16,6 +17,10 @@ const variants = {
   ghost: 'bg-white/10 text-white border border-white/25 hover:bg-white/20',
 }
 
+function isInternalRoute(href: string) {
+  return href.startsWith('/') && !href.startsWith('//')
+}
+
 export function Button({
   href,
   children,
@@ -23,12 +28,18 @@ export function Button({
   className = '',
   onClick,
 }: ButtonProps) {
+  const classes = `inline-flex items-center justify-center px-8 py-3.5 font-display text-lg font-bold uppercase tracking-wide transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${variants[variant]} ${className}`
+
+  if (isInternalRoute(href)) {
+    return (
+      <Link to={href} onClick={onClick} className={classes}>
+        {children}
+      </Link>
+    )
+  }
+
   return (
-    <a
-      href={href}
-      onClick={onClick}
-      className={`inline-flex items-center justify-center px-8 py-3.5 font-display text-lg font-bold uppercase tracking-wide transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${variants[variant]} ${className}`}
-    >
+    <a href={href} onClick={onClick} className={classes}>
       {children}
     </a>
   )

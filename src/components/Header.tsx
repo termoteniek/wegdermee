@@ -31,14 +31,14 @@ export function Header() {
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
-        <a
-          href="/"
+        <Link
+          to="/"
           className={`relative z-10 shrink-0 font-display text-2xl font-bold uppercase tracking-wide transition-colors duration-200 ${
             scrolled ? 'text-white/80 hover:text-white' : 'text-accent hover:text-accent-hover'
           }`}
         >
           WegDerMee
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-10 lg:flex" aria-label="Hoofdnavigatie">
           {navLinks.map((link) => (

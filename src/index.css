@@ -27,6 +27,6 @@ body {
   color: white;
 }
 
-.font-display {
-  font-family: var(--font-display);
+main [id] {
+  scroll-margin-top: 5.5rem;
 }

@@ -1,7 +1,7 @@
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Button } from './ui/Button'
-
 const navLinks = [
   { href: '/#diensten', label: 'Diensten' },
   { href: '/#waarom', label: 'Waarom' },
@@ -42,16 +42,15 @@ export function Header() {
 
         <nav className="hidden items-center gap-10 lg:flex" aria-label="Hoofdnavigatie">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
-              href={link.href}
+              to={link.href}
               className="font-display text-sm font-semibold uppercase tracking-widest text-white/80 transition-colors hover:text-white"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
-
         <div className="hidden lg:block">
           <Button
             href="/contact"
@@ -90,16 +89,15 @@ export function Header() {
           <ul className="flex flex-col gap-1">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a
-                  href={link.href}
+                <Link
+                  to={link.href}
                   className="block py-3 font-display text-xl font-bold uppercase tracking-wide text-white/90 hover:text-white"
                   onClick={() => setOpen(false)}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
-            ))}
-            <li className="mt-4">
+            ))}            <li className="mt-4">
               <Button href="/contact" className="w-full" onClick={() => setOpen(false)}>
                 Boek ophaling
               </Button>

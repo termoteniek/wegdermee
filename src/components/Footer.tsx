@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 const navLinks = [
   { href: '/#diensten', label: 'Diensten' },
   { href: '/#waarom', label: 'Waarom' },
@@ -67,13 +69,13 @@ export function Footer() {
             </h3>
             <nav className="mt-4 flex flex-col gap-2" aria-label="Footer navigatie">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
-                  href={link.href}
+                  to={link.href}
                   className={`text-sm text-white/60 ${linkClassName}`}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>

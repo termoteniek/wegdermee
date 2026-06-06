@@ -21,7 +21,7 @@ export function Contact() {
               Klaar om op te ruimen?
             </h2>
             <p className="mt-5 max-w-md text-lg text-white/60">
-              Vraag, offerte of direct een ophaling — we antwoorden zo snel mogelijk.
+              Vraag, offerte of direct een ophaling boeking — we antwoorden zo snel mogelijk.
             </p>
 
             <ul className="mt-12 space-y-6">

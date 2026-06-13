@@ -35,7 +35,7 @@ export function WerfOpruimingPage() {
       <ServiceHero
         num="03"
         title="Werf opruiming"
-        intro="Verbouwing of renovatie? Wij ruimen je werf op zodat jij verder kunt bouwen aan iets nieuws."
+        intro="Verbouwing of renovatie? Wij ruimen uw werf op zodat u verder kunt bouwen aan iets nieuws."
       />
 
       <section className="border-t-2 border-ink bg-cream-dark py-20 sm:py-28">

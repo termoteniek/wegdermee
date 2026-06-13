@@ -13,6 +13,7 @@ export const serviceOptions: ServiceOption[] = [
   { value: 'volledige-ontruiming', label: 'Volledige ontruiming' },
   { value: 'werf-opruiming', label: 'Werf opruiming' },
   { value: 'kleine-verhuizingen', label: 'Kleine verhuizingen' },
+  { value: 'transport', label: 'Transport' },
 ]
 
 export const volumeOptions: VolumeOption[] = [

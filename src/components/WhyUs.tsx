@@ -4,24 +4,24 @@ import { Swoosh } from './ui/Swoosh'
 
 const reasons = [
   {
-    title: 'Licenties & verzekering',
-    description: 'Alle vergunningen en een degelijke verzekering — zonder zorgen.',
+    title: 'Vlotte service',
+    description: 'Snel ter plaatse, stipt en correct.',
   },
   {
     title: 'Alle type klanten',
     description: 'Particulier, VME of bedrijf — iedereen welkom.',
   },
   {
-    title: 'Geen sorteren',
-    description: 'Alles bij elkaar. Wij zorgen voor de rest.',
+    title: 'Niet sorteren',
+    description: 'Alles door elkaar. Wij sorteren voor u.',
   },
   {
-    title: 'Vlotte service',
-    description: 'Snel ter plaatse, stipt en correct.',
+    title: 'Licenties & verzekering',
+    description: 'Alle vergunningen en een uitstekende verzekering.',
   },
   {
     title: 'Volledig ontzorgd',
-    description: 'Van ophaling tot afvoer — jij hoeft nergens aan te denken.',
+    description: 'Van ophaling tot afvoer — u hoeft nergens aan te denken.',
   },
 ]
 

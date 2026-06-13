@@ -35,7 +35,7 @@ export function RommelophaaldienstPage() {
       <ServiceHero
         num="01"
         title="Rommelophaaldienst"
-        intro="Te veel spullen, te weinig plaats? Wij halen je rommel op — groot of klein, sorteer jij niet, wij regelen de rest."
+        intro="Te veel spullen, te weinig plaats? Wij halen uw rommel op — groot of klein, u sorteert niet, wij regelen de rest."
       />
 
       <section className="border-t-2 border-ink bg-cream-dark py-20 sm:py-28">

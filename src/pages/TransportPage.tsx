@@ -5,37 +5,37 @@ import { Button } from '../components/ui/Button'
 import { SectionLabel } from '../components/ui/SectionLabel'
 
 const description = [
-  'Woning, appartement, handelspand of magazijn: wij zorgen voor een complete leeghaling van A tot Z. Meubels, keukens, vloerbedekking en restafval — alles gaat mee.',
-  'Perfect bij verhuizing, verkoop van een pand of nalatenschap.',
+  'Grote aankoop bij IKEA, Brico, Hubo of een andere winkel — maar geen bus om het zelf te halen? Wij rijden voor u naar de winkel, laden alles in en brengen het veilig naar uw adres.',
+  'Ideaal voor meubels, keukenapparatuur, bouwmaterialen of een grote bestelling die niet in uw eigen wagen past.',
 ]
 
 const included = [
-  'Volledige ontruiming van het pand',
-  'Vaste en losse inboedel',
-  'Eventuele kelder, zolder of garage',
-  'Proper achtergelaten, klaar voor gebruik',
+  'Ophaling bij winkel of leverancier',
+  'Transport naar uw adres',
+  'Hulp bij laden en lossen',
+  'Flexibele planning op afspraak',
 ]
 
 const beforeAfter = [
   {
-    before: '/services/volledige-ontruiming-voor-1.jpg',
-    after: '/services/volledige-ontruiming-na-1.jpg',
-    caption: 'Appartement volledig ontruimd',
+    before: '/services/transport-voor-1.jpg',
+    after: '/services/transport-na-1.jpg',
+    caption: 'IKEA-meubels geleverd aan huis',
   },
   {
-    before: '/services/volledige-ontruiming-voor-2.jpg',
-    after: '/services/volledige-ontruiming-na-2.jpg',
-    caption: 'Handelspand leeggehaald',
+    before: '/services/transport-voor-2.jpg',
+    after: '/services/transport-na-2.jpg',
+    caption: 'Grote Brico-bestelling opgehaald',
   },
 ]
 
-export function VolledigeOntruimingPage() {
+export function TransportPage() {
   return (
     <div className="flex flex-1 flex-col">
       <ServiceHero
-        num="02"
-        title="Volledige ontruiming"
-        intro="Een pand volledig leeg? Wij halen alles weg — van zolder tot kelder — zodat u verder kunt zonder zorgen."
+        num="05"
+        title="Transport"
+        intro="Iets groots gekocht bij IKEA, Brico of een andere winkel? Wij halen het op en brengen het veilig naar u toe."
       />
 
       <section className="border-t-2 border-ink bg-cream-dark py-20 sm:py-28">
@@ -74,10 +74,11 @@ export function VolledigeOntruimingPage() {
           <FadeIn className="mx-auto max-w-2xl text-center">
             <SectionLabel>Prijzen</SectionLabel>
             <p className="mt-4 font-display text-6xl font-extrabold uppercase leading-none text-accent sm:text-7xl">
-              Vanaf €450
+              Vanaf €50
             </p>
             <p className="mt-6 text-lg leading-relaxed text-muted">
-              Prijs op maat na bezichtiging. Transparante offerte, geen verrassingen achteraf.
+              Prijs afhankelijk van afstand, afmetingen en gewicht. Vrijblijvende offerte op
+              aanvraag.
             </p>
           </FadeIn>
         </div>
@@ -88,7 +89,7 @@ export function VolledigeOntruimingPage() {
           <FadeIn className="text-center">
             <SectionLabel light>Klaar om te starten?</SectionLabel>
             <h2 className="mt-3 font-display text-4xl font-extrabold uppercase leading-none tracking-tight sm:text-5xl lg:text-6xl">
-              Boek uw volledige ontruiming
+              Boek uw transport
             </h2>
             <p className="mx-auto mt-5 max-w-lg text-lg text-white/60">
               Vraag een vrijblijvende offerte aan of plan direct een afspraak. Wij nemen snel

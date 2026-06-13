@@ -6,6 +6,7 @@ import { RommelophaaldienstPage } from './pages/RommelophaaldienstPage'
 import { VolledigeOntruimingPage } from './pages/VolledigeOntruimingPage'
 import { WerfOpruimingPage } from './pages/WerfOpruimingPage'
 import { KleineVerhuizingenPage } from './pages/KleineVerhuizingenPage'
+import { TransportPage } from './pages/TransportPage'
 
 function App() {
   return (
@@ -56,6 +57,14 @@ function App() {
           element={
             <Layout>
               <KleineVerhuizingenPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/diensten/transport"
+          element={
+            <Layout>
+              <TransportPage />
             </Layout>
           }
         />

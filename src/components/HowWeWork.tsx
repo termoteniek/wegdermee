@@ -14,19 +14,19 @@ const steps = [
     num: '02',
     title: 'Offerte & afspraak',
     description:
-      'Je krijgt een duidelijke prijs, zonder verrassingen. Daarna plannen we een moment dat jou past.',
+      'U krijgt een duidelijke prijs, zonder verrassingen. Daarna plannen we een moment dat u past.',
   },
   {
     num: '03',
     title: 'Ophaalmoment',
     description:
-      'Wij komen ter plaatse met de juiste wagen. Jij hoeft niet te sorteren — alles mag bij elkaar.',
+      'Wij komen ter plaatse met de juiste wagen. U hoeft niet te sorteren — alles mag bij elkaar.',
   },
   {
     num: '04',
     title: 'Proper afgevoerd',
     description:
-      'Wij zorgen voor verwerking en afvoer. Jij bent ontzorgd, wij regelen de rest.',
+      'Wij zorgen voor verwerking en afvoer. U bent ontzorgd, wij regelen de rest.',
   },
 ]
 

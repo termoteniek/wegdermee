@@ -10,7 +10,7 @@ export function Contact() {
           <FadeIn direction="left">
             <SectionLabel light>Contact</SectionLabel>
             <h2 className="mt-3 font-display text-5xl font-extrabold uppercase leading-none tracking-tight sm:text-6xl">
-              Boek uw ophaling
+              Maak een afspraak
             </h2>
             <p className="mt-5 max-w-md text-lg text-white/60">
               Vul uw gegevens in, kies een datum en tijdstip. Wij bevestigen telefonisch zodat

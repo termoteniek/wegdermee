@@ -8,21 +8,21 @@ const services = [
     num: '01',
     title: 'Rommelophaaldienst',
     description:
-      'Te veel spullen, te weinig plaats? Wij halen je rommel op — groot of klein, sorteer jij niet, wij regelen de rest.',
+      'Te veel spullen, te weinig plaats? Wij halen uw rommel op — groot of klein, sorteer u niet, wij regelen de rest.',
     href: '/diensten/rommelophaaldienst',
   },
   {
     num: '02',
     title: 'Volledige ontruiming',
     description:
-      'Een pand volledig leeg? Wij halen alles weg — van zolder tot kelder — zodat jij verder kunt zonder zorgen.',
+      'Een pand volledig leeg? Wij halen alles weg — van zolder tot kelder — zodat u verder kunt zonder zorgen.',
     href: '/diensten/volledige-ontruiming',
   },
   {
     num: '03',
     title: 'Werf opruiming',
     description:
-      'Verbouwing of renovatie? Wij ruimen je werf op zodat jij verder kunt bouwen aan iets nieuws.',
+      'Verbouwing of renovatie? Wij ruimen uw werf op zodat u verder kunt bouwen aan iets nieuws.',
     href: '/diensten/werf-opruiming',
   },
   {
@@ -31,6 +31,13 @@ const services = [
     description:
       'Een paar meubels of dozen van A naar B — geen volledige verhuis, wel snel en correct geregeld.',
     href: '/diensten/kleine-verhuizingen',
+  },
+  {
+    num: '05',
+    title: 'Transport',
+    description:
+      'Grote aankoop bij IKEA, Brico of een andere winkel? Wij halen het op en brengen het veilig naar u toe.',
+    href: '/diensten/transport',
   },
 ]
 

@@ -3,7 +3,7 @@ import { useRef } from 'react'
 import { Button } from './ui/Button'
 import { Swoosh } from './ui/Swoosh'
 
-const headlineWords = ['Jouw', 'rommel?', 'Weg', 'ermee!']
+const headlineWords = ['Uw', 'rommel?', 'Weg', 'ermee!']
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null)

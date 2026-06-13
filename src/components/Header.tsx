@@ -2,6 +2,7 @@ import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from './ui/Button'
+
 const navLinks = [
   { href: '/#diensten', label: 'Diensten' },
   { href: '/#waarom', label: 'Waarom' },
@@ -9,6 +10,39 @@ const navLinks = [
   { href: '/#regio', label: 'Regio' },
   { href: '/#over-ons', label: 'Over ons' },
 ]
+
+const logoParts = ['Weg', 'Der', 'Mee'] as const
+
+function NavbarLogo({ scrolled }: { scrolled: boolean }) {
+  return (
+    <motion.span
+      className="inline-flex font-display text-2xl font-bold uppercase tracking-wide"
+      aria-hidden
+      initial="hidden"
+      animate="visible"
+      whileHover="hover"
+      variants={{
+        visible: { transition: { staggerChildren: 0.07, delayChildren: 0.35 } },
+        hover: { transition: { staggerChildren: 0.04 } },
+      }}
+    >
+      {logoParts.map((part) => (
+        <motion.span
+          key={part}
+          variants={{
+            hidden: { opacity: 0, y: -10 },
+            visible: { opacity: 1, y: 0 },
+            hover: { y: -3, scale: 1.04 },
+          }}
+          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          className={scrolled ? 'text-inherit' : 'text-accent'}
+        >
+          {part}
+        </motion.span>
+      ))}
+    </motion.span>
+  )
+}
 
 export function Header() {
   const [open, setOpen] = useState(false)
@@ -33,11 +67,12 @@ export function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
         <Link
           to="/"
-          className={`relative z-10 shrink-0 font-display text-2xl font-bold uppercase tracking-wide transition-colors duration-200 ${
-            scrolled ? 'text-white/80 hover:text-white' : 'text-accent hover:text-accent-hover'
+          aria-label="Wegdermee — naar home"
+          className={`group relative z-10 shrink-0 transition-colors duration-200 ${
+            scrolled ? 'text-white/80 hover:text-white' : 'hover:text-accent-hover'
           }`}
         >
-          WegDerMee
+          <NavbarLogo scrolled={scrolled} />
         </Link>
 
         <nav className="hidden items-center gap-10 lg:flex" aria-label="Hoofdnavigatie">
@@ -97,7 +132,8 @@ export function Header() {
                   {link.label}
                 </Link>
               </li>
-            ))}            <li className="mt-4">
+            ))}
+            <li className="mt-4">
               <Button href="/contact" className="w-full" onClick={() => setOpen(false)}>
                 Boek ophaling
               </Button>

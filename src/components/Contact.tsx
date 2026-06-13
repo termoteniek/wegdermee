@@ -6,8 +6,8 @@ export function Contact() {
   return (
     <section className="flex flex-1 flex-col bg-ink py-24 text-cream sm:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
-          <FadeIn direction="left">
+        <div className="grid min-w-0 gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-20">
+          <FadeIn direction="left" className="min-w-0">
             <SectionLabel light>Contact</SectionLabel>
             <h2 className="mt-3 font-display text-5xl font-extrabold uppercase leading-none tracking-tight sm:text-6xl">
               Maak een afspraak
@@ -56,8 +56,10 @@ export function Contact() {
             </ul>
           </FadeIn>
 
-          <FadeIn delay={0.1}>
-            <BookingForm />
+          <FadeIn delay={0.1} className="w-full min-w-0">
+            <div className="w-full min-w-0">
+              <BookingForm />
+            </div>
           </FadeIn>
         </div>
       </div>

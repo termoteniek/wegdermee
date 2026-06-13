@@ -28,7 +28,7 @@ export function FadeIn({
 
   return (
     <motion.div
-      className={className}
+      className={`block w-full min-w-0 ${className ?? ''}`}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-80px' }}

@@ -76,31 +76,31 @@ export function DateTimePicker({
     : null
 
   return (
-    <div className="space-y-8">
-      <div>
-        <div className="flex items-center justify-between gap-4">
+    <div className="w-full min-w-0 space-y-8">
+      <div className="w-full min-w-0">
+        <div className="flex min-w-0 items-center justify-between gap-2 sm:gap-4">
           <button
             type="button"
             onClick={() => shiftMonth(-1)}
-            className="border-2 border-ink px-3 py-2 font-display text-sm font-bold uppercase tracking-widest transition-colors hover:bg-ink hover:text-cream"
+            className="shrink-0 border-2 border-ink px-3 py-2 font-display text-sm font-bold uppercase tracking-widest transition-colors hover:bg-ink hover:text-cream"
             aria-label="Vorige maand"
           >
             ←
           </button>
-          <p className="font-display text-xl font-bold uppercase tracking-wide">
+          <p className="min-w-0 truncate text-center font-display text-lg font-bold uppercase tracking-wide sm:text-xl">
             {monthFormatter.format(viewMonth)}
           </p>
           <button
             type="button"
             onClick={() => shiftMonth(1)}
-            className="border-2 border-ink px-3 py-2 font-display text-sm font-bold uppercase tracking-widest transition-colors hover:bg-ink hover:text-cream"
+            className="shrink-0 border-2 border-ink px-3 py-2 font-display text-sm font-bold uppercase tracking-widest transition-colors hover:bg-ink hover:text-cream"
             aria-label="Volgende maand"
           >
             →
           </button>
         </div>
 
-        <div className="mt-4 grid grid-cols-7 gap-2">
+        <div className="mt-4 grid w-full min-w-0 grid-cols-[repeat(7,minmax(0,1fr))] gap-1.5 sm:gap-2">
           {weekdayLabels.map((label) => (
             <span
               key={label}
@@ -125,7 +125,7 @@ export function DateTimePicker({
                   onDateChange(key)
                   onTimeChange('')
                 }}
-                className={`aspect-square border-2 py-2 font-display text-sm font-bold transition-colors ${
+                className={`h-9 w-full min-w-0 border-2 font-display text-xs font-bold transition-colors sm:h-10 sm:text-sm ${
                   selected
                     ? 'border-accent bg-accent text-white'
                     : selectable
@@ -140,7 +140,7 @@ export function DateTimePicker({
         </div>
       </div>
 
-      <div>
+      <div className="w-full min-w-0">
         <p className="font-display text-xs font-semibold uppercase tracking-widest text-muted">
           Beschikbare tijden
         </p>
@@ -151,20 +151,20 @@ export function DateTimePicker({
 
         {selectedDate && (
           <>
-            <p className="mt-2 text-sm text-muted capitalize">{selectedDateLabel}</p>
+            <p className="mt-2 truncate text-sm text-muted capitalize">{selectedDateLabel}</p>
 
             {slots.length === 0 && (
               <p className="mt-4 text-muted">Geen beschikbare tijdslots op deze dag.</p>
             )}
 
             {slots.length > 0 && (
-              <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-4">
+              <div className="mt-4 grid w-full min-w-0 grid-cols-3 gap-1.5 sm:grid-cols-4 sm:gap-2">
                 {slots.map((slot) => (
                   <button
                     key={slot}
                     type="button"
                     onClick={() => onTimeChange(slot)}
-                    className={`border-2 px-3 py-3 font-display text-sm font-bold uppercase tracking-wide transition-colors ${
+                    className={`min-w-0 border-2 px-2 py-3 font-display text-xs font-bold uppercase tracking-wide transition-colors sm:px-3 sm:text-sm ${
                       selectedTime === slot
                         ? 'border-accent bg-accent text-white'
                         : 'border-ink/15 bg-cream-dark text-ink hover:border-accent'

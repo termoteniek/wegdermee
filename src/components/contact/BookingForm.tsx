@@ -1,21 +1,44 @@
 import { motion } from 'framer-motion'
-import { useState, type FormEvent } from 'react'
+import { useLayoutEffect, useRef, useState, type FormEvent } from 'react'
 import { emptyBookingForm, serviceOptions, volumeOptions, type BookingFormData } from '../../types/booking'
 import { DateTimePicker } from './DateTimePicker'
 
 const inputClassName =
-  'mt-2 w-full border-b-2 border-ink bg-transparent py-2 text-ink outline-none focus:border-accent'
+  'mt-2 w-full min-w-0 border-b-2 border-ink bg-transparent py-2 text-ink outline-none focus:border-accent'
+const selectClassName = `${inputClassName} max-w-full cursor-pointer`
 const labelClassName =
   'font-display text-xs font-semibold uppercase tracking-widest text-muted'
 
 const stepLabels = ['Gegevens', 'Dienst', 'Datum & tijd'] as const
 type Step = 1 | 2 | 3 | 4
 
+const stepPanelClass = (active: boolean) =>
+  `w-full min-w-0 ${active ? 'z-10' : 'pointer-events-none invisible h-0 overflow-hidden'}`
+
 export function BookingForm() {
   const [step, setStep] = useState<Step>(1)
   const [form, setForm] = useState<BookingFormData>(emptyBookingForm)
   const [submitting, setSubmitting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const shellRef = useRef<HTMLDivElement>(null)
+  const stepStackRef = useRef<HTMLDivElement>(null)
+  const [lockedWidth, setLockedWidth] = useState<number | null>(null)
+
+  useLayoutEffect(() => {
+    const parent = shellRef.current?.parentElement
+    if (!parent) return
+
+    const syncWidth = () => {
+      const width = parent.clientWidth
+      if (width > 0) {
+        setLockedWidth(width)
+      }
+    }
+
+    syncWidth()
+    const observer = new ResizeObserver(syncWidth)
+    observer.observe(parent)
+    return () => observer.disconnect()
+  }, [])
 
   function updateField<K extends keyof BookingFormData>(key: K, value: BookingFormData[K]) {
     setForm((current) => ({ ...current, [key]: value }))
@@ -23,24 +46,16 @@ export function BookingForm() {
 
   function handleStepOneSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    setError(null)
     setStep(2)
   }
 
   function handleStepTwoSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    setError(null)
     setStep(3)
   }
 
   function handleFinalSubmit() {
-    if (!form.date || !form.time) {
-      setError('Kies een datum en tijdstip.')
-      return
-    }
-
     setSubmitting(true)
-    setError(null)
     setStep(4)
     setSubmitting(false)
   }
@@ -48,27 +63,36 @@ export function BookingForm() {
   if (step === 4) {
     return (
       <motion.div
-        className="flex min-h-[420px] flex-col items-center justify-center border-2 border-white/15 bg-cream p-8 text-center text-ink sm:p-10"
+        className="flex min-h-[420px] w-full min-w-0 flex-col items-center justify-center border-2 border-white/15 bg-cream p-8 text-center text-ink sm:p-10"
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
       >
         <span className="font-display text-6xl font-extrabold text-accent">✓</span>
         <p className="mt-4 font-display text-2xl font-bold uppercase">Aanvraag ontvangen</p>
         <p className="mt-4 max-w-md text-muted">
-          Bedankt {form.voornaam}! We hebben uw aanvraag ontvangen en nemen telefonisch
-          contact op om uw afspraak definitief te bevestigen.
+          {form.voornaam ? `Bedankt ${form.voornaam}! ` : 'Bedankt! '}
+          We hebben uw aanvraag ontvangen en nemen telefonisch contact op om uw afspraak
+          definitief te bevestigen.
         </p>
       </motion.div>
     )
   }
 
   return (
-    <div className="border-2 border-white/15 bg-cream p-8 text-ink sm:p-10">
+    <div
+      ref={shellRef}
+      className="w-full min-w-0 max-w-full overflow-x-hidden border-2 border-white/15 bg-cream p-8 text-ink sm:p-10"
+      style={
+        lockedWidth
+          ? { width: lockedWidth, minWidth: lockedWidth, maxWidth: lockedWidth }
+          : undefined
+      }
+    >
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-3">
         {stepLabels.map((label, index) => {
           const value = index + 1
           return (
-            <div key={label} className="flex flex-1 items-center gap-3">
+            <div key={label} className="flex min-w-0 flex-1 items-center gap-3">
               <span
                 className={`flex size-9 shrink-0 items-center justify-center border-2 font-display text-sm font-bold ${
                   step >= value
@@ -78,7 +102,7 @@ export function BookingForm() {
               >
                 {value}
               </span>
-              <span className="font-display text-xs font-semibold uppercase tracking-widest text-muted">
+              <span className="min-w-0 truncate font-display text-xs font-semibold uppercase tracking-widest text-muted">
                 {label}
               </span>
               {value < stepLabels.length && (
@@ -89,14 +113,21 @@ export function BookingForm() {
         })}
       </div>
 
-      {step === 1 && (
-        <form onSubmit={handleStepOneSubmit} className="mt-8">
+      <div
+        ref={stepStackRef}
+        className="mt-8 grid w-full min-w-0 [&>*]:col-start-1 [&>*]:row-start-1"
+      >
+        <form
+          onSubmit={handleStepOneSubmit}
+          className={stepPanelClass(step === 1)}
+          aria-hidden={step !== 1}
+          inert={step !== 1 ? true : undefined}
+        >
           <div className="grid gap-6 sm:grid-cols-2">
             <label className="block">
-              <span className={labelClassName}>Voornaam *</span>
+              <span className={labelClassName}>Voornaam</span>
               <input
                 type="text"
-                required
                 autoComplete="given-name"
                 value={form.voornaam}
                 onChange={(event) => updateField('voornaam', event.target.value)}
@@ -105,10 +136,9 @@ export function BookingForm() {
             </label>
 
             <label className="block">
-              <span className={labelClassName}>Familienaam *</span>
+              <span className={labelClassName}>Familienaam</span>
               <input
                 type="text"
-                required
                 autoComplete="family-name"
                 value={form.familienaam}
                 onChange={(event) => updateField('familienaam', event.target.value)}
@@ -117,10 +147,9 @@ export function BookingForm() {
             </label>
 
             <label className="block">
-              <span className={labelClassName}>E-mail *</span>
+              <span className={labelClassName}>E-mail</span>
               <input
                 type="email"
-                required
                 autoComplete="email"
                 value={form.email}
                 onChange={(event) => updateField('email', event.target.value)}
@@ -129,10 +158,9 @@ export function BookingForm() {
             </label>
 
             <label className="block">
-              <span className={labelClassName}>Telefoon *</span>
+              <span className={labelClassName}>Telefoon</span>
               <input
                 type="tel"
-                required
                 autoComplete="tel"
                 value={form.phone}
                 onChange={(event) => updateField('phone', event.target.value)}
@@ -142,10 +170,9 @@ export function BookingForm() {
             </label>
 
             <label className="block sm:col-span-2">
-              <span className={labelClassName}>Straatnaam *</span>
+              <span className={labelClassName}>Straatnaam</span>
               <input
                 type="text"
-                required
                 autoComplete="address-line1"
                 value={form.straatnaam}
                 onChange={(event) => updateField('straatnaam', event.target.value)}
@@ -155,10 +182,9 @@ export function BookingForm() {
             </label>
 
             <label className="block">
-              <span className={labelClassName}>Huisnummer *</span>
+              <span className={labelClassName}>Huisnummer</span>
               <input
                 type="text"
-                required
                 autoComplete="address-line2"
                 value={form.huisnummer}
                 onChange={(event) => updateField('huisnummer', event.target.value)}
@@ -168,10 +194,9 @@ export function BookingForm() {
             </label>
 
             <label className="block">
-              <span className={labelClassName}>Postcode *</span>
+              <span className={labelClassName}>Postcode</span>
               <input
                 type="text"
-                required
                 inputMode="numeric"
                 autoComplete="postal-code"
                 value={form.postcode}
@@ -182,10 +207,9 @@ export function BookingForm() {
             </label>
 
             <label className="block sm:col-span-2">
-              <span className={labelClassName}>Gemeente *</span>
+              <span className={labelClassName}>Gemeente</span>
               <input
                 type="text"
-                required
                 autoComplete="address-level2"
                 value={form.gemeente}
                 onChange={(event) => updateField('gemeente', event.target.value)}
@@ -198,7 +222,6 @@ export function BookingForm() {
           <label className="mt-6 flex items-start gap-3 text-sm leading-relaxed text-muted">
             <input
               type="checkbox"
-              required
               checked={form.privacyAccepted}
               onChange={(event) => updateField('privacyAccepted', event.target.checked)}
               className="mt-1 size-4 accent-accent"
@@ -208,7 +231,7 @@ export function BookingForm() {
               <a href="#" className="text-ink underline underline-offset-2 hover:text-accent">
                 privacybeleid
               </a>
-              . *
+              .
             </span>
           </label>
 
@@ -219,18 +242,20 @@ export function BookingForm() {
             Volgende →
           </button>
         </form>
-      )}
 
-      {step === 2 && (
-        <form onSubmit={handleStepTwoSubmit} className="mt-8">
-          <div className="grid gap-6">
+        <form
+          onSubmit={handleStepTwoSubmit}
+          className={stepPanelClass(step === 2)}
+          aria-hidden={step !== 2}
+          inert={step !== 2 ? true : undefined}
+        >
+          <div className="grid gap-6 sm:grid-cols-2">
             <label className="block">
-              <span className={labelClassName}>Gewenste dienst *</span>
+              <span className={labelClassName}>Gewenste dienst</span>
               <select
-                required
                 value={form.service}
                 onChange={(event) => updateField('service', event.target.value)}
-                className={`${inputClassName} cursor-pointer`}
+                className={selectClassName}
               >
                 <option value="">Maak een keuze</option>
                 {serviceOptions.map((option) => (
@@ -242,12 +267,11 @@ export function BookingForm() {
             </label>
 
             <label className="block">
-              <span className={labelClassName}>Geschatte hoeveelheid *</span>
+              <span className={labelClassName}>Geschatte hoeveelheid</span>
               <select
-                required
                 value={form.volume}
                 onChange={(event) => updateField('volume', event.target.value)}
-                className={`${inputClassName} cursor-pointer`}
+                className={selectClassName}
               >
                 <option value="">Maak een keuze</option>
                 {volumeOptions.map((option) => (
@@ -258,10 +282,9 @@ export function BookingForm() {
               </select>
             </label>
 
-            <label className="block">
-              <span className={labelClassName}>Beschrijving *</span>
+            <label className="block sm:col-span-2">
+              <span className={labelClassName}>Beschrijving</span>
               <textarea
-                required
                 rows={4}
                 value={form.description}
                 onChange={(event) => updateField('description', event.target.value)}
@@ -287,10 +310,12 @@ export function BookingForm() {
             </button>
           </div>
         </form>
-      )}
 
-      {step === 3 && (
-        <div className="mt-8">
+        <div
+          className={stepPanelClass(step === 3)}
+          aria-hidden={step !== 3}
+          inert={step !== 3 ? true : undefined}
+        >
           <DateTimePicker
             selectedDate={form.date}
             selectedTime={form.time}
@@ -298,31 +323,25 @@ export function BookingForm() {
             onTimeChange={(time) => updateField('time', time)}
           />
 
-          {error && (
-            <p className="mt-6 border-l-4 border-accent bg-cream-dark px-4 py-3 text-sm text-ink">
-              {error}
-            </p>
-          )}
-
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-8 flex min-w-0 flex-col gap-3 sm:flex-row">
             <button
               type="button"
               onClick={() => setStep(2)}
-              className="border-2 border-ink px-8 py-4 font-display text-lg font-bold uppercase tracking-wide transition-colors hover:bg-ink hover:text-cream"
+              className="min-w-0 border-2 border-ink px-8 py-4 font-display text-lg font-bold uppercase tracking-wide transition-colors hover:bg-ink hover:text-cream sm:flex-1"
             >
               ← Terug
             </button>
             <button
               type="button"
-              disabled={submitting || !form.date || !form.time}
+              disabled={submitting}
               onClick={handleFinalSubmit}
-              className="bg-accent px-8 py-4 font-display text-lg font-bold uppercase tracking-wide text-white transition-all hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-50"
+              className="min-w-0 bg-accent px-8 py-4 font-display text-lg font-bold uppercase tracking-wide text-white transition-all hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-50 sm:flex-1"
             >
               {submitting ? 'Bezig…' : 'Afspraak aanvragen'}
             </button>
           </div>
         </div>
-      )}
+      </div>
     </div>
   )
 }

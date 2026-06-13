@@ -9,8 +9,8 @@ type ServiceHeroProps = {
 
 export function ServiceHero({ num, title, intro }: ServiceHeroProps) {
   return (
-    <div className="flex flex-1 flex-col bg-ink">
-      <section className="flex flex-1 flex-col pt-28 pb-16 text-cream sm:pt-36 sm:pb-20">
+    <div className="bg-ink">
+      <section className="pt-28 pb-16 text-cream sm:pt-36 sm:pb-20">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
           <FadeIn>
             <Link

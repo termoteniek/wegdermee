@@ -1,11 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState, type FormEvent } from 'react'
-import {
-  emptyBookingForm,
-  serviceOptions,
-  volumeOptions,
-  type BookingFormData,
-} from '../../types/booking'
+import { emptyBookingForm, serviceOptions, volumeOptions, type BookingFormData } from '../../types/booking'
 import { DateTimePicker } from './DateTimePicker'
 
 const inputClassName =

@@ -8,28 +8,28 @@ const services = [
     num: '01',
     title: 'Rommelophaaldienst',
     description:
-      'Oude meubels, defecte elektronica, groenafval — wij hebben alles al gezien en nemen het mee.',
+      'Te veel spullen, te weinig plaats? Wij halen je rommel op — groot of klein, sorteer jij niet, wij regelen de rest.',
     href: '/diensten/rommelophaaldienst',
   },
   {
     num: '02',
     title: 'Volledige ontruiming',
     description:
-      'Woning, appartement of bedrijfspand: een zorgeloze, complete leeghaling van A tot Z.',
+      'Een pand volledig leeg? Wij halen alles weg — van zolder tot kelder — zodat jij verder kunt zonder zorgen.',
     href: '/diensten/volledige-ontruiming',
   },
   {
     num: '03',
     title: 'Werf opruiming',
     description:
-      'Verbouwing? Alles verdwijnt zodat jij verder kunt bouwen aan iets nieuws.',
+      'Verbouwing of renovatie? Wij ruimen je werf op zodat jij verder kunt bouwen aan iets nieuws.',
     href: '/diensten/werf-opruiming',
   },
   {
     num: '04',
     title: 'Kleine verhuizingen',
     description:
-      'Een paar meubels of dozen van A naar B, snel en correct geregeld.',
+      'Een paar meubels of dozen van A naar B — geen volledige verhuis, wel snel en correct geregeld.',
     href: '/diensten/kleine-verhuizingen',
   },
 ]

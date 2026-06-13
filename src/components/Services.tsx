@@ -8,14 +8,14 @@ const services = [
     num: '01',
     title: 'Rommelophaaldienst',
     description:
-      'Te veel spullen, te weinig plaats? Wij halen uw rommel op — groot of klein, sorteer u niet, wij regelen de rest.',
+      'Te veel spullen, te weinig plaats? Wij halen uw rommel op — groot of klein, u sorteert niet, wij regelen alles.',
     href: '/diensten/rommelophaaldienst',
   },
   {
     num: '02',
     title: 'Volledige ontruiming',
     description:
-      'Een pand volledig leeg? Wij halen alles weg — van zolder tot kelder — zodat u verder kunt zonder zorgen.',
+      'Moet een pand volledig leeg? Wij halen alles weg — van zolder tot kelder — zodat u verder kunt zonder zorgen.',
     href: '/diensten/volledige-ontruiming',
   },
   {

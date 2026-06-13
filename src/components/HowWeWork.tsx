@@ -14,7 +14,7 @@ const steps = [
     num: '02',
     title: 'Offerte & afspraak',
     description:
-      'U krijgt een duidelijke prijs, zonder verrassingen. Daarna plannen we een moment dat voor u past.',
+      'U krijgt een duidelijke prijs, zonder verrassingen of extra kosten. Na akkoord plannen we een moment dat voor u past.',
   },
   {
     num: '03',
@@ -26,7 +26,7 @@ const steps = [
     num: '04',
     title: 'Proper afgevoerd',
     description:
-      'Betaling gebeurt onmiddellijk ter plaatse. Wij zorgen voor verwerking en afvoer — u bent ontzorgd, wij regelen de rest.',
+      'Wanneer alles opgeladen is rekenen we af. Wij zorgen voor verwerking en afvoer.',
   },
 ]
 

@@ -1,3 +1,5 @@
+FEEDBACK 1
+
 - Service uitbereiding, voor en na fotos, prijsvermelden en CTA naar contact pagina.
 - Kleine verhuizing nog zien wat mogelijk
 - 5de diesnt, transport ?
@@ -17,3 +19,11 @@
     - Dienst ook verhuizingen aanbied
 
 - Contact formulier -> Offerte en Boeking (Prijs vermelden)
+
+FEEDBACK 2
+
+- location toevoegen GENT
+- Prijs vermelden na keuze, ook in dropdown. Geschatte totaal prijs vemelden.
+- Volledig ontruiming, werf verhuizing, vermelden dat we fotos willen of eens langsgaan.
+- Werfontruiming, vermelden geen gevaarlijke stoffen.
+- 

@@ -6,7 +6,7 @@ import { SectionLabel } from '../components/ui/SectionLabel'
 
 const description = [
   'Niet elke verhuis hoeft groot te zijn. Wij helpen u met het verplaatsen van meubels, dozen, witgoed of enkele kamers — van adres A naar adres B.',
-  'Handig bij een kleinere verhuis, studentenkamer, of wanneer u alleen zware items wilt laten vervoeren.',
+  'Handig bij een kleinere verhuis, studentenkamer, of wanneer u enkel de zwaarste items wilt laten vervoeren.',
 ]
 
 const included = [

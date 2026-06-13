@@ -5,7 +5,7 @@ import { Button } from '../components/ui/Button'
 import { SectionLabel } from '../components/ui/SectionLabel'
 
 const description = [
-  'Woning, appartement, handelspand of magazijn: wij zorgen voor een complete leeghaling van A tot Z. Meubels, keukens, vloerbedekking en restafval — alles gaat mee.',
+  'Woning, appartement, handelspand of magazijn: wij zorgen voor een complete leeghaling van A tot Z. Meubels, keukens en vloerbedekking — alles mag mee.',
   'Perfect bij verhuizing, verkoop van een pand of nalatenschap.',
 ]
 
@@ -35,7 +35,7 @@ export function VolledigeOntruimingPage() {
       <ServiceHero
         num="02"
         title="Volledige ontruiming"
-        intro="Een pand volledig leeg? Wij halen alles weg — van zolder tot kelder — zodat u verder kunt zonder zorgen."
+        intro="Moet een pand volledig leeg? Wij halen alles weg — van zolder tot kelder — zodat u verder kunt zonder zorgen."
       />
 
       <section className="border-t-2 border-ink bg-cream-dark py-20 sm:py-28">

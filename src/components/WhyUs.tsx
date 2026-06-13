@@ -9,15 +9,15 @@ const reasons = [
   },
   {
     title: 'Alle type klanten',
-    description: 'Particulier, VME of bedrijf — iedereen welkom.',
+    description: 'Particulier, VZW of bedrijf — iedereen welkom.',
   },
   {
     title: 'Niet sorteren',
-    description: 'Alles door elkaar. Wij sorteren voor u.',
+    description: 'Alles mag door elkaar liggen. Wij sorteren voor u.',
   },
   {
     title: 'Licenties & verzekering',
-    description: 'Alle vergunningen en een uitstekende verzekering.',
+    description: 'Wij hebben alle vergunningen en een uitstekende verzekering.',
   },
   {
     title: 'Volledig ontzorgd',

@@ -6,14 +6,14 @@ import { SectionLabel } from '../components/ui/SectionLabel'
 
 const description = [
   'Oude meubels, defecte elektronica, groenafval of resten van een opruiming: wij nemen het allemaal mee. U hoeft niet te sorteren — alles mag door elkaar.',
-  "Ideaal voor particulieren, VME's of kleine bedrijven die snel van overtollige spullen af willen.",
+  "Ideaal voor particulieren, VZW's of bedrijven die snel van overtollige spullen af willen.",
 ]
 
 const included = [
   'Ophaling aan huis of op werf',
-  'Geen sorteren vereist',
+  'Sorteren niet vereist',
   'Correcte afvoer en verwerking',
-  'Flexibele planning, 7 op 7',
+  'Flexibele planning, 7 op 7 bereikbaar',
 ]
 
 const beforeAfter = [
@@ -35,7 +35,7 @@ export function RommelophaaldienstPage() {
       <ServiceHero
         num="01"
         title="Rommelophaaldienst"
-        intro="Te veel spullen, te weinig plaats? Wij halen uw rommel op — groot of klein, u sorteert niet, wij regelen de rest."
+        intro="Te veel spullen, te weinig plaats? Wij halen uw rommel op — groot of klein, u sorteert niet, wij regelen alles."
       />
 
       <section className="border-t-2 border-ink bg-cream-dark py-20 sm:py-28">
@@ -77,8 +77,7 @@ export function RommelophaaldienstPage() {
               Vanaf €75
             </p>
             <p className="mt-6 text-lg leading-relaxed text-muted">
-              Prijs afhankelijk van volume, type afval en locatie. Vrijblijvende offerte op
-              aanvraag.
+              Prijs afhankelijk van volume, gewicht en locatie (Eerst 50 km is inclusief). 
             </p>
           </FadeIn>
         </div>

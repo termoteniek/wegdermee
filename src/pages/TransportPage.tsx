@@ -5,7 +5,7 @@ import { Button } from '../components/ui/Button'
 import { SectionLabel } from '../components/ui/SectionLabel'
 
 const description = [
-  'Grote aankoop bij IKEA, Brico, Hubo of een andere winkel — maar geen bus om het zelf te halen? Wij rijden voor u naar de winkel, laden alles in en brengen het veilig naar uw adres.',
+  'Grote aankoop bij IKEA, Brico, Hubo of een andere winkel — maar geen bestelwagen om het zelf te verplaatsen? Wij rijden voor u naar de winkel, laden alles in en brengen het veilig naar uw adres.',
   'Ideaal voor meubels, keukenapparatuur, bouwmaterialen of een grote bestelling die niet in uw eigen wagen past.',
 ]
 

@@ -6,12 +6,12 @@ import { SectionLabel } from '../components/ui/SectionLabel'
 
 const description = [
   'Puin, hout, isolatie, oude ramen of restmaterialen: wij halen alles weg zodat uw werf weer veilig en overzichtelijk is.',
-  "Voor aannemers, particulieren en VME's — snel ter plaatse, stipt en correct.",
+  "Voor aannemers, particulieren en VZW's — snel ter plaatse, stipt en correct.",
 ]
 
 const included = [
   'Ophaling bouw- en sloopafval',
-  'Container niet nodig',
+  'U hoeft geen container te regelen',
   'Flexibele timing rond uw werfplanning',
   'Correcte afvoer via erkende kanalen',
 ]

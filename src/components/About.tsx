@@ -31,14 +31,14 @@ export function About() {
 
             <div className="mt-8 space-y-4 text-lg leading-relaxed text-muted">
               <p>
-                Hey! Wij zijn Siebe en Lars, 20 en studentondernemers. Samen hebben we al
-                jaren ervaring opgedaan bij verschillende verhuisfirma's — daar weten
-                we wat klanten écht nodig hebben.
+                Hey! Wij zijn Siebe en Lars, 20 en studentondernemers. Siebe heeft al
+                ervaring opgedaan bij verschillende verhuisfirma's — daarom weten
+                hij wat klanten écht nodig hebben.
               </p>
               <p>
-                Het idee voor <strong className="text-ink">wegdermee</strong> kwam van
-                Siebe. Lars was meteen overtuigd. Zo starten we samen een ophaaldienst voor
-                rommel en inboedels — én kleine verhuizingen.
+                Toen Siebe met het idee van <strong className="text-ink">wegdermee</strong> kwam, 
+                was Lars meteen overtuigd. Zo starten we samen een ophaaldienst voor
+                rommel, inboedels en kleine verhuizingen.
               </p>
               <p>
                 Ons doel? Klanten snel en correct ontzorgen van hun rommel. Of het nu gaat

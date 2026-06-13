@@ -13,5 +13,7 @@
 - Hoe gaan we te werk, 04. Vermelden dat betaling onmiddelijk is. 
 - Over ons:
     - Vermelden ervaring nij verschillende verhuisfirmas, jaren in sector
-    - Kleinsaf aan ondernemings droom
-    - Die ook verhuizingen aanbied
+    - Kleinsaf aan ondernemings droom, toen Siebe met het hazd over de onderneming was Lars verkocht.
+    - Dienst ook verhuizingen aanbied
+
+- Contact formulier -> Offerte en Boeking (Prijs vermelden)

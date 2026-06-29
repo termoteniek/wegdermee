@@ -1,6 +1,12 @@
+import { pricingTiers } from '../lib/pricing'
+
 export type VolumeOption = {
   value: string
   label: string
+  priceInclVat: number
+  volumeM3: number
+  weightKg: number
+  duration: string
 }
 
 export type ServiceOption = {
@@ -16,12 +22,20 @@ export const serviceOptions: ServiceOption[] = [
   { value: 'transport', label: 'Transport' },
 ]
 
-export const volumeOptions: VolumeOption[] = [
-  { value: 'klein', label: 'Klein — enkele items / tot 2 m³' },
-  { value: 'middel', label: 'Middel — 3 tot 5 m³' },
-  { value: 'groot', label: 'Groot — 6 tot 10 m³' },
-  { value: 'zeer-groot', label: 'Zeer groot — 10+ m³' },
-]
+export const volumeOptions: VolumeOption[] = pricingTiers.map((tier) => ({
+  value: `m3-${tier.volumeM3}`,
+  label: `${tier.volumeM3} m³ · ${tier.weightKg} kg`,
+  priceInclVat: tier.priceInclVat,
+  volumeM3: tier.volumeM3,
+  weightKg: tier.weightKg,
+  duration: tier.duration,
+}))
+
+export const pricedServiceValues = new Set([
+  'rommelophaaldienst',
+  'volledige-ontruiming',
+  'werf-opruiming',
+])
 
 export type BookingFormData = {
   voornaam: string

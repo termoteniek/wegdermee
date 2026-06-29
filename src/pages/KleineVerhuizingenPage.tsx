@@ -16,19 +16,6 @@ const included = [
   'Flexibele planning op afspraak',
 ]
 
-const beforeAfter = [
-  {
-    before: '/services/kleine-verhuizingen-voor-1.jpg',
-    after: '/services/kleine-verhuizingen-na-1.jpg',
-    caption: 'Meubels verhuisd naar nieuw adres',
-  },
-  {
-    before: '/services/kleine-verhuizingen-voor-2.jpg',
-    after: '/services/kleine-verhuizingen-na-2.jpg',
-    caption: 'Studentenkamer leeggehaald',
-  },
-]
-
 export function KleineVerhuizingenPage() {
   return (
     <div className="flex flex-1 flex-col">
@@ -67,7 +54,7 @@ export function KleineVerhuizingenPage() {
         </div>
       </section>
 
-      <ServiceBeforeAfter pairs={beforeAfter} />
+      <ServiceBeforeAfter />
 
       <section className="border-t-2 border-ink bg-cream py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">

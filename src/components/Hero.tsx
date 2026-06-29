@@ -65,8 +65,7 @@ export function Hero() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7 }}
             >
-              Meubels, elektronica, volledige of ontruimingen — wij halen alles op. U
-              sorteert niet. Wij regelen alles.
+              Meubels, elektronica of volledige ontruimingen — wij halen alles op. U hoeft niet te sorteren. Wij halen alles op.
             </motion.p>
 
             <motion.div
@@ -97,20 +96,12 @@ export function Hero() {
               <div className="absolute -inset-4 bg-accent/20 blur-3xl" aria-hidden />
               <div className="relative overflow-hidden border-2 border-white/10">
                 <img
-                  src="/camionette.png"
-                  alt="wegdermee bestelwagen"
-                  className="aspect-[4/3] w-full object-cover object-center lg:aspect-[16/11] lg:max-h-[min(52vh,520px)]"
+                  src="/ImageWithLargeLogo.png"
+                  alt="Team van wegdermee aan het werk met de aanhangwagen"
+                  className="aspect-[3/4] w-full object-cover object-center lg:aspect-[4/5] lg:max-h-[min(52vh,520px)]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent lg:bg-gradient-to-l lg:from-ink/60 lg:via-transparent lg:to-transparent" />
               </div>
-              <motion.div
-                className="absolute -bottom-4 -left-2 border-2 border-ink bg-cream p-3 sm:-left-4"
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 1.1 }}
-              >
-                <img src="/logo.png" alt="" className="h-12 w-auto sm:h-14" aria-hidden />
-              </motion.div>
             </div>
           </motion.div>
         </div>

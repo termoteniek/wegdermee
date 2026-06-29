@@ -45,8 +45,8 @@ const footerLinks = [
 ]
 
 const infoItems = [
-  { label: 'Ondernemingsnummer', value: 'BE 0000.000.000' },
-  { label: 'BTW-nummer', value: 'BE0000.000.000' },
+  { label: 'Ondernemingsnummer', value: '1039.278.883' },
+  { label: 'BTW-nummer', value: 'BE 1039.278.883' },
   { label: 'Telefoon', value: '+32 498 43 88 78', href: 'tel:+32498438878' },
   { label: 'E-mail', value: 'info@wegdermee.be', href: 'mailto:info@wegdermee.be' },
 ]
@@ -66,9 +66,9 @@ export function Footer() {
             className="flex h-full items-center justify-center sm:col-span-2 lg:col-span-1"
           >
             <img
-              src="/logo.png"
+              src="/LogoWhiteNoBG.png"
               alt="wegdermee"
-              className="h-12 w-auto brightness-0 invert"
+              className="h-14 w-auto"
             />
           </Link>
 

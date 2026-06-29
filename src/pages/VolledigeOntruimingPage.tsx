@@ -1,6 +1,7 @@
 import { FadeIn } from '../components/FadeIn'
 import { ServiceBeforeAfter } from '../components/ServiceBeforeAfter'
 import { ServiceHero } from '../components/ServiceHero'
+import { ServicePricing } from '../components/ServicePricing'
 import { Button } from '../components/ui/Button'
 import { SectionLabel } from '../components/ui/SectionLabel'
 
@@ -14,19 +15,6 @@ const included = [
   'Vaste en losse inboedel',
   'Eventuele kelder, zolder of garage',
   'Proper achtergelaten, klaar voor gebruik',
-]
-
-const beforeAfter = [
-  {
-    before: '/services/volledige-ontruiming-voor-1.jpg',
-    after: '/services/volledige-ontruiming-na-1.jpg',
-    caption: 'Appartement volledig ontruimd',
-  },
-  {
-    before: '/services/volledige-ontruiming-voor-2.jpg',
-    after: '/services/volledige-ontruiming-na-2.jpg',
-    caption: 'Handelspand leeggehaald',
-  },
 ]
 
 export function VolledigeOntruimingPage() {
@@ -63,25 +51,13 @@ export function VolledigeOntruimingPage() {
                 ))}
               </ul>
             </FadeIn>
-          </div>
+          </div>  
         </div>
       </section>
 
-      <ServiceBeforeAfter pairs={beforeAfter} />
+      <ServiceBeforeAfter />
 
-      <section className="border-t-2 border-ink bg-cream py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <FadeIn className="mx-auto max-w-2xl text-center">
-            <SectionLabel>Prijzen</SectionLabel>
-            <p className="mt-4 font-display text-6xl font-extrabold uppercase leading-none text-accent sm:text-7xl">
-              Vanaf €450
-            </p>
-            <p className="mt-6 text-lg leading-relaxed text-muted">
-              Prijs op maat na bezichtiging. Transparante offerte, geen verrassingen achteraf.
-            </p>
-          </FadeIn>
-        </div>
-      </section>
+      <ServicePricing />
 
       <section className="border-t-2 border-ink bg-ink py-20 text-cream sm:py-28">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">

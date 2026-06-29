@@ -1,6 +1,7 @@
 import { FadeIn } from '../components/FadeIn'
 import { ServiceBeforeAfter } from '../components/ServiceBeforeAfter'
 import { ServiceHero } from '../components/ServiceHero'
+import { ServicePricing } from '../components/ServicePricing'
 import { Button } from '../components/ui/Button'
 import { SectionLabel } from '../components/ui/SectionLabel'
 
@@ -14,19 +15,6 @@ const included = [
   'Sorteren niet vereist',
   'Correcte afvoer en verwerking',
   'Flexibele planning, 7 op 7 bereikbaar',
-]
-
-const beforeAfter = [
-  {
-    before: '/services/rommelophaaldienst-voor-1.jpg',
-    after: '/services/rommelophaaldienst-na-1.jpg',
-    caption: 'Garage volledig leeggehaald',
-  },
-  {
-    before: '/services/rommelophaaldienst-voor-2.jpg',
-    after: '/services/rommelophaaldienst-na-2.jpg',
-    caption: 'Zolder ontruimd',
-  },
 ]
 
 export function RommelophaaldienstPage() {
@@ -67,21 +55,9 @@ export function RommelophaaldienstPage() {
         </div>
       </section>
 
-      <ServiceBeforeAfter pairs={beforeAfter} />
+      <ServiceBeforeAfter />
 
-      <section className="border-t-2 border-ink bg-cream py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <FadeIn className="mx-auto max-w-2xl text-center">
-            <SectionLabel>Prijzen</SectionLabel>
-            <p className="mt-4 font-display text-6xl font-extrabold uppercase leading-none text-accent sm:text-7xl">
-              Vanaf €75
-            </p>
-            <p className="mt-6 text-lg leading-relaxed text-muted">
-              Prijs afhankelijk van volume, gewicht en locatie (Eerst 50 km is inclusief). 
-            </p>
-          </FadeIn>
-        </div>
-      </section>
+      <ServicePricing />
 
       <section className="border-t-2 border-ink bg-ink py-20 text-cream sm:py-28">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">

@@ -76,8 +76,8 @@ export function DateTimePicker({
     : null
 
   return (
-    <div className="w-full min-w-0 space-y-8">
-      <div className="w-full min-w-0">
+    <div className="flex h-full min-h-0 w-full min-w-0 flex-col">
+      <div className="w-full shrink-0 min-w-0">
         <div className="flex min-w-0 items-center justify-between gap-2 sm:gap-4">
           <button
             type="button"
@@ -140,39 +140,41 @@ export function DateTimePicker({
         </div>
       </div>
 
-      <div className="w-full min-w-0">
-        <p className="font-display text-xs font-semibold uppercase tracking-widest text-muted">
+      <div className="mt-6 flex min-h-0 w-full min-w-0 flex-1 flex-col">
+        <p className="shrink-0 font-display text-xs font-semibold uppercase tracking-widest text-muted">
           Beschikbare tijden
         </p>
 
         {!selectedDate && (
-          <p className="mt-3 text-muted">Kies eerst een datum in de agenda.</p>
+          <p className="mt-3 shrink-0 text-muted">Kies eerst een datum in de agenda.</p>
         )}
 
         {selectedDate && (
           <>
-            <p className="mt-2 truncate text-sm text-muted capitalize">{selectedDateLabel}</p>
+            <p className="mt-2 shrink-0 truncate text-sm text-muted capitalize">{selectedDateLabel}</p>
 
             {slots.length === 0 && (
-              <p className="mt-4 text-muted">Geen beschikbare tijdslots op deze dag.</p>
+              <p className="mt-4 shrink-0 text-muted">Geen beschikbare tijdslots op deze dag.</p>
             )}
 
             {slots.length > 0 && (
-              <div className="mt-4 grid w-full min-w-0 grid-cols-3 gap-1.5 sm:grid-cols-4 sm:gap-2">
-                {slots.map((slot) => (
-                  <button
-                    key={slot}
-                    type="button"
-                    onClick={() => onTimeChange(slot)}
-                    className={`min-w-0 border-2 px-2 py-3 font-display text-xs font-bold uppercase tracking-wide transition-colors sm:px-3 sm:text-sm ${
-                      selectedTime === slot
-                        ? 'border-accent bg-accent text-white'
-                        : 'border-ink/15 bg-cream-dark text-ink hover:border-accent'
-                    }`}
-                  >
-                    {slot}
-                  </button>
-                ))}
+              <div className="mt-4 min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1">
+                <div className="grid w-full min-w-0 grid-cols-3 gap-1.5 sm:grid-cols-4 sm:gap-2">
+                  {slots.map((slot) => (
+                    <button
+                      key={slot}
+                      type="button"
+                      onClick={() => onTimeChange(slot)}
+                      className={`min-w-0 border-2 px-2 py-3 font-display text-xs font-bold uppercase tracking-wide transition-colors sm:px-3 sm:text-sm ${
+                        selectedTime === slot
+                          ? 'border-accent bg-accent text-white'
+                          : 'border-ink/15 bg-cream-dark text-ink hover:border-accent'
+                      }`}
+                    >
+                      {slot}
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
           </>

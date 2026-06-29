@@ -85,7 +85,7 @@ export function Services() {
         <FadeIn className="mt-12">
           <p className="border-l-4 border-accent bg-cream-dark px-6 py-5 text-ink">
             <strong className="font-display uppercase tracking-wide">Opgelet —</strong>{' '}
-            wij verwerken geen gevaarlijk afval (asbest, vloeistoffen, gas).
+            wij verwerken geen gevaarlijk afval (asbest, vloeistoffen, gas, ...)
           </p>
         </FadeIn>
       </div>

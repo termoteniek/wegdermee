@@ -7,12 +7,14 @@ export function About() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           <FadeIn className="lg:col-span-5">
-            <div className="relative border-2 border-ink bg-ink p-10 sm:p-14">
-              <img
-                src="/logo.png"
-                alt="wegdermee logo"
-                className="mx-auto w-full max-w-[220px] brightness-0 invert"
-              />
+            <div className="relative">
+              <div className="relative overflow-hidden border-2 border-ink">
+                <img
+                  src="/ImageWithSmallLogo.png"
+                  alt="Siebe en Lars van wegdermee bij de aanhangwagen"
+                  className="aspect-[3/4] w-full object-cover object-top"
+                />
+              </div>
               <div className="absolute -right-3 -top-3 h-full w-full border-2 border-accent" aria-hidden />
             </div>
           </FadeIn>
@@ -32,16 +34,16 @@ export function About() {
             <div className="mt-8 space-y-4 text-lg leading-relaxed text-muted">
               <p>
                 Hey! Wij zijn Siebe en Lars, 20 en studentondernemers. Siebe heeft al
-                ervaring opgedaan bij verschillende verhuisfirma's — daarom weten
+                ervaring opgedaan bij verschillende verhuisfirma's — daarom weet
                 hij wat klanten écht nodig hebben.
               </p>
               <p>
                 Toen Siebe met het idee van <strong className="text-ink">wegdermee</strong> kwam, 
-                was Lars meteen overtuigd. Zo starten we samen een ophaaldienst voor
+                was Lars meteen overtuigd. Zo startten we samen een ophaaldienst voor
                 rommel, inboedels en kleine verhuizingen.
               </p>
               <p>
-                Ons doel? Klanten snel en correct ontzorgen van hun rommel. Of het nu gaat
+                Ons doel? Klanten snel en correct ontzorgen van hun rommel aan een voordelige prijs. Of het nu gaat
                 om een volledige ontruiming, werf opruiming, een kleine ophaling of
                 verhuizing — wij helpen u graag.
               </p>

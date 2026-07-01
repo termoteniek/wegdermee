@@ -30,10 +30,10 @@ const socialLinks = [
   },
 ]
 
-const footerLinks = [
-  { href: '#', label: 'Privacy' },
-  { href: '#', label: 'Voorwaarden' },
-]
+// const footerLinks = [
+//   { href: '#', label: 'Privacy' },
+//   { href: '#', label: 'Voorwaarden' },
+// ]
 
 const infoItems = [
   { label: 'Ondernemingsnummer', value: '1039.278.883' },

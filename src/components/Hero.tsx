@@ -65,7 +65,7 @@ export function Hero() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7 }}
             >
-              Meubels, elektronica of volledige ontruimingen — wij halen alles op. U hoeft niet te sorteren. Wij halen alles op.
+              Meubels, elektronica of volledige ontruimingen — wij halen alles op. U hoeft niet te sorteren.
             </motion.p>
 
             <motion.div

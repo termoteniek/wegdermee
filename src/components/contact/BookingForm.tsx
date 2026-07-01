@@ -2,6 +2,8 @@ import { useLayoutEffect, useMemo, useRef, useState, type FormEvent } from 'reac
 import { formatEuro } from '../../lib/pricing'
 import {
   emptyBookingForm,
+  largeVolumePriceMessage,
+  isVolumeSelectableForService,
   pricedServiceValues,
   serviceOptions,
   volumeOptions,
@@ -11,15 +13,53 @@ import { DateTimePicker } from './DateTimePicker'
 
 const inputClassName =
   'mt-2 w-full min-w-0 border-b-2 border-ink bg-transparent py-2 text-ink outline-none focus:border-accent'
-const selectClassName = `${inputClassName} max-w-full cursor-pointer`
+const selectClassName = `${inputClassName} max-w-full cursor-pointer disabled:cursor-not-allowed disabled:opacity-50`
 const labelClassName =
   'font-display text-xs font-semibold uppercase tracking-widest text-muted'
 
-const stepLabels = ['Gegevens', 'Dienst', 'Datum & tijd'] as const
-type Step = 1 | 2 | 3 | 4
+const stepLabels = ['Gegevens', 'Dienst', 'Datum', 'Tijd'] as const
+type Step = 1 | 2 | 3 | 4 | 5
 
 const stepActionsClassName =
   'flex shrink-0 flex-col gap-3 border-t border-ink/10 pt-8 sm:flex-row'
+
+const primaryButtonClassName =
+  'bg-accent font-display text-lg font-bold uppercase tracking-wide text-white transition-colors hover:bg-accent-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-accent'
+
+function isFilled(value: string) {
+  return value.trim().length > 0
+}
+
+function isValidEmail(value: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())
+}
+
+function isStepOneValid(form: BookingFormData) {
+  return (
+    isFilled(form.voornaam) &&
+    isFilled(form.familienaam) &&
+    isValidEmail(form.email) &&
+    isFilled(form.phone) &&
+    isFilled(form.straatnaam) &&
+    isFilled(form.huisnummer) &&
+    isFilled(form.postcode) &&
+    isFilled(form.gemeente)
+  )
+}
+
+function isStepTwoValid(form: BookingFormData) {
+  const volumeRequired = isVolumeSelectableForService(form.service)
+
+  return isFilled(form.service) && (!volumeRequired || isFilled(form.volume))
+}
+
+function isStepThreeValid(form: BookingFormData) {
+  return isFilled(form.date)
+}
+
+function isStepFourValid(form: BookingFormData) {
+  return isFilled(form.time)
+}
 
 export function BookingForm() {
   const [step, setStep] = useState<Step>(1)
@@ -85,9 +125,14 @@ export function BookingForm() {
     setStep(3)
   }
 
+  function handleStepThreeSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setStep(4)
+  }
+
   function handleFinalSubmit() {
     setSubmitting(true)
-    setStep(4)
+    setStep(5)
     setSubmitting(false)
   }
 
@@ -95,19 +140,29 @@ export function BookingForm() {
     const selectedService = serviceOptions.find((option) => option.label === form.service)
     const selectedVolume = volumeOptions.find((option) => option.label === form.volume)
 
-    if (!selectedService || !selectedVolume) {
+    if (!selectedService || !selectedVolume || !pricedServiceValues.has(selectedService.value)) {
       return null
     }
 
-    if (!pricedServiceValues.has(selectedService.value)) {
-      return { type: 'custom' as const }
+    if (selectedVolume.isLargeVolume) {
+      return { type: 'large' as const }
     }
 
     return {
       type: 'fixed' as const,
-      amount: selectedVolume.priceInclVat,
+      amount: selectedVolume.priceInclVat!,
     }
   }, [form.service, form.volume])
+
+  const stepOneValid = isStepOneValid(form)
+  const stepTwoValid = isStepTwoValid(form)
+  const stepThreeValid = isStepThreeValid(form)
+  const stepFourValid = isStepFourValid(form)
+  const volumeSelectable = isVolumeSelectableForService(form.service)
+  const showEstimatedPrice = useMemo(() => {
+    const selectedService = serviceOptions.find((option) => option.label === form.service)
+    return selectedService != null && pricedServiceValues.has(selectedService.value)
+  }, [form.service])
 
   return (
     <div
@@ -122,7 +177,7 @@ export function BookingForm() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-3">
         {stepLabels.map((label, index) => {
           const value = index + 1
-          const isComplete = step === 4
+          const isComplete = step === 5
           return (
             <div key={label} className="flex min-w-0 flex-1 items-center gap-3">
               <span
@@ -255,27 +310,13 @@ export function BookingForm() {
             </label>
           </div>
 
-            <label className="mt-6 flex items-start gap-3 text-sm leading-relaxed text-muted">
-              <input
-                type="checkbox"
-                checked={form.privacyAccepted}
-                onChange={(event) => updateField('privacyAccepted', event.target.checked)}
-                className="mt-1 size-4 accent-accent"
-              />
-              <span>
-                Ik ga akkoord met het verwerken van mijn gegevens conform het{' '}
-                <a href="#" className="text-ink underline underline-offset-2 hover:text-accent">
-                  privacybeleid
-                </a>
-                .
-              </span>
-            </label>
           </div>
 
           <div className={stepActionsClassName}>
             <button
               type="submit"
-              className="w-full bg-accent py-4 font-display text-lg font-bold uppercase tracking-wide text-white transition-colors hover:bg-accent-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:w-auto sm:px-12"
+              disabled={!stepOneValid}
+              className={`w-full py-4 sm:w-auto sm:px-12 ${primaryButtonClassName}`}
             >
               Volgende →
             </button>
@@ -294,7 +335,14 @@ export function BookingForm() {
               <span className={labelClassName}>Gewenste dienst</span>
               <select
                 value={form.service}
-                onChange={(event) => updateField('service', event.target.value)}
+                onChange={(event) => {
+                  const service = event.target.value
+                  setForm((current) => ({
+                    ...current,
+                    service,
+                    volume: isVolumeSelectableForService(service) ? current.volume : '',
+                  }))
+                }}
                 className={selectClassName}
               >
                 <option value="">Maak een keuze</option>
@@ -311,6 +359,7 @@ export function BookingForm() {
               <select
                 value={form.volume}
                 onChange={(event) => updateField('volume', event.target.value)}
+                disabled={!volumeSelectable}
                 className={selectClassName}
               >
                 <option value="">Maak een keuze</option>
@@ -322,20 +371,28 @@ export function BookingForm() {
               </select>
             </label>
 
-            <div className="sm:col-span-2 border-l-4 border-accent px-4 py-3">
-              <p className={labelClassName}>Geschatte prijs</p>
-              <p className="mt-2 font-display text-2xl font-bold text-ink">
-                {!estimatedPrice ? (
-                  <span className="text-muted">Maak een keuze</span>
-                ) : estimatedPrice.type === 'custom' ? (
-                  <span>Op maat — offerte na bezichtiging</span>
-                ) : (
-                  <span className="text-accent">
-                    {formatEuro(estimatedPrice.amount)} incl. btw
-                  </span>
-                )}
-              </p>
-            </div>
+            {showEstimatedPrice && (
+              <div className="sm:col-span-2 border-l-4 border-accent px-4 py-3">
+                <p className={labelClassName}>Geschatte prijs</p>
+                <p
+                  className={`mt-2 text-ink ${
+                    estimatedPrice?.type === 'large'
+                      ? 'text-base leading-relaxed text-muted'
+                      : 'font-display text-2xl font-bold'
+                  }`}
+                >
+                  {!estimatedPrice ? (
+                    <span className="text-muted">Maak een keuze</span>
+                  ) : estimatedPrice.type === 'large' ? (
+                    <span>{largeVolumePriceMessage}</span>
+                  ) : (
+                    <span className="text-accent">
+                      {formatEuro(estimatedPrice.amount)} incl. btw
+                    </span>
+                  )}
+                </p>
+              </div>
+            )}
 
             <label className="block sm:col-span-2">
               <span className={labelClassName}>Beschrijving</span>
@@ -360,20 +417,23 @@ export function BookingForm() {
             </button>
             <button
               type="submit"
-              className="bg-accent px-8 py-4 font-display text-lg font-bold uppercase tracking-wide text-white transition-colors hover:bg-accent-hover sm:flex-1"
+              disabled={!stepTwoValid}
+              className={`px-8 py-4 sm:flex-1 ${primaryButtonClassName}`}
             >
               Volgende →
             </button>
           </div>
         </form>
 
-        <div
+        <form
+          onSubmit={handleStepThreeSubmit}
           className={stepPanelClass(step === 3)}
           aria-hidden={step !== 3}
           inert={step !== 3 ? true : undefined}
         >
           <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
             <DateTimePicker
+              mode="date"
               selectedDate={form.date}
               selectedTime={form.time}
               onDateChange={(date) => updateField('date', date)}
@@ -390,10 +450,43 @@ export function BookingForm() {
               ← Terug
             </button>
             <button
+              type="submit"
+              disabled={!stepThreeValid}
+              className={`min-w-0 px-8 py-4 sm:flex-1 ${primaryButtonClassName}`}
+            >
+              Volgende →
+            </button>
+          </div>
+        </form>
+
+        <div
+          className={stepPanelClass(step === 4)}
+          aria-hidden={step !== 4}
+          inert={step !== 4 ? true : undefined}
+        >
+          <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+            <DateTimePicker
+              mode="time"
+              selectedDate={form.date}
+              selectedTime={form.time}
+              onDateChange={(date) => updateField('date', date)}
+              onTimeChange={(time) => updateField('time', time)}
+            />
+          </div>
+
+          <div className={stepActionsClassName}>
+            <button
               type="button"
-              disabled={submitting}
+              onClick={() => setStep(3)}
+              className="min-w-0 border-2 border-ink px-8 py-4 font-display text-lg font-bold uppercase tracking-wide transition-colors hover:bg-ink hover:text-cream sm:flex-1"
+            >
+              ← Terug
+            </button>
+            <button
+              type="button"
+              disabled={submitting || !stepFourValid}
               onClick={handleFinalSubmit}
-              className="min-w-0 bg-accent px-8 py-4 font-display text-lg font-bold uppercase tracking-wide text-white transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-50 sm:flex-1"
+              className={`min-w-0 px-8 py-4 sm:flex-1 ${primaryButtonClassName}`}
             >
               {submitting ? 'Bezig…' : 'Afspraak aanvragen'}
             </button>
@@ -401,9 +494,9 @@ export function BookingForm() {
         </div>
 
         <div
-          className={`${stepPanelClass(step === 4)} items-center justify-center text-center`}
-          aria-hidden={step !== 4}
-          inert={step !== 4 ? true : undefined}
+          className={`${stepPanelClass(step === 5)} items-center justify-center text-center`}
+          aria-hidden={step !== 5}
+          inert={step !== 5 ? true : undefined}
         >
           <div className="flex flex-1 flex-col items-center justify-center">
             <span className="font-display text-6xl font-extrabold text-accent">✓</span>

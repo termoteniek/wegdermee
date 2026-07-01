@@ -36,7 +36,7 @@ export function Contact() {
                     E-mail
                   </span>
                   <span className="font-display text-2xl font-bold uppercase sm:text-3xl">
-                    info@wegdermee.be
+                    info@wegdermee.com
                   </span>
                 </a>
               </li>

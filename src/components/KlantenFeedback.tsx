@@ -5,20 +5,8 @@ const reviews = [
   {
     quote:
       'Snel geholpen en alles netjes meegenomen. Geen gedoe, precies zoals beloofd.',
-    name: 'Sophie',
+    name: 'Niek',
     location: 'Gent',
-  },
-  {
-    quote:
-      'Volledige ontruiming zonder verrassingen. Duidelijke prijs en stipt op tijd.',
-    name: 'Marc',
-    location: 'Deinze',
-  },
-  {
-    quote:
-      'Vriendelijke service en correcte afhandeling. Ik hoefde nergens aan te denken.',
-    name: 'Lisa',
-    location: 'Oudenaarde',
   },
 ]
 
@@ -33,7 +21,7 @@ export function KlantenFeedback() {
           </h2>
         </FadeIn>
 
-        <ul className="mt-14 grid gap-6 md:grid-cols-3">
+        <ul className="mt-14 grid gap-6 md:grid-cols-1">
           {reviews.map((review, i) => (
             <FadeIn key={review.name} delay={i * 0.06}>
               <li className="flex h-full flex-col border-2 border-white/15 bg-ink-soft p-6 sm:p-8">

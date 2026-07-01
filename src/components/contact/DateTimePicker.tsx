@@ -6,6 +6,7 @@ type DateTimePickerProps = {
   selectedTime: string
   onDateChange: (date: string) => void
   onTimeChange: (time: string) => void
+  mode?: 'date' | 'time' | 'both'
 }
 
 const weekdayLabels = ['Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za', 'Zo']
@@ -45,6 +46,7 @@ export function DateTimePicker({
   selectedTime,
   onDateChange,
   onTimeChange,
+  mode = 'both',
 }: DateTimePickerProps) {
   const today = useMemo(() => new Date(), [])
   const maxDate = useMemo(() => {
@@ -75,8 +77,12 @@ export function DateTimePicker({
     ? dateFormatter.format(new Date(`${selectedDate}T12:00:00`))
     : null
 
+  const showDate = mode === 'date' || mode === 'both'
+  const showTime = mode === 'time' || mode === 'both'
+
   return (
     <div className="flex h-full min-h-0 w-full min-w-0 flex-col">
+      {showDate && (
       <div className="w-full shrink-0 min-w-0">
         <div className="flex min-w-0 items-center justify-between gap-2 sm:gap-4">
           <button
@@ -139,8 +145,10 @@ export function DateTimePicker({
           })}
         </div>
       </div>
+      )}
 
-      <div className="mt-6 flex min-h-0 w-full min-w-0 flex-1 flex-col">
+      {showTime && (
+      <div className={`flex min-h-0 w-full min-w-0 flex-1 flex-col ${showDate ? 'mt-6' : ''}`}>
         <p className="shrink-0 font-display text-xs font-semibold uppercase tracking-widest text-muted">
           Beschikbare tijden
         </p>
@@ -180,6 +188,7 @@ export function DateTimePicker({
           </>
         )}
       </div>
+      )}
     </div>
   )
 }

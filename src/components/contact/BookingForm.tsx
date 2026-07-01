@@ -174,14 +174,14 @@ export function BookingForm() {
           : undefined
       }
     >
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-3">
+      <div className="flex items-center gap-1 sm:gap-3">
         {stepLabels.map((label, index) => {
           const value = index + 1
           const isComplete = step === 5
           return (
-            <div key={label} className="flex min-w-0 flex-1 items-center gap-3">
+            <div key={label} className="flex min-w-0 flex-1 items-center gap-1.5 sm:gap-3">
               <span
-                className={`flex size-9 shrink-0 items-center justify-center border-2 font-display text-sm font-bold ${
+                className={`flex size-8 shrink-0 items-center justify-center border-2 font-display text-xs font-bold sm:size-9 sm:text-sm ${
                   isComplete || step >= value
                     ? 'border-accent bg-accent text-white'
                     : 'border-ink/20 text-muted'
@@ -189,7 +189,7 @@ export function BookingForm() {
               >
                 {value}
               </span>
-              <span className="min-w-0 truncate font-display text-xs font-semibold uppercase tracking-widest text-muted">
+              <span className="min-w-0 truncate font-display text-[10px] font-semibold uppercase tracking-wide text-muted sm:text-xs sm:tracking-widest">
                 {label}
               </span>
               {value < stepLabels.length && (

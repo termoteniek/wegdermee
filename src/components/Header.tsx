@@ -1,5 +1,5 @@
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from './ui/Button'
 
@@ -53,9 +53,20 @@ export function Header() {
     setScrolled(y > 60)
   })
 
+  useEffect(() => {
+    if (!open) return
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [open])
+
   return (
     <motion.header
-      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,border-color] duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 ${
+        open ? '' : 'transition-[background-color,backdrop-filter,border-color] duration-300'
+      } ${
         open
           ? 'border-b border-white/10 bg-ink'
           : scrolled
@@ -106,45 +117,44 @@ export function Header() {
           onClick={() => setOpen(!open)}
         >
           <span
-            className={`block h-0.5 w-7 bg-white transition-transform ${open ? 'translate-y-2 rotate-45' : ''}`}
+            className={`block h-0.5 w-7 bg-white transition-transform duration-200 ease-out ${open ? 'translate-y-2 rotate-45' : ''}`}
           />
           <span
-            className={`block h-0.5 w-7 bg-white transition-opacity ${open ? 'opacity-0' : ''}`}
+            className={`block h-0.5 w-7 bg-white transition-opacity duration-200 ease-out ${open ? 'opacity-0' : ''}`}
           />
           <span
-            className={`block h-0.5 w-7 bg-white transition-transform ${open ? '-translate-y-2 -rotate-45' : ''}`}
+            className={`block h-0.5 w-7 bg-white transition-transform duration-200 ease-out ${open ? '-translate-y-2 -rotate-45' : ''}`}
           />
         </button>
       </div>
 
-      {open && (
-        <motion.nav
-          className="fixed inset-0 z-40 flex flex-col overflow-y-auto bg-ink px-5 pb-8 pt-24 lg:hidden"
-          aria-label="Mobiele navigatie"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.25 }}
-        >
-          <ul className="flex flex-1 flex-col items-center justify-center gap-1 text-center">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  to={link.href}
-                  className="block py-3 font-display text-xl font-bold uppercase tracking-wide text-white/90 hover:text-white"
-                  onClick={() => setOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-            <li className="mt-4">
-              <Button href="/contact" onClick={() => setOpen(false)}>
-                Boek ophaling
-              </Button>
+      <nav
+        className={`fixed inset-0 z-40 flex flex-col overflow-y-auto bg-ink px-5 pb-8 pt-24 transition-[opacity,visibility] duration-200 ease-out will-change-[opacity] lg:hidden ${
+          open ? 'visible opacity-100' : 'invisible pointer-events-none opacity-0'
+        }`}
+        aria-label="Mobiele navigatie"
+        aria-hidden={!open}
+      >
+        <ul className="flex flex-1 flex-col items-center justify-center gap-1 text-center">
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <Link
+                to={link.href}
+                tabIndex={open ? undefined : -1}
+                className="block py-3 font-display text-xl font-bold uppercase tracking-wide text-white/90 hover:text-white"
+                onClick={() => setOpen(false)}
+              >
+                {link.label}
+              </Link>
             </li>
-          </ul>
-        </motion.nav>
-      )}
+          ))}
+          <li className="mt-4">
+            <Button href="/contact" onClick={() => setOpen(false)}>
+              Boek ophaling
+            </Button>
+          </li>
+        </ul>
+      </nav>
     </motion.header>
   )
 }

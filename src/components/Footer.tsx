@@ -45,6 +45,25 @@ const infoItems = [
 const linkClassName =
   'transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent'
 
+function SocialIcons({ className = '' }: { className?: string }) {
+  return (
+    <div className={`flex items-center gap-5 ${className}`}>
+      {socialLinks.map((social) => (
+        <a
+          key={social.label}
+          href={social.href}
+          aria-label={social.label}
+          target={social.href.startsWith('http') ? '_blank' : undefined}
+          rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+          className={`text-white/70 ${linkClassName}`}
+        >
+          {social.icon}
+        </a>
+      ))}
+    </div>
+  )
+}
+
 export function Footer() {
   const year = new Date().getFullYear()
 
@@ -54,7 +73,7 @@ export function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:items-stretch lg:gap-8">
           <Link
             to="/"
-            className="flex h-full items-center justify-center sm:col-span-2 lg:col-span-1"
+            className="hidden h-full items-center justify-center lg:col-span-1 lg:flex"
           >
             <img
               src="/LogoWhiteNoBG.png"
@@ -64,9 +83,12 @@ export function Footer() {
           </Link>
 
           <div>
-            <h3 className="font-display text-sm font-semibold uppercase tracking-[0.25em] text-accent">
-              Navigatie
-            </h3>
+            <div className="flex items-center justify-between gap-4">
+              <h3 className="font-display text-sm font-semibold uppercase tracking-[0.25em] text-accent">
+                Navigatie
+              </h3>
+              <SocialIcons className="sm:hidden" />
+            </div>
             <nav className="mt-4 flex flex-col gap-2" aria-label="Footer navigatie">
               {navLinks.map((link) => (
                 <Link
@@ -100,21 +122,8 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="flex h-full flex-col justify-start gap-8 sm:col-span-2 lg:col-span-1 lg:justify-between lg:items-end">
-            <div className="flex items-center gap-5">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  aria-label={social.label}
-                  target={social.href.startsWith('http') ? '_blank' : undefined}
-                  rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className={`text-white/70 ${linkClassName}`}
-                >
-                  {social.icon}
-                </a>
-              ))}
-            </div>
+          <div className="hidden h-full flex-col justify-start gap-8 sm:col-span-2 sm:flex lg:col-span-1 lg:justify-between lg:items-end">
+            <SocialIcons />
 
             {/* <nav className="flex gap-6" aria-label="Footer juridisch">
               {footerLinks.map((link) => (

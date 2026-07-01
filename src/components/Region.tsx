@@ -19,16 +19,16 @@ export function Region() {
         </FadeIn>
 
         <FadeIn delay={0.15} className="mt-14">
-          <ul className="flex flex-col divide-y-2 divide-ink border-y-2 border-ink sm:flex-row sm:divide-x-2 sm:divide-y-0">
+          <ul className="grid grid-cols-1 border-y-2 border-ink md:grid-cols-2 lg:grid-cols-4">
             {regions.map((region, i) => (
               <li
                 key={region}
-                className="group flex flex-1 flex-col items-center justify-center px-6 py-10 transition-colors hover:bg-ink hover:text-cream sm:py-14"
+                className="group flex min-w-0 flex-col items-center justify-center border-b-2 border-ink px-4 py-10 text-center transition-colors last:border-b-0 hover:bg-ink hover:text-cream md:border-b-0 md:odd:border-r-2 md:[&:nth-child(-n+2)]:border-b-2 md:[&:nth-child(n+3)]:border-b-0 md:px-5 md:py-12 lg:border-b-0 lg:border-r-2 lg:px-6 lg:py-14 lg:odd:border-r-0 lg:last:border-r-0"
               >
                 <span className="font-display text-xs font-semibold uppercase tracking-[0.3em] text-muted group-hover:text-accent">
                   {String(i + 1).padStart(2, '0')}
                 </span>
-                <span className="mt-2 font-display text-3xl font-extrabold uppercase tracking-tight sm:text-4xl">
+                <span className="mt-2 text-balance font-display text-2xl font-extrabold uppercase tracking-tight md:text-3xl lg:text-4xl">
                   {region}
                 </span>
               </li>

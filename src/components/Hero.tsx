@@ -86,7 +86,7 @@ export function Hero() {
           </motion.div>
 
           <motion.div
-            className="relative lg:col-span-6 lg:col-start-7"
+            className="relative md:mx-auto md:max-w-xl lg:col-span-6 lg:col-start-7 lg:mx-0 lg:max-w-none"
             style={{ y: imageY }}
             initial={{ opacity: 0, x: 80 }}
             animate={{ opacity: 1, x: 0 }}
@@ -98,7 +98,7 @@ export function Hero() {
                 <img
                   src="/ImageWithLargeLogo.png"
                   alt="Team van wegdermee aan het werk met de aanhangwagen"
-                  className="aspect-[3/4] w-full object-cover object-center lg:aspect-[4/5] lg:max-h-[min(52vh,520px)]"
+                  className="aspect-[3/4] w-full object-cover object-center md:max-h-[min(50vh,500px)] lg:aspect-[4/5] lg:max-h-[min(52vh,520px)]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent lg:bg-gradient-to-l lg:from-ink/60 lg:via-transparent lg:to-transparent" />
               </div>

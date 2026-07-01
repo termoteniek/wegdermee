@@ -56,15 +56,17 @@ export function Header() {
   return (
     <motion.header
       className={`fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,border-color] duration-300 ${
-        scrolled
-          ? 'border-b border-white/50 bg-ink/70 backdrop-blur-xl'
-          : 'border-b border-transparent bg-transparent'
+        open
+          ? 'border-b border-white/10 bg-ink'
+          : scrolled
+            ? 'border-b border-white/50 bg-ink/70 backdrop-blur-xl'
+            : 'border-b border-transparent bg-transparent'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
+      <div className="relative z-50 mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
         <Link
           to="/"
           aria-label="Wegdermee — naar home"
@@ -117,11 +119,13 @@ export function Header() {
 
       {open && (
         <motion.nav
-          className="border-t border-white/10 bg-ink/80 px-5 py-6 backdrop-blur-xl lg:hidden"
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
+          className="fixed inset-0 z-40 flex flex-col overflow-y-auto bg-ink px-5 pb-8 pt-24 lg:hidden"
+          aria-label="Mobiele navigatie"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.25 }}
         >
-          <ul className="flex flex-col gap-1">
+          <ul className="flex flex-1 flex-col items-center justify-center gap-1 text-center">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
@@ -134,7 +138,7 @@ export function Header() {
               </li>
             ))}
             <li className="mt-4">
-              <Button href="/contact" className="w-full" onClick={() => setOpen(false)}>
+              <Button href="/contact" onClick={() => setOpen(false)}>
                 Boek ophaling
               </Button>
             </li>

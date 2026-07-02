@@ -23,7 +23,7 @@ export function Region() {
             {regions.map((region, i) => (
               <li
                 key={region}
-                className="group flex min-w-0 flex-col items-center justify-center border-b-2 border-ink px-4 py-10 text-center transition-colors last:border-b-0 hover:bg-ink hover:text-cream md:border-b-0 md:odd:border-r-2 md:[&:nth-child(-n+2)]:border-b-2 md:[&:nth-child(n+3)]:border-b-0 md:px-5 md:py-12 lg:border-b-0 lg:border-r-2 lg:px-6 lg:py-14 lg:odd:border-r-0 lg:last:border-r-0"
+                className="group flex min-w-0 flex-col items-center justify-center border-b-2 border-ink px-4 py-10 text-center transition-colors last:border-b-0 hover:bg-ink hover:text-cream md:px-5 md:py-12 md:max-lg:border-b-0 md:max-lg:odd:border-r-2 md:max-lg:[&:nth-child(-n+2)]:border-b-2 md:max-lg:[&:nth-child(n+3)]:border-b-0 lg:border-b-0 lg:border-r-2 lg:px-6 lg:py-14 lg:odd:border-r-0 lg:last:border-r-0"
               >
                 <span className="font-display text-xs font-semibold uppercase tracking-[0.3em] text-muted group-hover:text-accent">
                   {String(i + 1).padStart(2, '0')}

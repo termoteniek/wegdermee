@@ -85,15 +85,25 @@ export function ServicePricing() {
             <p className="font-display text-sm font-semibold uppercase tracking-[0.3em] text-accent">
               Vanaf
             </p>
-            <p className="mt-2 font-display text-6xl font-extrabold uppercase leading-none sm:text-7xl">
-              {formatEuro(startingTier.priceInclVat)}
-            </p>
-            <p className="mt-2 text-sm text-white/50">
-              {formatEuro(startingTier.priceExVat)} ex. btw
-            </p>
-            <p className="mt-3 text-white/60">
-              incl. btw · tot {startingTier.volumeM3} m³ · {startingTier.weightKg} kg
-            </p>
+            <div className="mt-2 flex flex-wrap items-baseline justify-center gap-x-3">
+              <p className="font-display text-6xl font-extrabold uppercase leading-none sm:text-7xl">
+                {formatEuro(startingTier.priceInclVat)}
+              </p>
+              <p className="text-xs font-medium text-white/50 sm:text-sm">
+                incl. btw
+              </p>
+            </div>
+            <div className="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm text-white/60">
+              <span className="text-white/50">
+                {formatEuro(startingTier.priceExVat)} ex. btw
+              </span>
+              <span aria-hidden className="text-white/30">
+                ·
+              </span>
+              <span>
+                tot {startingTier.volumeM3} m³ · {startingTier.weightKg} kg
+              </span>
+            </div>
             <div className="absolute -right-2 -top-2 h-full w-full border-2 border-accent" aria-hidden />
           </div>
         </FadeIn>

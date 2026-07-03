@@ -29,7 +29,7 @@ export function Contact() {
             <ul className="mt-12 space-y-6">
               <li>
                 <a
-                  href="mailto:info@wegdermee.be"
+                  href="mailto:info@wegdermee.com"
                   className="group flex items-baseline gap-4 transition-colors hover:text-accent"
                 >
                   <span className="font-display text-xs font-semibold uppercase tracking-widest text-white/40">
@@ -57,8 +57,19 @@ export function Contact() {
           </FadeIn>
 
           <FadeIn delay={0.1} className="w-full min-w-0">
-            <div className="w-full min-w-0">
-              <BookingForm />
+            <div className="relative w-full min-w-0">
+              <div aria-hidden="true" inert>
+                <BookingForm />
+              </div>
+              <div
+                className="absolute inset-0 z-20 flex items-center justify-center bg-cream/15 backdrop-blur-[2px]"
+                role="status"
+                aria-label="Binnenkort bischikbaar"
+              >
+                <p className="font-display text-2xl font-extrabold uppercase tracking-tight text-ink sm:text-3xl">
+                  Binnenkort bischikbaar
+                </p>
+              </div>
             </div>
           </FadeIn>
         </div>

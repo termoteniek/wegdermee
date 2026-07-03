@@ -1,4 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
+const routerBasename =
+  import.meta.env.BASE_URL === '/'
+    ? undefined
+    : import.meta.env.BASE_URL.replace(/\/$/, '')
 import { Layout } from './components/Layout'
 import { HomePage } from './pages/HomePage'
 import { ContactPage } from './pages/ContactPage'
@@ -10,7 +15,7 @@ import { TransportPage } from './pages/TransportPage'
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={routerBasename}>
       <Routes>
         <Route
           path="/"

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { assetUrl } from '../lib/assetUrl'
 
 const navLinks = [
   { href: '/#diensten', label: 'Diensten' },
@@ -76,7 +77,7 @@ export function Footer() {
             className="hidden h-full items-center justify-center lg:col-span-1 lg:flex"
           >
             <img
-              src="/LogoWhiteNoBG.png"
+              src={assetUrl('LogoWhiteNoBG.png')}
               alt="wegdermee"
               className="h-14 w-auto"
             />

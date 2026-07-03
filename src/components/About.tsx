@@ -1,5 +1,6 @@
 import { FadeIn } from './FadeIn'
 import { SectionLabel } from './ui/SectionLabel'
+import { assetUrl } from '../lib/assetUrl'
 
 export function About() {
   return (
@@ -10,7 +11,7 @@ export function About() {
             <div className="relative">
               <div className="relative overflow-hidden border-2 border-ink">
                 <img
-                  src="/ImageWithSmallLogo.png"
+                  src={assetUrl('ImageWithSmallLogo.png')}
                   alt="Siebe en Lars van wegdermee bij de aanhangwagen"
                   className="aspect-[3/4] w-full object-cover object-top"
                 />

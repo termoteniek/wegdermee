@@ -57,20 +57,7 @@ export function Contact() {
           </FadeIn>
 
           <FadeIn delay={0.1} className="w-full min-w-0">
-            <div className="relative w-full min-w-0">
-              <div aria-hidden="true" inert>
-                <BookingForm />
-              </div>
-              <div
-                className="absolute inset-0 z-20 flex items-center justify-center bg-cream/15 backdrop-blur-[2px]"
-                role="status"
-                aria-label="Binnenkort bischikbaar"
-              >
-                <p className="font-display text-2xl font-extrabold uppercase tracking-tight text-ink sm:text-3xl">
-                  Binnenkort bischikbaar
-                </p>
-              </div>
-            </div>
+            <BookingForm />
           </FadeIn>
         </div>
       </div>

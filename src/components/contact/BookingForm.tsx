@@ -1,5 +1,6 @@
 import { useLayoutEffect, useMemo, useRef, useState, type FormEvent } from 'react'
 import { formatEuro } from '../../lib/pricing'
+import { submitBooking } from '../../lib/submitBooking'
 import {
   emptyBookingForm,
   largeVolumePriceMessage,
@@ -65,6 +66,8 @@ export function BookingForm() {
   const [step, setStep] = useState<Step>(1)
   const [form, setForm] = useState<BookingFormData>(emptyBookingForm)
   const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
+  const [honeypot, setHoneypot] = useState('')
   const shellRef = useRef<HTMLDivElement>(null)
   const stepStackRef = useRef<HTMLDivElement>(null)
   const [lockedWidth, setLockedWidth] = useState<number | null>(null)
@@ -130,10 +133,20 @@ export function BookingForm() {
     setStep(4)
   }
 
-  function handleFinalSubmit() {
+  async function handleFinalSubmit() {
     setSubmitting(true)
-    setStep(5)
+    setSubmitError(null)
+
+    const result = await submitBooking(form, honeypot)
+
     setSubmitting(false)
+
+    if (result.ok) {
+      setStep(5)
+      return
+    }
+
+    setSubmitError(result.message)
   }
 
   const estimatedPrice = useMemo(() => {
@@ -174,6 +187,17 @@ export function BookingForm() {
           : undefined
       }
     >
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        value={honeypot}
+        onChange={(event) => setHoneypot(event.target.value)}
+        className="pointer-events-none absolute -left-[9999px] h-0 w-0 opacity-0"
+      />
+
       <div className="flex items-center gap-1 sm:gap-3">
         {stepLabels.map((label, index) => {
           const value = index + 1
@@ -482,6 +506,11 @@ export function BookingForm() {
             >
               ← Terug
             </button>
+            {submitError && (
+              <p className="w-full text-sm text-red-700 sm:order-first sm:basis-full" role="alert">
+                {submitError}
+              </p>
+            )}
             <button
               type="button"
               disabled={submitting || !stepFourValid}

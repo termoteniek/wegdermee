@@ -23,30 +23,38 @@ export function About() {
           <FadeIn delay={0.1} className="lg:col-span-7">
             <SectionLabel>Over ons</SectionLabel>
             <h2 className="mt-3 font-display text-5xl font-extrabold uppercase leading-none tracking-tight text-ink sm:text-6xl">
-              Wie komt er langs?
+              Welkom bij Wegdermee
             </h2>
 
             <blockquote className="mt-8 border-l-4 border-accent pl-6">
               <p className="font-display text-2xl font-bold uppercase italic leading-snug text-ink sm:text-3xl">
-                &ldquo;Klanten snel en correct ontzorgen van hun rommel.&rdquo;
+                &ldquo;Jouw rommel? Wegdermee!&rdquo;
               </p>
             </blockquote>
 
             <div className="mt-8 space-y-4 text-lg leading-relaxed text-muted">
               <p>
-                Hey! Wij zijn Siebe en Lars, 20 en studentondernemers. Siebe heeft al
-                ervaring opgedaan bij verschillende verhuisfirma's — daarom weet
-                hij wat klanten écht nodig hebben.
+                Ik ben Siebe, oprichter van Wegdermee. Al van jongs af aan droom ik ervan om een
+                eigen onderneming uit te bouwen. Met Wegdermee maak ik van die droom eindelijk
+                werkelijkheid: een betrouwbare en betaalbare service waarmee ik mensen kan
+                ontzorgen.
               </p>
               <p>
-                Toen Siebe met het idee van <strong className="text-ink">wegdermee</strong> kwam, 
-                was Lars meteen overtuigd. Zo startten we samen een ophaaldienst voor
-                rommel, inboedels en kleine verhuizingen.
+                Door mijn ervaring bij verschillende verhuisfirma&apos;s leerde ik hoe belangrijk een
+                vlotte, zorgvuldige en klantgerichte aanpak is. Die ervaring neem ik elke dag mee
+                in mijn eigen onderneming.
               </p>
               <p>
-                Ons doel? Klanten snel en correct ontzorgen van hun rommel aan een voordelige prijs. Of het nu gaat
-                om een volledige ontruiming, werf opruiming, een kleine ophaling of
-                verhuizing — wij helpen u graag.
+                Bij Wegdermee kunt u terecht voor het ophalen van rommel en volledige inboedels of
+                voor volledige ontruimingen van huizen, appartementen en kantoren, maar ook voor
+                kleine verhuizingen en transportdiensten. Heeft u een grote aankoop gedaan, maar
+                geen geschikt vervoer? Ook dan help ik u graag verder. Geen opdracht is te klein:
+                mijn doel is om elke klant snel, correct en met een glimlach verder te helpen.
+              </p>
+              <p>
+                Voor ons staan betrouwbaarheid, duidelijke afspraken en een persoonlijke
+                aanpak centraal. We behandelen uw spullen met zorg en zorgen ervoor dat u zich
+                nergens zorgen over hoeft te maken.
               </p>
             </div>
           </FadeIn>

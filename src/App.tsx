@@ -5,6 +5,7 @@ const routerBasename =
     ? undefined
     : import.meta.env.BASE_URL.replace(/\/$/, '')
 import { Layout } from './components/Layout'
+import { PageMeta } from './components/PageMeta'
 import { HomePage } from './pages/HomePage'
 import { ContactPage } from './pages/ContactPage'
 import { RommelophaaldienstPage } from './pages/RommelophaaldienstPage'
@@ -16,6 +17,7 @@ import { TransportPage } from './pages/TransportPage'
 function App() {
   return (
     <BrowserRouter basename={routerBasename}>
+      <PageMeta />
       <Routes>
         <Route
           path="/"

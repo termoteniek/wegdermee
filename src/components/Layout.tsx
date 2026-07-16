@@ -5,13 +5,14 @@ import { ScrollToHash } from './ScrollToHash'
 
 type LayoutProps = {
   children: ReactNode
+  lightHeader?: boolean
 }
 
-export function Layout({ children }: LayoutProps) {
+export function Layout({ children, lightHeader = false }: LayoutProps) {
   return (
     <div className="flex min-h-svh flex-col">
       <ScrollToHash />
-      <Header />
+      <Header lightHeader={lightHeader} />
       <main id="main" className="flex flex-1 flex-col">
         {children}
       </main>

@@ -14,6 +14,13 @@ export type ServiceOption = {
   label: string
 }
 
+export type CrewOption = {
+  value: string
+  label: string
+  people: number
+  pricePerHour: number
+}
+
 export const serviceOptions: ServiceOption[] = [
   { value: 'rommelophaaldienst', label: 'Rommelophaaldienst' },
   { value: 'volledige-ontruiming', label: 'Volledige ontruiming' },
@@ -39,6 +46,12 @@ export const volumeOptions: VolumeOption[] = [
   },
 ]
 
+export const crewOptions: CrewOption[] = [
+  { value: '2', label: '2 man', people: 2, pricePerHour: 80 },
+  { value: '3', label: '3 man', people: 3, pricePerHour: 115 },
+  { value: '4', label: '4 man', people: 4, pricePerHour: 150 },
+]
+
 export const largeVolumePriceMessage =
   'Gaat het over grote hoeveelheden, aarzel niet, bel ons gerust en wij komen gratis ter plaatse voor een op maat gemaakte offerte en de opties te bespreken.'
 
@@ -48,15 +61,26 @@ export const pricedServiceValues = new Set([
   'werf-opruiming',
 ])
 
+export const hourlyServiceValues = new Set(['kleine-verhuizingen', 'transport'])
+
 export const volumeExcludedServiceValues = new Set(['kleine-verhuizingen', 'transport'])
+
+export function getServiceByLabel(serviceLabel: string) {
+  return serviceOptions.find((option) => option.label === serviceLabel)
+}
 
 export function isVolumeSelectableForService(serviceLabel: string) {
   if (!serviceLabel.trim()) return false
 
-  const service = serviceOptions.find((option) => option.label === serviceLabel)
+  const service = getServiceByLabel(serviceLabel)
   if (!service) return false
 
   return !volumeExcludedServiceValues.has(service.value)
+}
+
+export function isHourlyService(serviceLabel: string) {
+  const service = getServiceByLabel(serviceLabel)
+  return service != null && hourlyServiceValues.has(service.value)
 }
 
 export type BookingFormData = {
@@ -70,6 +94,9 @@ export type BookingFormData = {
   gemeente: string
   service: string
   volume: string
+  crew: string
+  startAddress: string
+  deliveryAddress: string
   description: string
   date: string
   time: string
@@ -86,6 +113,9 @@ export const emptyBookingForm: BookingFormData = {
   gemeente: '',
   service: '',
   volume: '',
+  crew: '',
+  startAddress: '',
+  deliveryAddress: '',
   description: '',
   date: '',
   time: '',

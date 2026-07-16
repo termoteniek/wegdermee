@@ -13,7 +13,13 @@ const navLinks = [
 
 const logoParts = ['Weg', 'Der', 'Mee'] as const
 
-function NavbarLogo({ scrolled }: { scrolled: boolean }) {
+function NavbarLogo({
+  scrolled,
+  lightHeader,
+}: {
+  scrolled: boolean
+  lightHeader: boolean
+}) {
   return (
     <motion.span
       className="inline-flex font-display text-2xl font-bold uppercase tracking-wide"
@@ -35,7 +41,7 @@ function NavbarLogo({ scrolled }: { scrolled: boolean }) {
             hover: { y: -3, scale: 1.04 },
           }}
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className={scrolled ? 'text-inherit' : 'text-accent'}
+          className={scrolled || lightHeader ? 'text-inherit' : 'text-accent'}
         >
           {part}
         </motion.span>
@@ -44,7 +50,11 @@ function NavbarLogo({ scrolled }: { scrolled: boolean }) {
   )
 }
 
-export function Header() {
+type HeaderProps = {
+  lightHeader?: boolean
+}
+
+export function Header({ lightHeader = false }: HeaderProps) {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const { scrollY } = useScroll()
@@ -62,6 +72,11 @@ export function Header() {
     }
   }, [open])
 
+  const darkLinks = lightHeader && !open
+  const navLinkClassName = darkLinks
+    ? 'font-display text-sm font-semibold uppercase tracking-widest text-ink/80 transition-colors hover:text-ink'
+    : 'font-display text-sm font-semibold uppercase tracking-widest text-white/80 transition-colors hover:text-white'
+
   return (
     <motion.header
       className={`fixed inset-x-0 top-0 z-50 ${
@@ -70,7 +85,9 @@ export function Header() {
         open
           ? 'border-b border-white/10 bg-ink'
           : scrolled
-            ? 'border-b border-white/50 bg-ink/70 backdrop-blur-xl'
+            ? lightHeader
+              ? 'border-b border-ink/10 bg-cream/85 backdrop-blur-xl'
+              : 'border-b border-white/50 bg-ink/70 backdrop-blur-xl'
             : 'border-b border-transparent bg-transparent'
       }`}
       initial={{ y: -100 }}
@@ -82,19 +99,21 @@ export function Header() {
           to="/"
           aria-label="Wegdermee — naar home"
           className={`group relative z-10 shrink-0 transition-colors duration-200 ${
-            scrolled ? 'text-white/80 hover:text-white' : 'hover:text-accent-hover'
+            lightHeader
+              ? scrolled
+                ? 'text-ink/80 hover:text-ink'
+                : 'text-accent hover:text-accent-hover'
+              : scrolled
+                ? 'text-white/80 hover:text-white'
+                : 'hover:text-accent-hover'
           }`}
         >
-          <NavbarLogo scrolled={scrolled} />
+          <NavbarLogo scrolled={scrolled} lightHeader={lightHeader} />
         </Link>
 
         <nav className="hidden items-center gap-10 lg:flex" aria-label="Hoofdnavigatie">
           {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              to={link.href}
-              className="font-display text-sm font-semibold uppercase tracking-widest text-white/80 transition-colors hover:text-white"
-            >
+            <Link key={link.href} to={link.href} className={navLinkClassName}>
               {link.label}
             </Link>
           ))}
@@ -102,7 +121,7 @@ export function Header() {
         <div className="hidden lg:block">
           <Button
             href="/contact"
-            variant={scrolled ? 'ghost' : 'primary'}
+            variant={lightHeader || !scrolled ? 'primary' : 'ghost'}
             className="!px-6 !py-2.5 !text-base"
           >
             Boek ophaling
@@ -111,19 +130,19 @@ export function Header() {
 
         <button
           type="button"
-          className="relative z-10 inline-flex flex-col gap-1.5 p-2 lg:hidden [&_span]:bg-white"
+          className={`relative z-10 inline-flex flex-col gap-1.5 p-2 lg:hidden ${darkLinks ? '[&_span]:bg-ink' : '[&_span]:bg-white'}`}
           aria-expanded={open}
           aria-label={open ? 'Menu sluiten' : 'Menu openen'}
           onClick={() => setOpen(!open)}
         >
           <span
-            className={`block h-0.5 w-7 bg-white transition-transform duration-200 ease-out ${open ? 'translate-y-2 rotate-45' : ''}`}
+            className={`block h-0.5 w-7 transition-transform duration-200 ease-out ${darkLinks ? 'bg-ink' : 'bg-white'} ${open ? 'translate-y-2 rotate-45' : ''}`}
           />
           <span
-            className={`block h-0.5 w-7 bg-white transition-opacity duration-200 ease-out ${open ? 'opacity-0' : ''}`}
+            className={`block h-0.5 w-7 transition-opacity duration-200 ease-out ${darkLinks ? 'bg-ink' : 'bg-white'} ${open ? 'opacity-0' : ''}`}
           />
           <span
-            className={`block h-0.5 w-7 bg-white transition-transform duration-200 ease-out ${open ? '-translate-y-2 -rotate-45' : ''}`}
+            className={`block h-0.5 w-7 transition-transform duration-200 ease-out ${darkLinks ? 'bg-ink' : 'bg-white'} ${open ? '-translate-y-2 -rotate-45' : ''}`}
           />
         </button>
       </div>

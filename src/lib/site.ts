@@ -1,8 +1,8 @@
 export const SITE_URL = 'https://wegdermee.com'
 
 export const business = {
-  name: 'wegdermee',
-  legalName: 'wegdermee',
+  name: 'Wegdermee',
+  legalName: 'Wegdermee',
   email: 'info@wegdermee.com',
   phone: '+32498438878',
   phoneDisplay: '+32 498 43 88 78',
@@ -66,6 +66,18 @@ export const pageSeoByPath: Record<string, PageSeo> = {
     description:
       'Transport van grote aankopen en inboedel door wegdermee. Snelle, zorgvuldige levering in Vlaanderen en Brussel.',
     path: '/diensten/transport',
+  },
+  '/privacy': {
+    title: 'wegdermee | Privacyverklaring',
+    description:
+      'Privacyverklaring van wegdermee. Lees hoe wij uw persoonsgegevens verzamelen, gebruiken en beschermen.',
+    path: '/privacy',
+  },
+  '/algemene-voorwaarden': {
+    title: 'wegdermee | Algemene voorwaarden',
+    description:
+      'Algemene voorwaarden van wegdermee voor rommelophaal, ontruiming, werf opruiming, verhuizingen en transport.',
+    path: '/algemene-voorwaarden',
   },
 }
 

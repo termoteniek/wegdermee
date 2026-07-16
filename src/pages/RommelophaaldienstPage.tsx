@@ -17,6 +17,13 @@ const included = [
   'Flexibele planning, 7 op 7 bereikbaar',
 ]
 
+const beforeAfterPairs = [
+  { before: 'VoorEnNa/Voor1.jpeg', after: 'VoorEnNa/Na1.jpeg' },
+  { before: 'VoorEnNa/Voor2.jpeg', after: 'VoorEnNa/Na2.jpeg' },
+  { before: 'VoorEnNa/Voor3.jpeg', after: 'VoorEnNa/Na3.jpeg' },
+  { before: 'VoorEnNa/Voor4.jpeg', after: 'VoorEnNa/Na4.jpeg' },
+]
+
 export function RommelophaaldienstPage() {
   return (
     <div className="flex flex-1 flex-col">
@@ -55,7 +62,7 @@ export function RommelophaaldienstPage() {
         </div>
       </section>
 
-      <ServiceBeforeAfter />
+      <ServiceBeforeAfter pairs={beforeAfterPairs} />
 
       <ServicePricing />
 

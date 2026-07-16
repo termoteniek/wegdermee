@@ -1,13 +1,16 @@
 import { useLayoutEffect, useMemo, useRef, useState, type FormEvent } from 'react'
+import { Link } from 'react-router-dom'
 import { formatEuro } from '../../lib/pricing'
 import { submitBooking } from '../../lib/submitBooking'
 import {
   emptyBookingForm,
   largeVolumePriceMessage,
   isVolumeSelectableForService,
+  isHourlyService,
   pricedServiceValues,
   serviceOptions,
   volumeOptions,
+  crewOptions,
   type BookingFormData,
 } from '../../types/booking'
 import { DateTimePicker } from './DateTimePicker'
@@ -49,9 +52,18 @@ function isStepOneValid(form: BookingFormData) {
 }
 
 function isStepTwoValid(form: BookingFormData) {
-  const volumeRequired = isVolumeSelectableForService(form.service)
+  if (!isFilled(form.service)) return false
 
-  return isFilled(form.service) && (!volumeRequired || isFilled(form.volume))
+  if (isHourlyService(form.service)) {
+    return (
+      isFilled(form.crew) &&
+      isFilled(form.startAddress) &&
+      isFilled(form.deliveryAddress)
+    )
+  }
+
+  const volumeRequired = isVolumeSelectableForService(form.service)
+  return !volumeRequired || isFilled(form.volume)
 }
 
 function isStepThreeValid(form: BookingFormData) {
@@ -67,6 +79,7 @@ export function BookingForm() {
   const [form, setForm] = useState<BookingFormData>(emptyBookingForm)
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
+  const [acceptedTerms, setAcceptedTerms] = useState(false)
   const [honeypot, setHoneypot] = useState('')
   const shellRef = useRef<HTMLDivElement>(null)
   const stepStackRef = useRef<HTMLDivElement>(null)
@@ -172,6 +185,7 @@ export function BookingForm() {
   const stepThreeValid = isStepThreeValid(form)
   const stepFourValid = isStepFourValid(form)
   const volumeSelectable = isVolumeSelectableForService(form.service)
+  const hourlySelectable = isHourlyService(form.service)
   const showEstimatedPrice = useMemo(() => {
     const selectedService = serviceOptions.find((option) => option.label === form.service)
     return selectedService != null && pricedServiceValues.has(selectedService.value)
@@ -361,10 +375,15 @@ export function BookingForm() {
                 value={form.service}
                 onChange={(event) => {
                   const service = event.target.value
+                  const nextIsHourly = isHourlyService(service)
+                  const nextIsVolume = isVolumeSelectableForService(service)
                   setForm((current) => ({
                     ...current,
                     service,
-                    volume: isVolumeSelectableForService(service) ? current.volume : '',
+                    volume: nextIsVolume ? current.volume : '',
+                    crew: nextIsHourly ? current.crew : '',
+                    startAddress: nextIsHourly ? current.startAddress : '',
+                    deliveryAddress: nextIsHourly ? current.deliveryAddress : '',
                   }))
                 }}
                 className={selectClassName}
@@ -378,22 +397,64 @@ export function BookingForm() {
               </select>
             </label>
 
-            <label className="block">
-              <span className={labelClassName}>Geschatte hoeveelheid</span>
-              <select
-                value={form.volume}
-                onChange={(event) => updateField('volume', event.target.value)}
-                disabled={!volumeSelectable}
-                className={selectClassName}
-              >
-                <option value="">Maak een keuze</option>
-                {volumeOptions.map((option) => (
-                  <option key={option.value} value={option.label}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </label>
+            {hourlySelectable ? (
+              <>
+                <label className="block">
+                  <span className={labelClassName}>Hoeveel man</span>
+                  <select
+                    value={form.crew}
+                    onChange={(event) => updateField('crew', event.target.value)}
+                    className={selectClassName}
+                  >
+                    <option value="">Maak een keuze</option>
+                    {crewOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label} — {formatEuro(option.pricePerHour)}/uur
+                      </option>
+                    ))}
+                  </select>
+                </label>
+
+                <label className="block sm:col-span-2">
+                  <span className={labelClassName}>Startadres</span>
+                  <input
+                    type="text"
+                    value={form.startAddress}
+                    onChange={(event) => updateField('startAddress', event.target.value)}
+                    placeholder="Straat, nummer, postcode, gemeente"
+                    className={inputClassName}
+                  />
+                </label>
+
+                <label className="block sm:col-span-2">
+                  <span className={labelClassName}>Leveradres</span>
+                  <input
+                    type="text"
+                    value={form.deliveryAddress}
+                    onChange={(event) => updateField('deliveryAddress', event.target.value)}
+                    placeholder="Straat, nummer, postcode, gemeente"
+                    className={inputClassName}
+                  />
+                </label>
+              </>
+            ) : (
+              <label className="block">
+                <span className={labelClassName}>Geschatte hoeveelheid</span>
+                <select
+                  value={form.volume}
+                  onChange={(event) => updateField('volume', event.target.value)}
+                  disabled={!volumeSelectable}
+                  className={selectClassName}
+                >
+                  <option value="">Maak een keuze</option>
+                  {volumeOptions.map((option) => (
+                    <option key={option.value} value={option.label}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            )}
 
             {showEstimatedPrice && (
               <div className="sm:col-span-2 border-l-4 border-accent px-4 py-3">
@@ -498,6 +559,36 @@ export function BookingForm() {
             />
           </div>
 
+          <label className="mt-6 flex items-start gap-3 text-sm leading-relaxed text-muted">
+            <input
+              type="checkbox"
+              checked={acceptedTerms}
+              onChange={(event) => setAcceptedTerms(event.target.checked)}
+              className="mt-0.5 size-4 shrink-0 accent-accent"
+            />
+            <span>
+              Ik ga akkoord met de{' '}
+              <Link
+                to="/algemene-voorwaarden"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-ink underline hover:text-accent"
+              >
+                algemene voorwaarden
+              </Link>{' '}
+              en de{' '}
+              <Link
+                to="/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-ink underline hover:text-accent"
+              >
+                privacyverklaring
+              </Link>
+              .
+            </span>
+          </label>
+
           <div className={stepActionsClassName}>
             <button
               type="button"
@@ -513,7 +604,7 @@ export function BookingForm() {
             )}
             <button
               type="button"
-              disabled={submitting || !stepFourValid}
+              disabled={submitting || !stepFourValid || !acceptedTerms}
               onClick={handleFinalSubmit}
               className={`min-w-0 px-8 py-4 sm:flex-1 ${primaryButtonClassName}`}
             >

@@ -1,4 +1,5 @@
 import { FadeIn } from '../components/FadeIn'
+import { HourlyServicePricing } from '../components/HourlyServicePricing'
 import { ServiceBeforeAfter } from '../components/ServiceBeforeAfter'
 import { ServiceHero } from '../components/ServiceHero'
 import { Button } from '../components/ui/Button'
@@ -56,20 +57,7 @@ export function TransportPage() {
 
       <ServiceBeforeAfter />
 
-      <section className="border-t-2 border-ink bg-cream py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <FadeIn className="mx-auto max-w-2xl text-center">
-            <SectionLabel>Prijzen</SectionLabel>
-            <p className="mt-4 font-display text-6xl font-extrabold uppercase leading-none text-accent sm:text-7xl">
-              Vanaf €50
-            </p>
-            <p className="mt-6 text-lg leading-relaxed text-muted">
-              Prijs afhankelijk van afstand, afmetingen en gewicht. Vrijblijvende offerte op
-              aanvraag.
-            </p>
-          </FadeIn>
-        </div>
-      </section>
+      <HourlyServicePricing />
 
       <section className="border-t-2 border-ink bg-ink py-20 text-cream sm:py-28">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">

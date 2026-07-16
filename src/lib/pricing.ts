@@ -35,6 +35,44 @@ export function formatEuro(amount: number, decimals = 0): string {
   }).format(amount)
 }
 
+export const HOURLY_RATES = [
+  { people: 2, pricePerHour: 80 },
+  { people: 3, pricePerHour: 115 },
+  { people: 4, pricePerHour: 150 },
+] as const
+
+export const KM_RATE = 1
+export const KM_FREE_THRESHOLD = 150
+export const KM_FREE_AMOUNT = 50
+export const REMORK_SURCHARGE = 30
+
+/** Depot → depot distance cost: €1/km, from 150 km onwards 50 km free. */
+export function calculateKmCost(km: number): number {
+  if (km <= 0) return 0
+  if (km >= KM_FREE_THRESHOLD) return Math.max(0, km - KM_FREE_AMOUNT) * KM_RATE
+  return km * KM_RATE
+}
+
+export function getHourlyRate(people: number) {
+  return HOURLY_RATES.find((rate) => rate.people === people) ?? null
+}
+
+export function calculateHourlyEstimate(people: number, km: number, withRemork = false) {
+  const rate = getHourlyRate(people)
+  if (!rate) return null
+
+  const labour = rate.pricePerHour
+  const kmCost = calculateKmCost(km)
+  const remork = withRemork ? REMORK_SURCHARGE : 0
+
+  return {
+    labour,
+    kmCost,
+    remork,
+    total: labour + kmCost + remork,
+  }
+}
+
 export function calculatePriceExVat(weightKg: number): number {
   const extraKg = Math.max(0, weightKg - PRICING_BASE_WEIGHT_KG)
   return PRICING_BASE_EX_VAT + extraKg * PRICING_EXTRA_PER_KG

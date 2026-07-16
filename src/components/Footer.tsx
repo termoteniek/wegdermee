@@ -31,10 +31,10 @@ const socialLinks = [
   },
 ]
 
-// const footerLinks = [
-//   { href: '#', label: 'Privacy' },
-//   { href: '#', label: 'Voorwaarden' },
-// ]
+const footerLinks = [
+  { href: '/privacy', label: 'Privacy' },
+  { href: '/algemene-voorwaarden', label: 'Voorwaarden' },
+]
 
 const infoItems = [
   { label: 'Ondernemingsnummer', value: '1039.278.883' },
@@ -126,21 +126,35 @@ export function Footer() {
           <div className="hidden h-full flex-col justify-start gap-8 sm:col-span-2 sm:flex lg:col-span-1 lg:justify-between lg:items-end">
             <SocialIcons />
 
-            {/* <nav className="flex gap-6" aria-label="Footer juridisch">
+            <nav className="flex gap-6" aria-label="Footer juridisch">
               {footerLinks.map((link) => (
-                <a
+                <Link
                   key={link.label}
-                  href={link.href}
+                  to={link.href}
                   className={`font-display text-sm font-semibold uppercase tracking-widest text-white/60 ${linkClassName}`}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
-            </nav> */}
+            </nav>
           </div>
         </div>
 
-        <p className="mt-10 border-t border-white/15 pt-8 text-center text-sm text-white/45">
+        <div className="mt-10 flex flex-col items-center gap-4 border-t border-white/15 pt-8 sm:hidden">
+          <nav className="flex gap-6" aria-label="Footer juridisch">
+            {footerLinks.map((link) => (
+              <Link
+                key={link.label}
+                to={link.href}
+                className={`font-display text-sm font-semibold uppercase tracking-widest text-white/60 ${linkClassName}`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        <p className="mt-10 border-t border-white/15 pt-8 text-center text-sm text-white/45 sm:mt-10">
           © {year} wegdermee — Inboedels & rommelophaal
         </p>
       </div>

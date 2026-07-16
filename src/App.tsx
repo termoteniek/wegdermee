@@ -13,6 +13,8 @@ import { VolledigeOntruimingPage } from './pages/VolledigeOntruimingPage'
 import { WerfOpruimingPage } from './pages/WerfOpruimingPage'
 import { KleineVerhuizingenPage } from './pages/KleineVerhuizingenPage'
 import { TransportPage } from './pages/TransportPage'
+import { PrivacyPage } from './pages/PrivacyPage'
+import { AlgemeneVoorwaardenPage } from './pages/AlgemeneVoorwaardenPage'
 
 function App() {
   return (
@@ -72,6 +74,22 @@ function App() {
           element={
             <Layout>
               <TransportPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/privacy"
+          element={
+            <Layout lightHeader>
+              <PrivacyPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/algemene-voorwaarden"
+          element={
+            <Layout lightHeader>
+              <AlgemeneVoorwaardenPage />
             </Layout>
           }
         />

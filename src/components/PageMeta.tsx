@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { pageUrl, seoForPath, SITE_URL } from '../lib/site'
 
-const OG_IMAGE = `${SITE_URL}/ImageWithLargeLogo.png`
+const OG_IMAGE = `${SITE_URL}/ImageWithLargeLogo-1080.webp`
 
 function upsertMeta(
   selector: string,

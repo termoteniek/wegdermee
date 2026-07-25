@@ -2,8 +2,14 @@ import { FadeIn } from './FadeIn'
 import { SectionLabel } from './ui/SectionLabel'
 import { formatEuro, largePricingTier, pricingTiers } from '../lib/pricing'
 
-const maxVolumeM3 = 20
-const displayTiers = pricingTiers.slice(1)
+const maxVolumeM3 = Math.max(...pricingTiers.map((tier) => tier.volumeM3))
+
+function volumeProgress(volumeM3: number): number {
+  return Math.round((volumeM3 / maxVolumeM3) * 100)
+}
+
+const featuredTiers = pricingTiers.slice(0, 2)
+const displayTiers = pricingTiers.slice(2)
 
 const pricingNotes = [
   'Eerste 50 km rijden inclusief (€0.50 per extra km)',
@@ -11,25 +17,26 @@ const pricingNotes = [
   'Geen gevaarlijk afval (asbest, vloeistoffen, …)',
 ]
 
-function PricingTierCard({
-  tier,
-  showBasisBadge,
+function ProgressBar({
+  volumeM3,
+  trackClassName,
 }: {
-  tier: (typeof pricingTiers)[number]
-  showBasisBadge?: boolean
+  volumeM3: number
+  trackClassName: string
 }) {
   return (
-    <article
-      className={`group relative flex h-full flex-col border-2 border-ink bg-cream-dark p-6 transition-colors hover:bg-cream ${
-        showBasisBadge ? 'ring-2 ring-accent ring-offset-2 ring-offset-cream' : ''
-      }`}
-    >
-      {showBasisBadge && (
-        <span className="absolute -top-px right-4 -translate-y-1/2 bg-accent px-3 py-1 font-display text-xs font-bold uppercase tracking-widest text-white">
-          Basis
-        </span>
-      )}
+    <div className={`mt-4 h-1.5 w-full ${trackClassName}`} aria-hidden>
+      <div
+        className="h-full bg-accent transition-all group-hover:bg-accent-hover"
+        style={{ width: `${volumeProgress(volumeM3)}%` }}
+      />
+    </div>
+  )
+}
 
+function PricingTierCard({ tier }: { tier: (typeof pricingTiers)[number] }) {
+  return (
+    <article className="group relative flex h-full flex-col border-2 border-ink bg-cream-dark p-6 transition-colors hover:bg-cream">
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="font-display text-5xl font-extrabold leading-none text-ink">
@@ -54,19 +61,12 @@ function PricingTierCard({
         </span>
       </div>
 
-      <div className="mt-4 h-1.5 w-full bg-ink/10" aria-hidden>
-        <div
-          className="h-full bg-accent transition-all group-hover:bg-accent-hover"
-          style={{ width: `${(tier.volumeM3 / maxVolumeM3) * 100}%` }}
-        />
-      </div>
+      <ProgressBar volumeM3={tier.volumeM3} trackClassName="bg-ink/10" />
     </article>
   )
 }
 
 export function ServicePricing() {
-  const startingTier = pricingTiers[0]
-
   return (
     <section className="border-t-2 border-ink bg-cream py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
@@ -80,38 +80,35 @@ export function ServicePricing() {
           </p>
         </FadeIn>
 
-        <FadeIn delay={0.05} className="mt-12">
-          <div className="relative border-2 border-ink bg-ink p-8 text-center text-cream sm:p-12">
-            <p className="font-display text-sm font-semibold uppercase tracking-[0.3em] text-accent">
-              Vanaf
-            </p>
-            <div className="mt-2 flex flex-wrap items-baseline justify-center gap-x-3">
-              <p className="font-display text-6xl font-extrabold uppercase leading-none sm:text-7xl">
-                {formatEuro(startingTier.priceInclVat)}
-              </p>
-              <p className="text-xs font-medium text-white/50 sm:text-sm">
-                incl. btw
-              </p>
-            </div>
-            <div className="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm text-white/60">
-              <span className="text-white/50">
-                {formatEuro(startingTier.priceExVat)} ex. btw
-              </span>
-              <span aria-hidden className="text-white/30">
-                ·
-              </span>
-              <span>
-                tot {startingTier.volumeM3} m³ · {startingTier.weightKg} kg
-              </span>
-            </div>
-            <div className="absolute -right-2 -top-2 h-full w-full border-2 border-accent" aria-hidden />
-          </div>
-        </FadeIn>
+        <div className="mt-12 grid gap-4 overflow-x-clip sm:grid-cols-2">
+          {featuredTiers.map((tier, index) => (
+            <FadeIn key={tier.volumeM3} delay={0.05 + index * 0.04}>
+              <div className="group relative flex h-full flex-col justify-center border-2 border-accent bg-ink p-8 text-center text-cream sm:p-10">
+                <div className="flex flex-wrap items-baseline justify-center gap-x-3">
+                  <p className="font-display text-5xl font-extrabold uppercase leading-none sm:text-6xl">
+                    {formatEuro(tier.priceInclVat)}
+                  </p>
+                  <p className="text-xs font-medium text-white/50 sm:text-sm">incl. btw</p>
+                </div>
+                <div className="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm text-white/60">
+                  <span className="text-white/50">{formatEuro(tier.priceExVat)} ex. btw</span>
+                  <span aria-hidden className="text-white/30">
+                    ·
+                  </span>
+                  <span>
+                    tot {tier.volumeM3} m³ · {tier.weightKg} kg
+                  </span>
+                </div>
+                <ProgressBar volumeM3={tier.volumeM3} trackClassName="bg-white/15" />
+              </div>
+            </FadeIn>
+          ))}
+        </div>
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {displayTiers.map((tier, index) => (
             <FadeIn key={tier.volumeM3} delay={0.08 + index * 0.04}>
-              <PricingTierCard tier={tier} showBasisBadge={index === 0} />
+              <PricingTierCard tier={tier} />
             </FadeIn>
           ))}
 
@@ -137,9 +134,7 @@ export function ServicePricing() {
                 </span>
               </div>
 
-              <div className="mt-4 h-1.5 w-full bg-ink/10" aria-hidden>
-                <div className="h-full w-full bg-accent transition-all group-hover:bg-accent-hover" />
-              </div>
+              <ProgressBar volumeM3={maxVolumeM3} trackClassName="bg-ink/10" />
             </article>
           </FadeIn>
 

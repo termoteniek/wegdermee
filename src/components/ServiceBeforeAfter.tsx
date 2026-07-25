@@ -1,9 +1,10 @@
 import { useCallback, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
 import { FadeIn } from './FadeIn'
+import { ResponsiveImage, VOOR_EN_NA_WIDTHS } from './ResponsiveImage'
 import { SectionLabel } from './ui/SectionLabel'
-import { assetUrl } from '../lib/assetUrl'
 
 export type BeforeAfterPair = {
+  /** Logical image name without size/extension, e.g. `VoorEnNa/Voor1` */
   before: string
   after: string
   label?: string
@@ -13,21 +14,27 @@ type ServiceBeforeAfterProps = {
   pairs?: BeforeAfterPair[]
 }
 
+const GRID_SIZES = '(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 640px'
+const SLIDER_SIZES = '(max-width: 1280px) 100vw, 1280px'
+
 function ImageFrame({
-  src,
+  name,
   alt,
   badge,
 }: {
-  src: string
+  name: string
   alt: string
   badge: string
 }) {
   return (
-    <div className="relative overflow-hidden border-2 border-ink bg-cream-dark">
-      <img
-        src={assetUrl(src)}
+    <div className="relative max-w-full overflow-hidden border-2 border-ink bg-cream-dark">
+      <ResponsiveImage
+        name={name}
         alt={alt}
-        className="aspect-[4/3] w-full object-cover sm:aspect-[16/10]"
+        widths={[...VOOR_EN_NA_WIDTHS]}
+        sizes={GRID_SIZES}
+        className="aspect-[4/3] block h-auto w-full max-w-full object-cover sm:aspect-[16/10]"
+        pictureClassName="block w-full"
         loading="lazy"
       />
       <span className="absolute left-0 top-0 bg-accent px-3 py-1.5 font-display text-xs font-bold uppercase tracking-widest text-white sm:px-4 sm:text-sm">
@@ -69,7 +76,7 @@ function BeforeAfterSlider({ pair }: { pair: BeforeAfterPair }) {
   return (
     <div
       ref={containerRef}
-      className="relative aspect-[16/10] w-full cursor-ew-resize touch-none overflow-hidden border-2 border-ink bg-cream-dark select-none"
+      className="relative aspect-[16/10] w-full max-w-full cursor-ew-resize touch-none overflow-hidden border-2 border-ink bg-cream-dark select-none"
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
@@ -77,10 +84,14 @@ function BeforeAfterSlider({ pair }: { pair: BeforeAfterPair }) {
       role="img"
       aria-label="Sleep om voor en na te vergelijken"
     >
-      <img
-        src={assetUrl(pair.after)}
+      <ResponsiveImage
+        name={pair.after}
         alt="Na — opgeruimd"
-        className="absolute inset-0 h-full w-full object-cover"
+        widths={[...VOOR_EN_NA_WIDTHS]}
+        sizes={SLIDER_SIZES}
+        pictureClassName="absolute inset-0 block h-full w-full"
+        className="absolute inset-0 block h-full w-full max-w-none object-cover"
+        loading="lazy"
         draggable={false}
       />
 
@@ -88,16 +99,20 @@ function BeforeAfterSlider({ pair }: { pair: BeforeAfterPair }) {
         className="absolute inset-0 overflow-hidden"
         style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
       >
-        <img
-          src={assetUrl(pair.before)}
+        <ResponsiveImage
+          name={pair.before}
           alt="Voor — met rommel"
-          className="absolute inset-0 h-full w-full object-cover"
+          widths={[...VOOR_EN_NA_WIDTHS]}
+          sizes={SLIDER_SIZES}
+          pictureClassName="absolute inset-0 block h-full w-full"
+          className="absolute inset-0 block h-full w-full max-w-none object-cover"
+          loading="lazy"
           draggable={false}
         />
       </div>
 
       <div
-        className="absolute inset-y-0 z-10 w-0.5 bg-white shadow-[0_0_0_1px_rgba(12,12,12,0.35)]"
+        className="pointer-events-none absolute inset-y-0 z-10 w-0.5 bg-white shadow-[0_0_0_1px_rgba(12,12,12,0.35)]"
         style={{ left: `${position}%` }}
         aria-hidden
       >
@@ -124,7 +139,7 @@ export function ServiceBeforeAfter({ pairs }: ServiceBeforeAfterProps) {
   const sliderPair = hasPairs ? pairs[pairs.length - 1] : null
 
   return (
-    <section className="border-t-2 border-ink bg-cream py-20 sm:py-28">
+    <section className="overflow-x-clip border-t-2 border-ink bg-cream py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeIn>
           <SectionLabel>Voor & na</SectionLabel>
@@ -137,14 +152,14 @@ export function ServiceBeforeAfter({ pairs }: ServiceBeforeAfterProps) {
           <div className="mt-12 space-y-8">
             {staticPairs.map((pair, index) => (
               <FadeIn key={`${pair.before}-${pair.after}`} delay={0.05 + index * 0.04}>
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+                <div className="grid min-w-0 grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
                   <ImageFrame
-                    src={pair.before}
+                    name={pair.before}
                     alt={pair.label ? `Voor — ${pair.label}` : `Voor situatie ${index + 1}`}
                     badge="Voor"
                   />
                   <ImageFrame
-                    src={pair.after}
+                    name={pair.after}
                     alt={pair.label ? `Na — ${pair.label}` : `Na situatie ${index + 1}`}
                     badge="Na"
                   />

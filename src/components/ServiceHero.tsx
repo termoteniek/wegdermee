@@ -22,7 +22,7 @@ export function ServiceHero({ num, title, intro }: ServiceHeroProps) {
             <p className="mt-8 font-display text-6xl font-extrabold leading-none text-accent sm:text-7xl">
               {num}
             </p>
-            <h1 className="mt-4 font-display text-5xl font-extrabold uppercase leading-none tracking-tight sm:text-6xl lg:text-7xl">
+            <h1 className="mt-4 max-w-full break-words font-display text-4xl font-extrabold uppercase leading-none tracking-tight sm:text-5xl lg:text-6xl">
               {title}
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-white/60">{intro}</p>

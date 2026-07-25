@@ -18,10 +18,10 @@ const included = [
 ]
 
 const beforeAfterPairs = [
-  { before: 'VoorEnNa/Voor1.jpeg', after: 'VoorEnNa/Na1.jpeg' },
-  { before: 'VoorEnNa/Voor2.jpeg', after: 'VoorEnNa/Na2.jpeg' },
-  { before: 'VoorEnNa/Voor3.jpeg', after: 'VoorEnNa/Na3.jpeg' },
-  { before: 'VoorEnNa/Voor4.jpeg', after: 'VoorEnNa/Na4.jpeg' },
+  { before: 'VoorEnNa/Voor1', after: 'VoorEnNa/Na1' },
+  { before: 'VoorEnNa/Voor2', after: 'VoorEnNa/Na2' },
+  { before: 'VoorEnNa/Voor3', after: 'VoorEnNa/Na3' },
+  { before: 'VoorEnNa/Voor4', after: 'VoorEnNa/Na4' },
 ]
 
 export function RommelophaaldienstPage() {

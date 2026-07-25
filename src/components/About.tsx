@@ -1,6 +1,6 @@
 import { FadeIn } from './FadeIn'
+import { ResponsiveImage, HERO_ABOUT_WIDTHS } from './ResponsiveImage'
 import { SectionLabel } from './ui/SectionLabel'
-import { assetUrl } from '../lib/assetUrl'
 
 export function About() {
   return (
@@ -10,10 +10,14 @@ export function About() {
           <FadeIn className="lg:col-span-5">
             <div className="relative">
               <div className="relative overflow-hidden border-2 border-ink">
-                <img
-                  src={assetUrl('ImageWithSmallLogo.png')}
+                <ResponsiveImage
+                  name="ImageWithSmallLogo"
                   alt="Siebe en Lars van wegdermee bij de aanhangwagen"
+                  widths={[...HERO_ABOUT_WIDTHS]}
+                  sizes="(max-width: 1024px) 100vw, 40vw"
                   className="aspect-[3/4] w-full object-cover object-top"
+                  pictureClassName="block w-full"
+                  loading="lazy"
                 />
               </div>
               <div className="absolute -right-3 -top-3 h-full w-full border-2 border-accent" aria-hidden />

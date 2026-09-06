@@ -12,7 +12,7 @@ export type PricingTier = {
 }
 
 export const pricingTiers: PricingTier[] = [
-  { volumeM3: 2, weightKg: 150, priceExVat: 124, priceInclVat: 150 },
+  { volumeM3: 2, weightKg: 150, priceExVat: 149, priceInclVat: 180 },
   { volumeM3: 4, weightKg: 300, priceExVat: 250, priceInclVat: 300 },
   { volumeM3: 6, weightKg: 450, priceExVat: 430, priceInclVat: 520 },
   { volumeM3: 8, weightKg: 600, priceExVat: 610, priceInclVat: 735 },

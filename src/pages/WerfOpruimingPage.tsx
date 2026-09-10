@@ -17,6 +17,10 @@ const included = [
   'Correcte afvoer via erkende kanalen',
 ]
 
+const beforeAfterPairs = [
+  { before: 'Werf/balken', after: 'Werf/hout-mos' },
+]
+
 export function WerfOpruimingPage() {
   return (
     <div className="flex flex-1 flex-col">
@@ -55,7 +59,7 @@ export function WerfOpruimingPage() {
         </div>
       </section>
 
-      <ServiceBeforeAfter />
+      <ServiceBeforeAfter pairs={beforeAfterPairs} />
 
       <ServicePricing />
 

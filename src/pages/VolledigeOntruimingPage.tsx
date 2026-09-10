@@ -17,6 +17,11 @@ const included = [
   'Proper achtergelaten, klaar voor gebruik',
 ]
 
+const beforeAfterPairs = [
+  { before: 'Ontruiming/Voor1', after: 'Ontruiming/Na1', label: 'Raamhoek' },
+  { before: 'Ontruiming/Voor2', after: 'Ontruiming/Na2', label: 'Tuinzijde' },
+]
+
 export function VolledigeOntruimingPage() {
   return (
     <div className="flex flex-1 flex-col">
@@ -55,7 +60,7 @@ export function VolledigeOntruimingPage() {
         </div>
       </section>
 
-      <ServiceBeforeAfter />
+      <ServiceBeforeAfter pairs={beforeAfterPairs} />
 
       <ServicePricing />
 

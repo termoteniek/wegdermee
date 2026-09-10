@@ -1,10 +1,29 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { Button } from './ui/Button'
-import { ResponsiveImage, HERO_ABOUT_WIDTHS } from './ResponsiveImage'
+import { ImageFade, type FadeSlide } from './ImageFade'
 import { Swoosh } from './ui/Swoosh'
 
 const headlineWords = ['Uw', 'rommel?', 'Weg', 'ermee!']
+
+const heroSlides: FadeSlide[] = [
+  {
+    name: 'ImageWithLargeLogo',
+    alt: 'Team van wegdermee aan het werk met de aanhangwagen',
+  },
+  {
+    name: 'Galerij/truck-appartement',
+    alt: 'Wegdermee-camionette voor een appartement',
+  },
+  {
+    name: 'Galerij/truck-geladen',
+    alt: 'Bestelwagen geladen tijdens een ophaalbeurt',
+  },
+  {
+    name: 'Galerij/team-opslag',
+    alt: 'Wegdermee-medewerker in opslag',
+  },
+]
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null)
@@ -96,17 +115,14 @@ export function Hero() {
             <div className="relative">
               <div className="absolute -inset-4 bg-accent/20 blur-3xl" aria-hidden />
               <div className="relative overflow-hidden border-2 border-white/10">
-                <ResponsiveImage
-                  name="ImageWithLargeLogo"
-                  alt="Team van wegdermee aan het werk met de aanhangwagen"
-                  widths={[...HERO_ABOUT_WIDTHS]}
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="aspect-[3/4] w-full object-cover object-center md:max-h-[min(50vh,500px)] lg:aspect-[4/5] lg:max-h-[min(52vh,520px)]"
-                  pictureClassName="block w-full"
-                  loading="eager"
-                  fetchPriority="high"
+                <ImageFade
+                  images={heroSlides}
+                  intervalMs={4500}
+                  showDots={false}
+                  className="aspect-[3/4] w-full md:max-h-[min(50vh,500px)] lg:aspect-[4/5] lg:max-h-[min(52vh,520px)]"
+                  imgClassName="h-full w-full object-cover object-center"
+                  overlayClassName="bg-gradient-to-t from-ink/80 via-transparent to-transparent lg:bg-gradient-to-l lg:from-ink/60 lg:via-transparent lg:to-transparent"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent lg:bg-gradient-to-l lg:from-ink/60 lg:via-transparent lg:to-transparent" />
               </div>
             </div>
           </motion.div>

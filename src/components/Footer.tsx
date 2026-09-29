@@ -154,9 +154,20 @@ export function Footer() {
           </nav>
         </div>
 
-        <p className="mt-10 border-t border-white/15 pt-8 text-center text-sm text-white/45 sm:mt-10">
-          © {year} wegdermee — Inboedels & rommelophaal
-        </p>
+        <div className="mt-10 space-y-2 border-t border-white/15 pt-8 text-center text-sm text-white/45 sm:mt-10">
+          <p>© {year} wegdermee — Inboedels & rommelophaal</p>
+          <p>
+            Gemaakt door{' '}
+            <a
+              href="https://motea.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`font-medium text-white/60 ${linkClassName}`}
+            >
+              MOTEA
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   )

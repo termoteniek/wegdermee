@@ -1,6 +1,7 @@
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { WordmarkStar } from './christmas/WordmarkStar'
 import { Button } from './ui/Button'
 
 const navLinks = [
@@ -41,9 +42,12 @@ function NavbarLogo({
             hover: { y: -3, scale: 1.04 },
           }}
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className={scrolled || lightHeader ? 'text-inherit' : 'text-accent'}
+          className={`relative ${scrolled || lightHeader ? 'text-inherit' : 'text-accent'}`}
         >
           {part}
+          {part === 'Mee' ? (
+            <WordmarkStar className="absolute -top-2.5 left-1/2 -ml-1.5 h-3 w-3" />
+          ) : null}
         </motion.span>
       ))}
     </motion.span>

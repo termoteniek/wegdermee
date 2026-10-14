@@ -1,5 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
+import { FairyLights } from './christmas/FairyLights'
+import { Snowfall } from './christmas/Snowfall'
 import { Button } from './ui/Button'
 import { ImageFade, type FadeSlide } from './ImageFade'
 import { Swoosh } from './ui/Swoosh'
@@ -47,11 +49,24 @@ export function Hero() {
         aria-hidden
       />
 
-      <div className="relative z-10 flex min-h-svh w-full items-center px-5 py-24 sm:px-8 lg:h-full lg:min-h-0 lg:py-0 lg:pt-24 lg:pb-12">
+      <Snowfall />
+      <div className="pointer-events-none absolute inset-x-0 top-[4.5rem] z-[1]">
+        <FairyLights />
+      </div>
+
+      <div className="relative z-10 flex min-h-svh w-full items-center px-5 pt-36 pb-16 sm:px-8 lg:h-full lg:min-h-0 lg:py-0 lg:pt-24 lg:pb-12">
         <div className="mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-12 lg:gap-12">
           <motion.div className="lg:col-span-6" style={{ y: textY }}>
             <motion.p
-              className="font-display text-sm font-semibold uppercase tracking-[0.3em] text-accent"
+              className="font-display text-xs font-semibold uppercase tracking-[0.35em] text-cream/55"
+              initial={{ opacity: 0, x: -24 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.05, duration: 0.5 }}
+            >
+              Kersteditie
+            </motion.p>
+            <motion.p
+              className="mt-2 font-display text-sm font-semibold uppercase tracking-[0.3em] text-accent"
               initial={{ opacity: 0, x: -24 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.15, duration: 0.5 }}
@@ -86,6 +101,14 @@ export function Hero() {
               transition={{ delay: 0.7 }}
             >
               Meubels, elektronica of volledige ontruimingen — wij halen alles op. U hoeft niet te sorteren.
+            </motion.p>
+            <motion.p
+              className="mt-3 max-w-md text-base leading-relaxed text-cream/80"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+            >
+              Ruimte nodig voor de boom? Wij halen de rommel weg.
             </motion.p>
 
             <motion.div

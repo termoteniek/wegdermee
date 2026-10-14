@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import { FairyLights } from './christmas/FairyLights'
+import { Snowfall } from './christmas/Snowfall'
 import { FadeIn } from './FadeIn'
 
 type ServiceHeroProps = {
@@ -9,8 +11,12 @@ type ServiceHeroProps = {
 
 export function ServiceHero({ num, title, intro }: ServiceHeroProps) {
   return (
-    <div className="bg-ink">
-      <section className="pt-28 pb-16 text-cream sm:pt-36 sm:pb-20">
+    <div className="relative overflow-hidden bg-ink">
+      <Snowfall />
+      <div className="pointer-events-none absolute inset-x-0 top-[4.5rem] z-[1]">
+        <FairyLights />
+      </div>
+      <section className="relative z-10 pt-36 pb-16 text-cream sm:pb-20">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
           <FadeIn>
             <Link

@@ -1,11 +1,13 @@
+import { Snowfall } from './christmas/Snowfall'
 import { FadeIn } from './FadeIn'
 import { BookingForm } from './contact/BookingForm'
 import { SectionLabel } from './ui/SectionLabel'
 
 export function Contact() {
   return (
-    <section className="flex flex-1 flex-col bg-ink py-24 text-cream sm:py-32">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+    <section className="relative flex flex-1 flex-col overflow-hidden bg-ink py-24 text-cream sm:py-32">
+      <Snowfall />
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid min-w-0 gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-20">
           <FadeIn direction="left" className="min-w-0">
             <SectionLabel light>Contact</SectionLabel>

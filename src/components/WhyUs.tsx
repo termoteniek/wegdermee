@@ -1,3 +1,4 @@
+import { Snowfall } from './christmas/Snowfall'
 import { FadeIn } from './FadeIn'
 import { SectionLabel } from './ui/SectionLabel'
 import { Swoosh } from './ui/Swoosh'
@@ -27,12 +28,13 @@ const reasons = [
 
 export function WhyUs() {
   return (
-    <section id="waarom" className="relative bg-ink text-cream">
-      <div className="bg-creamtext-cream-dark">
+    <section id="waarom" className="relative overflow-hidden bg-ink text-cream">
+      <Snowfall />
+      <div className="relative z-10 bg-creamtext-cream-dark">
         <Swoosh flip />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-5 pt-24 pb-0 sm:px-8 sm:pt-32">
+      <div className="relative z-10 mx-auto max-w-7xl px-5 pt-24 pb-0 sm:px-8 sm:pt-32">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
           <FadeIn direction="left">
             <SectionLabel light>Waarom wij</SectionLabel>

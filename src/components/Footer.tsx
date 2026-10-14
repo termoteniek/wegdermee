@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { assetUrl } from '../lib/assetUrl'
+import { FairyLights } from './christmas/FairyLights'
+import { Snowfall } from './christmas/Snowfall'
 
 const navLinks = [
   { href: '/#diensten', label: 'Diensten' },
@@ -69,8 +71,12 @@ export function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="bg-ink text-cream">
-      <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
+    <footer className="relative overflow-hidden bg-ink text-cream">
+      <Snowfall />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[1]">
+        <FairyLights count={12} />
+      </div>
+      <div className="relative z-10 mx-auto max-w-7xl px-5 pt-16 pb-14 sm:px-8">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:items-stretch lg:gap-8">
           <Link
             to="/"
@@ -155,7 +161,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 space-y-2 border-t border-white/15 pt-8 text-center text-sm text-white/45 sm:mt-10">
-          <p>© {year} wegdermee — Inboedels & rommelophaal</p>
+          <p>© {year} wegdermee — Inboedels & rommelophaal · Fijne feestdagen.</p>
           <p>
             Gemaakt door{' '}
             <a

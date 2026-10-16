@@ -10,6 +10,8 @@ export type FadeSlide = {
 type ImageFadeProps = {
   images: FadeSlide[]
   intervalMs?: number
+  /** When set, the parent owns the slide so several fades can stay in sync. */
+  index?: number
   widths?: number[]
   sizes?: string
   className?: string
@@ -22,6 +24,7 @@ type ImageFadeProps = {
 export function ImageFade({
   images,
   intervalMs = 4500,
+  index: controlledIndex,
   widths = [...HERO_ABOUT_WIDTHS],
   sizes = '(max-width: 1024px) 100vw, 40vw',
   className,
@@ -30,23 +33,24 @@ export function ImageFade({
   overlayClassName,
   showDots = true,
 }: ImageFadeProps) {
-  const [index, setIndex] = useState(0)
+  const [internalIndex, setInternalIndex] = useState(0)
+  const index = controlledIndex ?? internalIndex
   const count = images.length
 
   useEffect(() => {
-    if (count <= 1) return
+    if (controlledIndex != null || count <= 1) return
     const id = window.setInterval(() => {
-      setIndex((current) => (current + 1) % count)
+      setInternalIndex((current) => (current + 1) % count)
     }, intervalMs)
     return () => window.clearInterval(id)
-  }, [count, intervalMs])
+  }, [controlledIndex, count, intervalMs])
 
   if (count === 0) return null
 
   const current = images[index] ?? images[0]
 
   return (
-    <div className={`relative overflow-hidden ${className ?? ''}`}>
+    <div className={`overflow-hidden ${className ?? 'relative'}`}>
       <AnimatePresence mode="sync" initial={false}>
         <motion.div
           key={current.name}

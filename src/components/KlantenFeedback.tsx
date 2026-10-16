@@ -1,5 +1,30 @@
 import { FadeIn } from './FadeIn'
+import { PhotoSlot } from './ui/PhotoSlot'
 import { SectionLabel } from './ui/SectionLabel'
+import { VOOR_EN_NA_WIDTHS } from './ResponsiveImage'
+
+const workPhotos = [
+  {
+    name: 'VoorEnNa/Na2',
+    alt: 'Opgeruimde plek na een rommelophaling',
+  },
+  {
+    name: 'VoorEnNa/Na3',
+    alt: 'Lege ruimte na een opruiming',
+  },
+  {
+    name: 'VoorEnNa/Na4',
+    alt: 'Resultaat na het weghalen van de rommel',
+  },
+  {
+    name: 'Ontruiming/Na2',
+    alt: 'Tuinzijde na een volledige ontruiming',
+  },
+  {
+    name: 'Werf/hout-mos',
+    alt: 'Werf na het ophalen van hout en groenafval',
+  },
+]
 
 const reviews = [
   {
@@ -45,7 +70,22 @@ export function KlantenFeedback() {
           </h2>
         </FadeIn>
 
-        <ul className="mt-14 grid gap-6 md:grid-cols-2">
+        <ul className="mt-12 grid grid-cols-2 gap-2 sm:grid-cols-5 sm:gap-3">
+          {workPhotos.map((photo) => (
+            <li key={photo.name} className="relative aspect-[3/4] overflow-hidden">
+              <PhotoSlot
+                name={photo.name}
+                alt={photo.alt}
+                widths={[...VOOR_EN_NA_WIDTHS]}
+                sizes="(max-width: 640px) 50vw, 20vw"
+                fill
+                className="object-[center_30%]"
+              />
+            </li>
+          ))}
+        </ul>
+
+        <ul className="mt-10 grid gap-6 md:grid-cols-2">
           {reviews.map((review, i) => {
             const isLastOdd = i === reviews.length - 1 && reviews.length % 2 === 1
             return (
@@ -54,7 +94,7 @@ export function KlantenFeedback() {
                 delay={i * 0.06}
                 className={isLastOdd ? 'md:col-span-2' : undefined}
               >
-                <li className="flex h-full flex-col border-2 border-white/15 bg-ink-soft p-6 sm:p-8">
+                <li className="flex h-full flex-col border border-white/15 bg-ink-soft p-6 sm:p-8">
                   <p className="flex-1 text-base leading-relaxed text-white/70 sm:text-lg">
                     &ldquo;{review.quote}&rdquo;
                   </p>

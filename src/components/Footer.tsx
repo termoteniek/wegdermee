@@ -1,5 +1,14 @@
 import { Link } from 'react-router-dom'
 import { assetUrl } from '../lib/assetUrl'
+import { PhotoSlot } from './ui/PhotoSlot'
+import { WORK_WIDTHS } from './ResponsiveImage'
+
+const footerPhotos = [
+  { name: 'Werk/010', alt: 'Bestelwagen vol rommel tijdens een ophaling' },
+  { name: 'Werk/035', alt: 'Lamp wordt weggehaald tijdens een ontruiming' },
+  { name: 'Werk/060', alt: 'Meubel wordt naar buiten gedragen' },
+  { name: 'Werk/020', alt: 'Grote doos wordt in de bestelwagen geladen' },
+]
 
 const navLinks = [
   { href: '/#diensten', label: 'Diensten' },
@@ -70,6 +79,20 @@ export function Footer() {
 
   return (
     <footer className="bg-ink text-cream">
+      <ul className="grid grid-cols-2 sm:grid-cols-4">
+        {footerPhotos.map((photo) => (
+          <li key={photo.name} className="relative h-28 overflow-hidden sm:h-40">
+            <PhotoSlot
+              name={photo.name}
+              alt={photo.alt}
+              widths={[...WORK_WIDTHS]}
+              sizes="(max-width: 640px) 50vw, 25vw"
+              fill
+              className="object-[center_35%]"
+            />
+          </li>
+        ))}
+      </ul>
       <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:items-stretch lg:gap-8">
           <Link

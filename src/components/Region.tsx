@@ -1,5 +1,7 @@
 import { FadeIn } from './FadeIn'
+import { PhotoSlot } from './ui/PhotoSlot'
 import { SectionLabel } from './ui/SectionLabel'
+import { WORK_WIDTHS } from './ResponsiveImage'
 
 const regions = ['Oost-Vlaanderen', 'West-Vlaanderen', 'Antwerpen', 'Brussel']
 
@@ -18,8 +20,21 @@ export function Region() {
           </p>
         </FadeIn>
 
-        <FadeIn delay={0.15} className="mt-14">
-          <ul className="grid grid-cols-1 border-y-2 border-ink md:grid-cols-2 lg:grid-cols-4">
+        <FadeIn delay={0.08} className="mt-10">
+          <figure className="relative aspect-[3/2] overflow-hidden border-2 border-ink sm:aspect-[2/1]">
+            <PhotoSlot
+              name="Werk/087"
+              alt="De wegdermee-bestelwagen onderweg in de regio"
+              widths={[...WORK_WIDTHS]}
+              sizes="(max-width: 1280px) 100vw, 1200px"
+              fill
+              className="object-[center_40%]"
+            />
+          </figure>
+        </FadeIn>
+
+        <FadeIn delay={0.15} className="mt-0">
+          <ul className="grid grid-cols-1 border-x-2 border-b-2 border-ink md:grid-cols-2 lg:grid-cols-4">
             {regions.map((region, i) => (
               <li
                 key={region}

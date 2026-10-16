@@ -175,11 +175,28 @@ export function ServiceBeforeAfter({ pairs }: ServiceBeforeAfterProps) {
           </div>
         ) : (
           <FadeIn delay={0.08} className="mt-12">
-            <blockquote className="px-8 py-20 text-center sm:px-12 sm:py-28">
-              <p className="font-display text-4xl font-extrabold uppercase leading-none tracking-widest text-muted/20 sm:text-6xl lg:text-7xl">
-                Binnenkort beschikbaar
-              </p>
-            </blockquote>
+            <div className="grid min-w-0 grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+              <div
+                className="relative flex aspect-[16/10] items-end bg-[#c8c8c8]"
+                role="img"
+                aria-label="Foto volgt — voor"
+              >
+                <span className="absolute left-0 top-0 bg-accent px-3 py-1.5 font-display text-xs font-bold uppercase tracking-widest text-white sm:px-4 sm:text-sm">
+                  Voor
+                </span>
+                <span className="w-full pb-6 text-center text-sm text-ink/70">Foto volgt</span>
+              </div>
+              <div
+                className="relative flex aspect-[16/10] items-end bg-[#c8c8c8]"
+                role="img"
+                aria-label="Foto volgt — na"
+              >
+                <span className="absolute right-0 top-0 bg-ink px-3 py-1.5 font-display text-xs font-bold uppercase tracking-widest text-cream sm:px-4 sm:text-sm">
+                  Na
+                </span>
+                <span className="w-full pb-6 text-center text-sm text-ink/70">Foto volgt</span>
+              </div>
+            </div>
           </FadeIn>
         )}
       </div>

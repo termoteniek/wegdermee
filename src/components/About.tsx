@@ -1,21 +1,21 @@
 import { FadeIn } from './FadeIn'
-import { ResponsiveImage, HERO_ABOUT_WIDTHS } from './ResponsiveImage'
+import { ResponsiveImage, WORK_WIDTHS } from './ResponsiveImage'
 import { SectionLabel } from './ui/SectionLabel'
 
 export function About() {
   return (
     <section id="over-ons" className="border-t-2 border-ink bg-cream-dark py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
           <FadeIn className="lg:col-span-5">
             <div className="relative">
               <div className="relative overflow-hidden border-2 border-ink">
                 <ResponsiveImage
-                  name="ImageWithSmallLogo"
-                  alt="Siebe en Lars van wegdermee bij de aanhangwagen"
-                  widths={[...HERO_ABOUT_WIDTHS]}
+                  name="Werk/084"
+                  alt="Siebe en Lars voor de wegdermee-bestelwagen"
+                  widths={[...WORK_WIDTHS]}
                   sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="aspect-[3/4] w-full object-cover object-top"
+                  className="aspect-[3/4] w-full object-cover object-[center_20%]"
                   pictureClassName="block w-full"
                   loading="lazy"
                 />

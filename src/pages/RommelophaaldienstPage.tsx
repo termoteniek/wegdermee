@@ -1,8 +1,8 @@
 import { FadeIn } from '../components/FadeIn'
 import { ServiceBeforeAfter } from '../components/ServiceBeforeAfter'
+import { ServiceClosing } from '../components/ServiceClosing'
 import { ServiceHero } from '../components/ServiceHero'
 import { ServicePricing } from '../components/ServicePricing'
-import { Button } from '../components/ui/Button'
 import { SectionLabel } from '../components/ui/SectionLabel'
 
 const description = [
@@ -31,6 +31,8 @@ export function RommelophaaldienstPage() {
         num="01"
         title="Rommelophaaldienst"
         intro="Te veel spullen, te weinig plaats? Wij halen uw rommel op — groot of klein, u sorteert niet, wij regelen alles."
+        image="Werk/010"
+        imageAlt="Medewerker laadt rommel in de open bestelwagen"
       />
 
       <section className="border-t-2 border-ink bg-cream-dark py-20 sm:py-28">
@@ -66,30 +68,11 @@ export function RommelophaaldienstPage() {
 
       <ServicePricing />
 
-      <section className="border-t-2 border-ink bg-ink py-20 text-cream sm:py-28">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <FadeIn className="text-center">
-            <SectionLabel light>Klaar om te starten?</SectionLabel>
-            <h2 className="mt-3 font-display text-4xl font-extrabold uppercase leading-none tracking-tight sm:text-5xl lg:text-6xl">
-              Boek uw rommelophaaldienst
-            </h2>
-            <p className="mx-auto mt-5 max-w-lg text-lg text-white/60">
-              Vraag een vrijblijvende offerte aan of plan direct een afspraak. Wij nemen snel
-              contact op.
-            </p>
-            <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <Button href="/contact">Offerte aanvragen</Button>
-              <Button
-                href="tel:+32498438878"
-                variant="ghost"
-                className="!border-white/25 !bg-white/10 !text-white hover:!bg-white/20"
-              >
-                Bel +32 498 43 88 78
-              </Button>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
+      <ServiceClosing
+        title="Boek uw rommelophaaldienst"
+        image="Werk/001"
+        imageAlt="Twee medewerkers laden huisraad in de aanhangwagen"
+      />
     </div>
   )
 }

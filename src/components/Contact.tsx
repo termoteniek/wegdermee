@@ -1,6 +1,8 @@
 import { FadeIn } from './FadeIn'
+import { PhotoSlot } from './ui/PhotoSlot'
 import { BookingForm } from './contact/BookingForm'
 import { SectionLabel } from './ui/SectionLabel'
+import { WORK_WIDTHS } from './ResponsiveImage'
 
 export function Contact() {
   return (
@@ -16,6 +18,17 @@ export function Contact() {
               Vul uw gegevens in, kies een datum en tijdstip. Wij bevestigen telefonisch zodat
               alles correct staat.
             </p>
+
+            <figure className="relative mt-8 aspect-[3/4] max-w-sm overflow-hidden border border-white/15">
+              <PhotoSlot
+                name="Werk/084"
+                alt="Siebe en Lars voor de wegdermee-bestelwagen"
+                widths={[...WORK_WIDTHS]}
+                sizes="(max-width: 1024px) 80vw, 380px"
+                fill
+                className="object-top"
+              />
+            </figure>
 
             <div className="mt-8 border-l-4 border-accent pl-5">
               <p className="font-display text-sm font-semibold uppercase tracking-widest text-accent">

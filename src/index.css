@@ -17,11 +17,11 @@
 html {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
-  overflow-x: clip;
+  overflow-x: hidden;
 }
 
 body {
-  @apply overflow-x-clip bg-cream font-sans text-ink antialiased;
+  @apply overflow-x-hidden bg-cream font-sans text-ink antialiased;
 }
 
 ::selection {
@@ -31,4 +31,74 @@ body {
 
 main [id] {
   scroll-margin-top: 5.5rem;
+}
+
+/* Static blur behind the hero title. Several full-strength blurs, each
+   smaller than the last, so the photo softens toward the text and the edge
+   never fades a bright blurred copy over the sharp photo. */
+.hero-title-blur {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-title-blur__layer {
+  position: absolute;
+  inset: 0;
+  -webkit-backdrop-filter: blur(var(--hero-blur));
+  backdrop-filter: blur(var(--hero-blur));
+  -webkit-mask-image: radial-gradient(
+    ellipse var(--hero-blur-w) var(--hero-blur-h) at var(--hero-blur-x) 50%,
+    #000 0%,
+    #000 42%,
+    transparent 70%
+  );
+  mask-image: radial-gradient(
+    ellipse var(--hero-blur-w) var(--hero-blur-h) at var(--hero-blur-x) 50%,
+    #000 0%,
+    #000 42%,
+    transparent 70%
+  );
+}
+
+.hero-title-blur__layer--soft {
+  --hero-blur: 2px;
+  --hero-blur-w: 100%;
+  --hero-blur-h: 70%;
+  --hero-blur-x: 40%;
+}
+
+.hero-title-blur__layer--mid {
+  --hero-blur: 6px;
+  --hero-blur-w: 74%;
+  --hero-blur-h: 56%;
+  --hero-blur-x: 38%;
+}
+
+.hero-title-blur__layer--strong {
+  --hero-blur: 12px;
+  --hero-blur-w: 52%;
+  --hero-blur-h: 44%;
+  --hero-blur-x: 36%;
+}
+
+@media (min-width: 1024px) {
+  .hero-title-blur__layer--soft {
+    --hero-blur-w: 58%;
+    --hero-blur-h: 64%;
+    --hero-blur-x: 28%;
+  }
+
+  .hero-title-blur__layer--mid {
+    --hero-blur-w: 42%;
+    --hero-blur-h: 50%;
+    --hero-blur-x: 27%;
+  }
+
+  .hero-title-blur__layer--strong {
+    --hero-blur-w: 30%;
+    --hero-blur-h: 38%;
+    --hero-blur-x: 26%;
+  }
 }

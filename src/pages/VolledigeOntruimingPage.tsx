@@ -1,8 +1,8 @@
 import { FadeIn } from '../components/FadeIn'
 import { ServiceBeforeAfter } from '../components/ServiceBeforeAfter'
+import { ServiceClosing } from '../components/ServiceClosing'
 import { ServiceHero } from '../components/ServiceHero'
 import { ServicePricing } from '../components/ServicePricing'
-import { Button } from '../components/ui/Button'
 import { SectionLabel } from '../components/ui/SectionLabel'
 
 const description = [
@@ -29,6 +29,8 @@ export function VolledigeOntruimingPage() {
         num="02"
         title="Volledige ontruiming"
         intro="Moet een pand volledig leeg? Wij halen alles weg — van zolder tot kelder — zodat u verder kunt zonder zorgen."
+        image="Werk/035"
+        imageAlt="Twee medewerkers halen een lamp weg in een woning"
       />
 
       <section className="border-t-2 border-ink bg-cream-dark py-20 sm:py-28">
@@ -64,30 +66,11 @@ export function VolledigeOntruimingPage() {
 
       <ServicePricing />
 
-      <section className="border-t-2 border-ink bg-ink py-20 text-cream sm:py-28">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <FadeIn className="text-center">
-            <SectionLabel light>Klaar om te starten?</SectionLabel>
-            <h2 className="mt-3 font-display text-4xl font-extrabold uppercase leading-none tracking-tight sm:text-5xl lg:text-6xl">
-              Boek uw volledige ontruiming
-            </h2>
-            <p className="mx-auto mt-5 max-w-lg text-lg text-white/60">
-              Vraag een vrijblijvende offerte aan of plan direct een afspraak. Wij nemen snel
-              contact op.
-            </p>
-            <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <Button href="/contact">Offerte aanvragen</Button>
-              <Button
-                href="tel:+32498438878"
-                variant="ghost"
-                className="!border-white/25 !bg-white/10 !text-white hover:!bg-white/20"
-              >
-                Bel +32 498 43 88 78
-              </Button>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
+      <ServiceClosing
+        title="Boek uw volledige ontruiming"
+        image="Werk/080"
+        imageAlt="Medewerker veegt een ontruimde ruimte aan"
+      />
     </div>
   )
 }

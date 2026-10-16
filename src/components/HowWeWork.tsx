@@ -1,7 +1,6 @@
 import { FadeIn } from './FadeIn'
 import { Button } from './ui/Button'
 import { SectionLabel } from './ui/SectionLabel'
-import { Swoosh } from './ui/Swoosh'
 
 const steps = [
   {
@@ -32,44 +31,30 @@ const steps = [
 
 export function HowWeWork() {
   return (
-    <section id="te-werk" className="relative bg-ink text-cream">
-      <div className="py-24">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">        
-          <FadeIn className="border-b border-white/15 pb-10 text-center">
-          <SectionLabel light>Hoe gaan we te werk</SectionLabel>
-          <h2 className="mx-auto mt-3 max-w-2xl font-display text-5xl font-extrabold uppercase leading-none tracking-tight sm:text-6xl">
-            Van eerste contact tot{' '}
-            <span className="text-accent italic">alles weg</span>
+    <section id="te-werk" className="bg-surface py-20 sm:py-28">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <FadeIn className="max-w-2xl">
+          <SectionLabel>Hoe gaan we te werk</SectionLabel>
+          <h2 className="mt-4 font-display text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
+            Van eerste contact tot alles weg
           </h2>
         </FadeIn>
 
-        <ol className="mt-16 grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-0">
-          {steps.map((step, i) => (
-            <li
-              key={step.num}
-              className="flex h-full border-2 border-white/15 bg-ink-soft p-6 text-center lg:-ml-px lg:first:ml-0"
-            >
-              <FadeIn delay={i * 0.05} className="flex w-full flex-col">
-                <p className="font-display text-sm font-bold text-accent">{step.num}</p>
-                <h3 className="mt-3 font-display text-lg font-bold uppercase tracking-tight">
-                  {step.title}
-                </h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-white/55">
-                  {step.description}
-                </p>
-              </FadeIn>
+        <ol className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          {steps.map((step) => (
+            <li key={step.num} className="border-t-2 border-accent pt-5">
+              <p className="font-display text-sm font-semibold tabular-nums text-accent">{step.num}</p>
+              <h3 className="mt-2 font-display text-xl font-semibold tracking-tight text-ink">
+                {step.title}
+              </h3>
+              <p className="mt-2 text-base leading-relaxed text-muted">{step.description}</p>
             </li>
           ))}
         </ol>
 
-        <FadeIn className="mt-14 flex justify-center">
+        <div className="mt-12">
           <Button href="/contact">Boek een ophaling</Button>
-        </FadeIn>
         </div>
-      </div>
-
-      <div className="text-cream">
-        <Swoosh />
       </div>
     </section>
   )

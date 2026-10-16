@@ -55,3 +55,4 @@ export function ResponsiveImage({
 
 export const VOOR_EN_NA_WIDTHS = [640, 1280, 1920] as const
 export const HERO_ABOUT_WIDTHS = [640, 1080] as const
+export const WERK_WIDTHS = [640, 1080, 1920] as const

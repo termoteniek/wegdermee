@@ -36,27 +36,27 @@ function ProgressBar({
 
 function PricingTierCard({ tier }: { tier: (typeof pricingTiers)[number] }) {
   return (
-    <article className="group relative flex h-full flex-col border-2 border-ink bg-cream-dark p-6 transition-colors hover:bg-cream">
+    <article className="group relative flex h-full flex-col border border-line bg-surface p-6">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="font-display text-5xl font-extrabold leading-none text-ink">
+          <p className="font-display text-5xl font-semibold tabular-nums leading-none text-ink">
             {tier.volumeM3}
             <span className="ml-1 text-2xl text-muted">m³</span>
           </p>
         </div>
         <div className="text-right">
-          <p className="font-display text-3xl font-extrabold text-accent">
+          <p className="font-display text-3xl font-semibold tabular-nums text-accent">
             {formatEuro(tier.priceInclVat)}
           </p>
           <p className="mt-1 text-xs text-muted">incl. btw</p>
         </div>
       </div>
 
-      <div className="mt-6 flex flex-wrap gap-3 border-t border-ink/15 pt-4">
-        <span className="border-2 border-ink/15 bg-cream px-4 py-2 font-display text-sm font-bold uppercase tracking-wide text-ink sm:text-base">
+      <div className="mt-6 flex flex-wrap gap-3 border-t border-line pt-4">
+        <span className="bg-cream px-3 py-2 font-display text-sm font-semibold tabular-nums text-ink">
           {tier.weightKg} kg
         </span>
-        <span className="border-2 border-ink/15 bg-cream px-4 py-2 font-display text-sm font-bold uppercase tracking-wide text-muted sm:text-base">
+        <span className="bg-cream px-3 py-2 font-display text-sm font-semibold tabular-nums text-muted">
           {formatEuro(tier.priceExVat)} ex. btw
         </span>
       </div>
@@ -68,11 +68,11 @@ function PricingTierCard({ tier }: { tier: (typeof pricingTiers)[number] }) {
 
 export function ServicePricing() {
   return (
-    <section className="border-t-2 border-ink bg-cream py-20 sm:py-28">
+    <section className="bg-cream py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeIn className="mx-auto max-w-3xl text-center">
           <SectionLabel>Prijzen</SectionLabel>
-          <h2 className="mt-3 font-display text-4xl font-extrabold uppercase leading-none tracking-tight text-ink sm:text-5xl">
+          <h2 className="mt-4 font-display text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
             Transparante tarieven
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted">
@@ -83,9 +83,9 @@ export function ServicePricing() {
         <div className="mt-12 grid gap-4 overflow-x-clip sm:grid-cols-2">
           {featuredTiers.map((tier, index) => (
             <FadeIn key={tier.volumeM3} delay={0.05 + index * 0.04}>
-              <div className="group relative flex h-full flex-col justify-center border-2 border-accent bg-ink p-8 text-center text-cream sm:p-10">
+              <div className="group relative flex h-full flex-col justify-center bg-ink p-8 text-center text-cream sm:p-10">
                 <div className="flex flex-wrap items-baseline justify-center gap-x-3">
-                  <p className="font-display text-5xl font-extrabold uppercase leading-none sm:text-6xl">
+                  <p className="font-display text-5xl font-semibold tabular-nums leading-none sm:text-6xl">
                     {formatEuro(tier.priceInclVat)}
                   </p>
                   <p className="text-xs font-medium text-white/50 sm:text-sm">incl. btw</p>
@@ -113,23 +113,23 @@ export function ServicePricing() {
           ))}
 
           <FadeIn delay={0.08 + displayTiers.length * 0.04}>
-            <article className="group relative flex h-full flex-col border-2 border-ink bg-cream-dark p-6 transition-colors hover:bg-cream">
+            <article className="group relative flex h-full flex-col border border-line bg-surface p-6">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="font-display text-5xl font-extrabold leading-none text-ink">
+                  <p className="font-display text-5xl font-semibold tabular-nums leading-none text-ink">
                     {largePricingTier.volumeLabel}
                     <span className="ml-1 text-2xl text-muted">m³</span>
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="font-display text-2xl font-extrabold uppercase leading-tight text-accent sm:text-3xl">
+                  <p className="font-display text-2xl font-semibold leading-tight text-accent sm:text-3xl">
                     {largePricingTier.priceLabel}
                   </p>
                 </div>
               </div>
 
               <div className="mt-6 flex flex-wrap gap-3 border-t border-ink/15 pt-4">
-                <span className="border-2 border-ink/15 bg-cream px-4 py-2 font-display text-sm font-bold uppercase tracking-wide text-ink sm:text-base">
+                <span className="bg-cream px-3 py-2 font-display text-sm font-semibold tabular-nums text-ink">
                   {largePricingTier.weightLabel} kg
                 </span>
               </div>
@@ -140,10 +140,7 @@ export function ServicePricing() {
 
           <FadeIn delay={0.15} className="col-span-full grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {pricingNotes.map((note) => (
-              <p key={note} className="px-2 text-center text-sm leading-relaxed text-muted">
-                <span className="text-accent" aria-hidden>
-                  →{' '}
-                </span>
+              <p key={note} className="text-sm leading-relaxed text-muted">
                 {note}
               </p>
             ))}

@@ -27,7 +27,7 @@ function ImageFrame({
   badge: string
 }) {
   return (
-    <div className="relative max-w-full overflow-hidden border-2 border-ink bg-cream-dark">
+    <div className="relative max-w-full overflow-hidden bg-cream-dark">
       <ResponsiveImage
         name={name}
         alt={alt}
@@ -37,7 +37,7 @@ function ImageFrame({
         pictureClassName="block w-full"
         loading="lazy"
       />
-      <span className="absolute left-0 top-0 bg-accent px-3 py-1.5 font-display text-xs font-bold uppercase tracking-widest text-white sm:px-4 sm:text-sm">
+      <span className="absolute left-3 top-3 bg-accent px-2.5 py-1 font-display text-sm font-semibold text-white">
         {badge}
       </span>
     </div>
@@ -76,7 +76,7 @@ function BeforeAfterSlider({ pair }: { pair: BeforeAfterPair }) {
   return (
     <div
       ref={containerRef}
-      className="relative aspect-[16/10] w-full max-w-full cursor-ew-resize touch-none overflow-hidden border-2 border-ink bg-cream-dark select-none"
+      className="relative aspect-[16/10] w-full max-w-full cursor-ew-resize touch-none overflow-hidden bg-cream-dark select-none"
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
@@ -116,17 +116,17 @@ function BeforeAfterSlider({ pair }: { pair: BeforeAfterPair }) {
         style={{ left: `${position}%` }}
         aria-hidden
       >
-        <div className="absolute top-1/2 left-1/2 flex size-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center border-2 border-ink bg-accent text-white shadow-[3px_3px_0_0_#0c0c0c]">
+        <div className="absolute top-1/2 left-1/2 flex size-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-accent text-white">
           <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M8 12H4m0 0 3-3M4 12l3 3M16 12h4m0 0-3-3m3 3-3 3" />
           </svg>
         </div>
       </div>
 
-      <span className="pointer-events-none absolute left-0 top-0 z-10 bg-accent px-3 py-1.5 font-display text-xs font-bold uppercase tracking-widest text-white sm:px-4 sm:text-sm">
+      <span className="pointer-events-none absolute left-3 top-3 z-10 bg-accent px-2.5 py-1 font-display text-sm font-semibold text-white">
         Voor
       </span>
-      <span className="pointer-events-none absolute right-0 top-0 z-10 bg-ink px-3 py-1.5 font-display text-xs font-bold uppercase tracking-widest text-cream sm:px-4 sm:text-sm">
+      <span className="pointer-events-none absolute right-3 top-3 z-10 bg-ink px-2.5 py-1 font-display text-sm font-semibold text-cream">
         Na
       </span>
     </div>
@@ -139,11 +139,11 @@ export function ServiceBeforeAfter({ pairs }: ServiceBeforeAfterProps) {
   const sliderPair = hasPairs ? pairs[pairs.length - 1] : null
 
   return (
-    <section className="overflow-x-clip border-t-2 border-ink bg-cream py-20 sm:py-28">
+    <section className="overflow-x-clip bg-cream py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeIn>
           <SectionLabel>Voor & na</SectionLabel>
-          <h2 className="mt-3 max-w-xl font-display text-4xl font-extrabold uppercase leading-none tracking-tight text-ink sm:text-5xl">
+          <h2 className="mt-4 max-w-xl font-display text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
             Het verschil spreekt voor zich
           </h2>
         </FadeIn>
@@ -175,10 +175,8 @@ export function ServiceBeforeAfter({ pairs }: ServiceBeforeAfterProps) {
           </div>
         ) : (
           <FadeIn delay={0.08} className="mt-12">
-            <blockquote className="px-8 py-20 text-center sm:px-12 sm:py-28">
-              <p className="font-display text-4xl font-extrabold uppercase leading-none tracking-widest text-muted/20 sm:text-6xl lg:text-7xl">
-                Binnenkort beschikbaar
-              </p>
+            <blockquote className="border-t border-line py-16">
+              <p className="text-lg text-muted">Binnenkort beschikbaar</p>
             </blockquote>
           </FadeIn>
         )}

@@ -3,6 +3,7 @@ import { assetUrl } from '../lib/assetUrl'
 
 const navLinks = [
   { href: '/#diensten', label: 'Diensten' },
+  { href: '/#werk', label: 'Ons werk' },
   { href: '/#waarom', label: 'Waarom' },
   { href: '/#regio', label: 'Regio' },
   { href: '/#over-ons', label: 'Over ons' },
@@ -48,15 +49,15 @@ const linkClassName =
 
 function SocialIcons({ className = '' }: { className?: string }) {
   return (
-    <div className={`flex items-center gap-5 ${className}`}>
+    <div className={`flex items-center gap-2 ${className}`}>
       {socialLinks.map((social) => (
         <a
           key={social.label}
           href={social.href}
           aria-label={social.label}
-          target={social.href.startsWith('http') ? '_blank' : undefined}
-          rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-          className={`text-white/70 ${linkClassName}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`inline-flex size-11 items-center justify-center text-white/75 ${linkClassName}`}
         >
           {social.icon}
         </a>
@@ -71,31 +72,23 @@ export function Footer() {
   return (
     <footer className="bg-ink text-cream">
       <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:items-stretch lg:gap-8">
-          <Link
-            to="/"
-            className="hidden h-full items-center justify-center lg:col-span-1 lg:flex"
-          >
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          <Link to="/" className="inline-flex items-center" aria-label="wegdermee">
             <img
               src={assetUrl('LogoWhiteNoBG.png')}
-              alt="wegdermee"
-              className="h-14 w-auto"
+              alt=""
+              className="h-12 w-auto"
             />
           </Link>
 
           <div>
-            <div className="flex items-center justify-between gap-4">
-              <h3 className="font-display text-sm font-semibold uppercase tracking-[0.25em] text-accent">
-                Navigatie
-              </h3>
-              <SocialIcons className="sm:hidden" />
-            </div>
+            <h2 className="font-display text-sm font-semibold text-white">Navigatie</h2>
             <nav className="mt-4 flex flex-col gap-2" aria-label="Footer navigatie">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   to={link.href}
-                  className={`text-sm text-white/60 ${linkClassName}`}
+                  className={`text-sm text-white/70 ${linkClassName}`}
                 >
                   {link.label}
                 </Link>
@@ -104,34 +97,31 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-display text-sm font-semibold uppercase tracking-[0.25em] text-accent">
-              Info
-            </h3>
+            <h2 className="font-display text-sm font-semibold text-white">Info</h2>
             <ul className="mt-4 space-y-2">
               {infoItems.map((item) => (
                 <li key={item.label} className="text-sm">
-                  <span className="text-white/40">{item.label}: </span>
+                  <span className="text-white/45">{item.label}: </span>
                   {item.href ? (
-                    <a href={item.href} className={`text-white/60 ${linkClassName}`}>
+                    <a href={item.href} className={`text-white/75 ${linkClassName}`}>
                       {item.value}
                     </a>
                   ) : (
-                    <span className="text-white/60">{item.value}</span>
+                    <span className="text-white/75">{item.value}</span>
                   )}
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="hidden h-full flex-col justify-start gap-8 sm:col-span-2 sm:flex lg:col-span-1 lg:justify-between lg:items-end">
+          <div className="flex flex-col gap-6 sm:items-start lg:items-end">
             <SocialIcons />
-
             <nav className="flex gap-6" aria-label="Footer juridisch">
               {footerLinks.map((link) => (
                 <Link
                   key={link.label}
                   to={link.href}
-                  className={`font-display text-sm font-semibold uppercase tracking-widest text-white/60 ${linkClassName}`}
+                  className={`text-sm text-white/70 ${linkClassName}`}
                 >
                   {link.label}
                 </Link>
@@ -140,21 +130,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col items-center gap-4 border-t border-white/15 pt-8 sm:hidden">
-          <nav className="flex gap-6" aria-label="Footer juridisch">
-            {footerLinks.map((link) => (
-              <Link
-                key={link.label}
-                to={link.href}
-                className={`font-display text-sm font-semibold uppercase tracking-widest text-white/60 ${linkClassName}`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-
-        <div className="mt-10 space-y-2 border-t border-white/15 pt-8 text-center text-sm text-white/45 sm:mt-10">
+        <div className="mt-12 space-y-2 border-t border-white/12 pt-8 text-sm text-white/50">
           <p>© {year} wegdermee — Inboedels & rommelophaal</p>
           <p>
             Gemaakt door{' '}
@@ -162,7 +138,7 @@ export function Footer() {
               href="https://motea.dev"
               target="_blank"
               rel="noopener noreferrer"
-              className={`font-medium text-white/60 ${linkClassName}`}
+              className={`font-medium text-white/70 ${linkClassName}`}
             >
               MOTEA
             </a>

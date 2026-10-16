@@ -2,7 +2,7 @@ import { Contact } from '../components/Contact'
 
 export function ContactPage() {
   return (
-    <div className="flex flex-1 flex-col bg-ink">
+    <div className="flex flex-1 flex-col bg-cream">
       <Contact />
     </div>
   )

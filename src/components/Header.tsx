@@ -1,52 +1,25 @@
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from './ui/Button'
 
 const navLinks = [
   { href: '/#diensten', label: 'Diensten' },
+  { href: '/#werk', label: 'Ons werk' },
   { href: '/#waarom', label: 'Waarom' },
   { href: '/#te-werk', label: 'Hoe gaan we te werk' },
   { href: '/#regio', label: 'Regio' },
   { href: '/#over-ons', label: 'Over ons' },
 ]
 
-const logoParts = ['Weg', 'Der', 'Mee'] as const
-
-function NavbarLogo({
-  scrolled,
-  lightHeader,
-}: {
-  scrolled: boolean
-  lightHeader: boolean
-}) {
+function Wordmark({ onDark }: { onDark: boolean }) {
   return (
-    <motion.span
-      className="inline-flex font-display text-2xl font-bold uppercase tracking-wide"
-      aria-hidden
-      initial="hidden"
-      animate="visible"
-      whileHover="hover"
-      variants={{
-        visible: { transition: { staggerChildren: 0.07, delayChildren: 0.35 } },
-        hover: { transition: { staggerChildren: 0.04 } },
-      }}
+    <span
+      className={`font-display text-[1.7rem] font-bold leading-none tracking-tight ${
+        onDark ? 'text-white' : 'text-ink'
+      }`}
     >
-      {logoParts.map((part) => (
-        <motion.span
-          key={part}
-          variants={{
-            hidden: { opacity: 0, y: -10 },
-            visible: { opacity: 1, y: 0 },
-            hover: { y: -3, scale: 1.04 },
-          }}
-          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className={scrolled || lightHeader ? 'text-inherit' : 'text-accent'}
-        >
-          {part}
-        </motion.span>
-      ))}
-    </motion.span>
+      weg<span className="text-accent">dermee</span>
+    </span>
   )
 }
 
@@ -57,11 +30,13 @@ type HeaderProps = {
 export function Header({ lightHeader = false }: HeaderProps) {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const { scrollY } = useScroll()
 
-  useMotionValueEvent(scrollY, 'change', (y) => {
-    setScrolled(y > 60)
-  })
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   useEffect(() => {
     if (!open) return
@@ -72,108 +47,90 @@ export function Header({ lightHeader = false }: HeaderProps) {
     }
   }, [open])
 
-  const darkLinks = lightHeader && !open
-  const navLinkClassName = darkLinks
-    ? 'font-display text-sm font-semibold uppercase tracking-widest text-ink/80 transition-colors hover:text-ink'
-    : 'font-display text-sm font-semibold uppercase tracking-widest text-white/80 transition-colors hover:text-white'
+  const onDark = !lightHeader && !scrolled && !open
+  const solid = open || scrolled || lightHeader
+
+  const navLinkClassName = onDark
+    ? 'text-sm font-medium text-white/85 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent'
+    : 'text-sm font-medium text-ink/80 transition-colors hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent'
+
+  const barClass = open
+    ? 'border-b border-white/10 bg-ink'
+    : solid
+      ? 'border-b border-line bg-cream/95 backdrop-blur-md'
+      : 'border-b border-transparent bg-transparent'
 
   return (
-    <motion.header
-      className={`fixed inset-x-0 top-0 z-50 ${
-        open ? '' : 'transition-[background-color,backdrop-filter,border-color] duration-300'
-      } ${
-        open
-          ? 'border-b border-white/10 bg-ink'
-          : scrolled
-            ? lightHeader
-              ? 'border-b border-ink/10 bg-cream/85 backdrop-blur-xl'
-              : 'border-b border-white/50 bg-ink/70 backdrop-blur-xl'
-            : 'border-b border-transparent bg-transparent'
-      }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-    >
-      <div className="relative z-50 mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
+    <header className={`fixed inset-x-0 top-0 z-50 ${barClass}`}>
+      <div className="relative z-50 mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3.5 sm:px-8">
         <Link
           to="/"
           aria-label="Wegdermee — naar home"
-          className={`group relative z-10 shrink-0 transition-colors duration-200 ${
-            lightHeader
-              ? scrolled
-                ? 'text-ink/80 hover:text-ink'
-                : 'text-accent hover:text-accent-hover'
-              : scrolled
-                ? 'text-white/80 hover:text-white'
-                : 'hover:text-accent-hover'
-          }`}
+          className="relative z-10 shrink-0 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
         >
-          <NavbarLogo scrolled={scrolled} lightHeader={lightHeader} />
+          <Wordmark onDark={onDark || open} />
         </Link>
 
-        <nav className="hidden items-center gap-10 lg:flex" aria-label="Hoofdnavigatie">
+        <nav className="hidden items-center gap-7 xl:flex" aria-label="Hoofdnavigatie">
           {navLinks.map((link) => (
             <Link key={link.href} to={link.href} className={navLinkClassName}>
               {link.label}
             </Link>
           ))}
         </nav>
+
         <div className="hidden lg:block">
-          <Button
-            href="/contact"
-            variant={lightHeader || !scrolled ? 'primary' : 'ghost'}
-            className="!px-6 !py-2.5 !text-base"
-          >
+          <Button href="/contact" className="!px-5 !py-2.5">
             Boek ophaling
           </Button>
         </div>
 
         <button
           type="button"
-          className={`relative z-10 inline-flex flex-col gap-1.5 p-2 lg:hidden ${darkLinks ? '[&_span]:bg-ink' : '[&_span]:bg-white'}`}
+          className="relative z-10 inline-flex min-h-11 min-w-11 cursor-pointer flex-col items-center justify-center gap-1.5 xl:hidden"
           aria-expanded={open}
           aria-label={open ? 'Menu sluiten' : 'Menu openen'}
           onClick={() => setOpen(!open)}
         >
           <span
-            className={`block h-0.5 w-7 transition-transform duration-200 ease-out ${darkLinks ? 'bg-ink' : 'bg-white'} ${open ? 'translate-y-2 rotate-45' : ''}`}
+            className={`block h-0.5 w-6 transition-transform duration-200 ${onDark || open ? 'bg-white' : 'bg-ink'} ${open ? 'translate-y-2 rotate-45' : ''}`}
           />
           <span
-            className={`block h-0.5 w-7 transition-opacity duration-200 ease-out ${darkLinks ? 'bg-ink' : 'bg-white'} ${open ? 'opacity-0' : ''}`}
+            className={`block h-0.5 w-6 transition-opacity duration-200 ${onDark || open ? 'bg-white' : 'bg-ink'} ${open ? 'opacity-0' : ''}`}
           />
           <span
-            className={`block h-0.5 w-7 transition-transform duration-200 ease-out ${darkLinks ? 'bg-ink' : 'bg-white'} ${open ? '-translate-y-2 -rotate-45' : ''}`}
+            className={`block h-0.5 w-6 transition-transform duration-200 ${onDark || open ? 'bg-white' : 'bg-ink'} ${open ? '-translate-y-2 -rotate-45' : ''}`}
           />
         </button>
       </div>
 
       <nav
-        className={`fixed inset-0 z-40 flex flex-col overflow-y-auto bg-ink px-5 pb-8 pt-24 transition-[opacity,visibility] duration-200 ease-out will-change-[opacity] lg:hidden ${
-          open ? 'visible opacity-100' : 'invisible pointer-events-none opacity-0'
+        className={`fixed inset-0 z-40 flex flex-col overflow-y-auto bg-ink px-6 pb-10 pt-24 transition-opacity duration-200 lg:hidden ${
+          open ? 'visible opacity-100' : 'pointer-events-none invisible opacity-0'
         }`}
         aria-label="Mobiele navigatie"
         aria-hidden={!open}
       >
-        <ul className="flex flex-1 flex-col items-center justify-center gap-1 text-center">
+        <ul className="flex flex-1 flex-col justify-center gap-1">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
                 to={link.href}
                 tabIndex={open ? undefined : -1}
-                className="block py-3 font-display text-xl font-bold uppercase tracking-wide text-white/90 hover:text-white"
+                className="block min-h-11 py-2 font-display text-2xl font-semibold text-white"
                 onClick={() => setOpen(false)}
               >
                 {link.label}
               </Link>
             </li>
           ))}
-          <li className="mt-4">
+          <li className="mt-6">
             <Button href="/contact" onClick={() => setOpen(false)}>
               Boek ophaling
             </Button>
           </li>
         </ul>
       </nav>
-    </motion.header>
+    </header>
   )
 }

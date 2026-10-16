@@ -1,17 +1,18 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-display: 'Barlow Condensed', ui-sans-serif, system-ui, sans-serif;
-  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
-  --color-ink: #0c0c0c;
-  --color-ink-soft: #1a1a1a;
-  --color-cream: #f4f1ea;
-  --color-cream-dark: #e8e4da;
-  --color-muted: #5c5c5c;
-  --color-muted-light: #9a9a9a;
+  --font-display: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Source Sans 3', ui-sans-serif, system-ui, sans-serif;
+  --color-ink: #121417;
+  --color-ink-soft: #1c1f24;
+  --color-cream: #f3f2ef;
+  --color-cream-dark: #e7e5e1;
+  --color-surface: #ffffff;
+  --color-muted: #4e5660;
+  --color-muted-light: #6f7782;
   --color-accent: #e85d04;
-  --color-accent-hover: #d45103;
-  --color-line: rgba(12, 12, 12, 0.12);
+  --color-accent-hover: #c44d03;
+  --color-line: #e2e0db;
 }
 
 html {
@@ -24,6 +25,11 @@ body {
   @apply overflow-x-clip bg-cream font-sans text-ink antialiased;
 }
 
+a,
+button {
+  touch-action: manipulation;
+}
+
 ::selection {
   background: var(--color-accent);
   color: white;
@@ -31,4 +37,10 @@ body {
 
 main [id] {
   scroll-margin-top: 5.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

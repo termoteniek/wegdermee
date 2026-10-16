@@ -9,8 +9,7 @@ const reviews = [
     location: 'Destelbergen',
   },
   {
-    quote:
-      'Super vriendelijke jongeheer, heel snelle service en een top resultaat!!',
+    quote: 'Super vriendelijke jongeheer, heel snelle service en een top resultaat!!',
     name: 'Remi',
     location: 'Destelbergen',
   },
@@ -36,35 +35,27 @@ const reviews = [
 
 export function KlantenFeedback() {
   return (
-    <section id="feedback" className="bg-ink py-24 text-cream sm:py-32">
+    <section id="feedback" className="bg-cream py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <FadeIn className="text-center">
-          <SectionLabel light>Klanten feedback</SectionLabel>
-          <h2 className="mt-3 font-display text-5xl font-extrabold uppercase leading-none tracking-tight sm:text-6xl">
+        <FadeIn className="max-w-2xl">
+          <SectionLabel>Klanten feedback</SectionLabel>
+          <h2 className="mt-4 font-display text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
             Wat klanten zeggen
           </h2>
         </FadeIn>
 
-        <ul className="mt-14 grid gap-6 md:grid-cols-2">
-          {reviews.map((review, i) => {
-            const isLastOdd = i === reviews.length - 1 && reviews.length % 2 === 1
-            return (
-              <FadeIn
-                key={`${review.name}-${review.location}`}
-                delay={i * 0.06}
-                className={isLastOdd ? 'md:col-span-2' : undefined}
-              >
-                <li className="flex h-full flex-col border-2 border-white/15 bg-ink-soft p-6 sm:p-8">
-                  <p className="flex-1 text-base leading-relaxed text-white/70 sm:text-lg">
-                    &ldquo;{review.quote}&rdquo;
-                  </p>
-                  <p className="mt-6 font-display text-sm font-bold uppercase tracking-widest text-accent">
-                    {review.name} — {review.location}
-                  </p>
-                </li>
-              </FadeIn>
-            )
-          })}
+        <ul className="mt-12 grid gap-x-16 gap-y-10 md:grid-cols-2">
+          {reviews.map((review) => (
+            <li key={`${review.name}-${review.location}`} className="border-t border-line pt-6">
+              <blockquote>
+                <p className="text-lg leading-relaxed text-ink">&ldquo;{review.quote}&rdquo;</p>
+                <footer className="mt-4 font-display text-base font-semibold text-ink">
+                  {review.name}
+                  <span className="font-sans font-normal text-muted">, {review.location}</span>
+                </footer>
+              </blockquote>
+            </li>
+          ))}
         </ul>
       </div>
     </section>

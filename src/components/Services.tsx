@@ -1,93 +1,92 @@
-import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { serviceShots, werkName } from '../data/werkImages'
 import { FadeIn } from './FadeIn'
+import { ResponsiveImage, WERK_WIDTHS } from './ResponsiveImage'
 import { SectionLabel } from './ui/SectionLabel'
 
 const services = [
   {
-    num: '01',
     title: 'Rommelophaaldienst',
     description:
       'Te veel spullen, te weinig plaats? Wij halen uw rommel op — groot of klein, u sorteert niet, wij regelen alles.',
     href: '/diensten/rommelophaaldienst',
+    shot: serviceShots.rommel,
   },
   {
-    num: '02',
     title: 'Volledige ontruiming',
     description:
       'Moet een pand volledig leeg? Wij halen alles weg — van zolder tot kelder — zodat u verder kunt zonder zorgen.',
     href: '/diensten/volledige-ontruiming',
+    shot: serviceShots.ontruiming,
   },
   {
-    num: '03',
     title: 'Werf opruiming',
     description:
       'Verbouwing of renovatie? Wij ruimen uw werf op zodat u verder kunt bouwen aan iets nieuws.',
     href: '/diensten/werf-opruiming',
+    shot: serviceShots.werf,
   },
   {
-    num: '04',
     title: 'Kleine verhuizingen',
     description:
       'Een paar meubels of dozen van A naar B — geen volledige verhuis, wel snel en correct geregeld.',
     href: '/diensten/kleine-verhuizingen',
+    shot: serviceShots.verhuizing,
   },
   {
-    num: '05',
     title: 'Transport',
     description:
       'Grote aankoop bij IKEA, Brico of een andere winkel? Wij halen het op en brengen het veilig naar u toe.',
     href: '/diensten/transport',
+    shot: serviceShots.transport,
   },
 ]
 
 export function Services() {
   return (
-    <section id="diensten" className="relative -mt-px py-24 pt-28 sm:py-32 sm:pt-36">
+    <section id="diensten" className="bg-cream py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="flex flex-col gap-6 border-b-2 border-ink pb-10 lg:flex-row lg:items-end lg:justify-between">
-          <FadeIn>
-            <SectionLabel>Diensten</SectionLabel>
-            <h2 className="mt-3 max-w-xl font-display text-5xl font-extrabold uppercase leading-none tracking-tight text-ink sm:text-6xl lg:text-7xl">
-              Alles wat weg moet
-            </h2>
-          </FadeIn>
-        </div>
+        <FadeIn>
+          <SectionLabel>Diensten</SectionLabel>
+          <h2 className="mt-4 max-w-xl font-display text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
+            Alles wat weg moet
+          </h2>
+        </FadeIn>
 
-        <ul className="mt-0 divide-y-2 divide-ink">
-          {services.map((service, i) => (
-            <FadeIn key={service.num} delay={i * 0.06}>
-              <motion.li
-                className="group grid gap-6 py-10 sm:grid-cols-[auto_1fr_auto] sm:items-center sm:gap-10 sm:py-14"
-                whileHover={{ x: 4 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+        <ul className="mt-10 border-t border-line">
+          {services.map((service) => (
+            <li key={service.href} className="border-b border-line">
+              <Link
+                to={service.href}
+                className="group grid gap-5 py-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:grid-cols-[11rem_1fr] sm:items-center sm:gap-8 sm:py-7 lg:grid-cols-[14rem_1fr_auto]"
               >
-                <span className="font-display text-6xl font-extrabold leading-none text-cream-dark transition-colors group-hover:text-accent sm:text-7xl">
-                  {service.num}
-                </span>
+                <ResponsiveImage
+                  name={werkName(service.shot.id)}
+                  alt=""
+                  widths={[...WERK_WIDTHS]}
+                  sizes="(max-width: 640px) 100vw, 220px"
+                  className="aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                  pictureClassName="block overflow-hidden"
+                  loading="lazy"
+                />
                 <div>
-                  <h3 className="font-display text-3xl font-bold uppercase tracking-tight text-ink sm:text-4xl">
+                  <h3 className="font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
                     {service.title}
                   </h3>
-                  <p className="mt-3 max-w-2xl text-lg text-muted">{service.description}</p>
+                  <p className="mt-2 max-w-2xl text-lg leading-relaxed text-muted">{service.description}</p>
                 </div>
-                <Link
-                  to={service.href}
-                  className="font-display text-base font-bold uppercase tracking-widest text-accent underline-offset-4 transition-colors hover:text-accent-hover hover:underline sm:text-right"
-                >
-                  Meer info →
-                </Link>
-              </motion.li>
-            </FadeIn>
+                <span className="font-display text-base font-semibold text-accent group-hover:text-accent-hover">
+                  Meer info
+                </span>
+              </Link>
+            </li>
           ))}
         </ul>
 
-        <FadeIn className="mt-12">
-          <p className="border-l-4 border-accent bg-cream-dark px-6 py-5 text-ink">
-            <strong className="font-display uppercase tracking-wide">Opgelet —</strong>{' '}
-            wij verwerken geen gevaarlijk afval (asbest, vloeistoffen, gas, ...)
-          </p>
-        </FadeIn>
+        <p className="mt-8 max-w-3xl border-l-2 border-accent pl-4 text-ink">
+          <strong className="font-semibold">Opgelet —</strong> wij verwerken geen gevaarlijk afval
+          (asbest, vloeistoffen, gas, ...)
+        </p>
       </div>
     </section>
   )

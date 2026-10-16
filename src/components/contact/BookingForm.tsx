@@ -16,10 +16,9 @@ import {
 import { DateTimePicker } from './DateTimePicker'
 
 const inputClassName =
-  'mt-2 w-full min-w-0 border-b-2 border-ink bg-transparent py-2 text-ink outline-none focus:border-accent'
+  'mt-2 min-h-11 w-full min-w-0 border-b border-line bg-transparent py-2 text-base text-ink outline-none focus:border-accent'
 const selectClassName = `${inputClassName} max-w-full cursor-pointer disabled:cursor-not-allowed disabled:opacity-50`
-const labelClassName =
-  'font-display text-xs font-semibold uppercase tracking-widest text-muted'
+const labelClassName = 'text-sm font-medium text-muted'
 
 const stepLabels = ['Gegevens', 'Dienst', 'Datum', 'Tijd'] as const
 type Step = 1 | 2 | 3 | 4 | 5
@@ -28,7 +27,10 @@ const stepActionsClassName =
   'flex shrink-0 flex-col gap-3 border-t border-ink/10 pt-8 sm:flex-row'
 
 const primaryButtonClassName =
-  'bg-accent font-display text-lg font-bold uppercase tracking-wide text-white transition-colors hover:bg-accent-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-accent'
+  'min-h-12 cursor-pointer bg-accent px-8 font-display text-base font-semibold text-white transition-colors hover:bg-accent-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-accent'
+
+const secondaryButtonClassName =
+  'min-h-12 cursor-pointer border border-line bg-transparent px-8 font-display text-base font-semibold text-ink transition-colors hover:border-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent'
 
 function isFilled(value: string) {
   return value.trim().length > 0
@@ -194,7 +196,7 @@ export function BookingForm() {
   return (
     <div
       ref={shellRef}
-      className="w-full min-w-0 max-w-full overflow-x-hidden border-2 border-white/15 bg-cream p-8 text-ink sm:p-10"
+      className="w-full min-w-0 max-w-full overflow-x-hidden border border-line bg-surface p-6 text-ink sm:p-8"
       style={
         lockedWidth
           ? { width: lockedWidth, minWidth: lockedWidth, maxWidth: lockedWidth }
@@ -219,15 +221,15 @@ export function BookingForm() {
           return (
             <div key={label} className="flex min-w-0 flex-1 items-center gap-1.5 sm:gap-3">
               <span
-                className={`flex size-8 shrink-0 items-center justify-center border-2 font-display text-xs font-bold sm:size-9 sm:text-sm ${
+                className={`flex size-8 shrink-0 items-center justify-center font-display text-sm font-semibold sm:size-9 ${
                   isComplete || step >= value
-                    ? 'border-accent bg-accent text-white'
-                    : 'border-ink/20 text-muted'
+                    ? 'bg-accent text-white'
+                    : 'bg-cream-dark text-muted'
                 }`}
               >
                 {value}
               </span>
-              <span className="min-w-0 truncate font-display text-[10px] font-semibold uppercase tracking-wide text-muted sm:text-xs sm:tracking-widest">
+              <span className="min-w-0 truncate text-xs font-medium text-muted sm:text-sm">
                 {label}
               </span>
               {value < stepLabels.length && (
@@ -354,7 +356,7 @@ export function BookingForm() {
             <button
               type="submit"
               disabled={!stepOneValid}
-              className={`w-full py-4 sm:w-auto sm:px-12 ${primaryButtonClassName}`}
+              className={`w-full sm:w-auto ${primaryButtonClassName}`}
             >
               Volgende →
             </button>
@@ -496,14 +498,14 @@ export function BookingForm() {
             <button
               type="button"
               onClick={() => setStep(1)}
-              className="border-2 border-ink px-8 py-4 font-display text-lg font-bold uppercase tracking-wide transition-colors hover:bg-ink hover:text-cream sm:flex-1"
+              className={`w-full sm:w-auto ${secondaryButtonClassName}`}
             >
               ← Terug
             </button>
             <button
               type="submit"
               disabled={!stepTwoValid}
-              className={`px-8 py-4 sm:flex-1 ${primaryButtonClassName}`}
+              className={`px-0 sm:flex-1 ${primaryButtonClassName}`}
             >
               Volgende →
             </button>
@@ -530,14 +532,14 @@ export function BookingForm() {
             <button
               type="button"
               onClick={() => setStep(2)}
-              className="min-w-0 border-2 border-ink px-8 py-4 font-display text-lg font-bold uppercase tracking-wide transition-colors hover:bg-ink hover:text-cream sm:flex-1"
+              className={`min-w-0 sm:flex-1 ${secondaryButtonClassName}`}
             >
               ← Terug
             </button>
             <button
               type="submit"
               disabled={!stepThreeValid}
-              className={`min-w-0 px-8 py-4 sm:flex-1 ${primaryButtonClassName}`}
+              className={`min-w-0 sm:flex-1 ${primaryButtonClassName}`}
             >
               Volgende →
             </button>
@@ -593,7 +595,7 @@ export function BookingForm() {
             <button
               type="button"
               onClick={() => setStep(3)}
-              className="min-w-0 border-2 border-ink px-8 py-4 font-display text-lg font-bold uppercase tracking-wide transition-colors hover:bg-ink hover:text-cream sm:flex-1"
+              className={`min-w-0 sm:flex-1 ${secondaryButtonClassName}`}
             >
               ← Terug
             </button>
@@ -606,7 +608,7 @@ export function BookingForm() {
               type="button"
               disabled={submitting || !stepFourValid || !acceptedTerms}
               onClick={handleFinalSubmit}
-              className={`min-w-0 px-8 py-4 sm:flex-1 ${primaryButtonClassName}`}
+              className={`min-w-0 sm:flex-1 ${primaryButtonClassName}`}
             >
               {submitting ? 'Bezig…' : 'Afspraak aanvragen'}
             </button>
@@ -620,7 +622,7 @@ export function BookingForm() {
         >
           <div className="flex flex-1 flex-col items-center justify-center">
             <span className="font-display text-6xl font-extrabold text-accent">✓</span>
-            <p className="mt-4 font-display text-2xl font-bold uppercase">Aanvraag ontvangen</p>
+            <p className="mt-4 font-display text-2xl font-semibold">Aanvraag ontvangen</p>
             <p className="mt-4 max-w-md text-muted">
               {form.voornaam ? `Bedankt ${form.voornaam}! ` : 'Bedankt! '}
               We hebben uw aanvraag ontvangen en nemen telefonisch contact op om uw afspraak

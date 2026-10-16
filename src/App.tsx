@@ -32,7 +32,7 @@ function App() {
         <Route
           path="/contact"
           element={
-            <Layout>
+            <Layout lightHeader>
               <ContactPage />
             </Layout>
           }

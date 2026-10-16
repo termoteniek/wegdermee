@@ -88,18 +88,18 @@ export function DateTimePicker({
           <button
             type="button"
             onClick={() => shiftMonth(-1)}
-            className="shrink-0 border-2 border-ink px-3 py-2 font-display text-sm font-bold uppercase tracking-widest transition-colors hover:bg-ink hover:text-cream"
+            className="inline-flex size-11 shrink-0 cursor-pointer items-center justify-center border border-line text-ink transition-colors hover:border-ink"
             aria-label="Vorige maand"
           >
             ←
           </button>
-          <p className="min-w-0 truncate text-center font-display text-lg font-bold uppercase tracking-wide sm:text-xl">
+          <p className="min-w-0 truncate text-center font-display text-lg font-semibold capitalize sm:text-xl">
             {monthFormatter.format(viewMonth)}
           </p>
           <button
             type="button"
             onClick={() => shiftMonth(1)}
-            className="shrink-0 border-2 border-ink px-3 py-2 font-display text-sm font-bold uppercase tracking-widest transition-colors hover:bg-ink hover:text-cream"
+            className="inline-flex size-11 shrink-0 cursor-pointer items-center justify-center border border-line text-ink transition-colors hover:border-ink"
             aria-label="Volgende maand"
           >
             →
@@ -110,7 +110,7 @@ export function DateTimePicker({
           {weekdayLabels.map((label) => (
             <span
               key={label}
-              className="py-2 text-center font-display text-xs font-semibold uppercase tracking-widest text-muted"
+              className="py-2 text-center text-xs font-medium text-muted"
             >
               {label}
             </span>
@@ -131,12 +131,12 @@ export function DateTimePicker({
                   onDateChange(key)
                   onTimeChange('')
                 }}
-                className={`h-9 w-full min-w-0 border-2 font-display text-xs font-bold transition-colors sm:h-10 sm:text-sm ${
+                className={`h-11 w-full min-w-0 cursor-pointer font-display text-sm font-semibold tabular-nums transition-colors ${
                   selected
-                    ? 'border-accent bg-accent text-white'
+                    ? 'bg-accent text-white'
                     : selectable
-                      ? 'border-ink/15 bg-cream-dark text-ink hover:border-accent hover:text-accent'
-                      : 'cursor-not-allowed border-transparent text-muted-light'
+                      ? 'bg-cream text-ink hover:text-accent'
+                      : 'cursor-not-allowed text-muted-light'
                 } ${inMonth ? '' : 'opacity-40'}`}
               >
                 {day.getDate()}
@@ -149,7 +149,7 @@ export function DateTimePicker({
 
       {showTime && (
       <div className={`flex min-h-0 w-full min-w-0 flex-1 flex-col ${showDate ? 'mt-6' : ''}`}>
-        <p className="shrink-0 font-display text-xs font-semibold uppercase tracking-widest text-muted">
+        <p className="shrink-0 text-sm font-medium text-muted">
           Beschikbare tijden
         </p>
 
@@ -173,10 +173,10 @@ export function DateTimePicker({
                       key={slot}
                       type="button"
                       onClick={() => onTimeChange(slot)}
-                      className={`min-w-0 border-2 px-2 py-3 font-display text-xs font-bold uppercase tracking-wide transition-colors sm:px-3 sm:text-sm ${
+                      className={`min-h-11 min-w-0 cursor-pointer px-2 font-display text-sm font-semibold tabular-nums transition-colors ${
                         selectedTime === slot
-                          ? 'border-accent bg-accent text-white'
-                          : 'border-ink/15 bg-cream-dark text-ink hover:border-accent'
+                          ? 'bg-accent text-white'
+                          : 'bg-cream text-ink hover:text-accent'
                       }`}
                     >
                       {slot}

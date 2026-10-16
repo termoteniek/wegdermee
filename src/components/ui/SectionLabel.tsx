@@ -6,10 +6,11 @@ type SectionLabelProps = {
 export function SectionLabel({ children, light }: SectionLabelProps) {
   return (
     <p
-      className={`font-display text-sm font-semibold uppercase tracking-[0.25em] ${
-        light ? 'text-accent' : 'text-accent'
+      className={`flex items-center gap-3 font-display text-sm font-semibold ${
+        light ? 'text-white' : 'text-ink'
       }`}
     >
+      <span className="h-px w-8 shrink-0 bg-accent" aria-hidden />
       {children}
     </p>
   )

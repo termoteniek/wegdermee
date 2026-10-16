@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { ResponsiveImage, HERO_ABOUT_WIDTHS } from './ResponsiveImage'
 
@@ -32,14 +32,15 @@ export function ImageFade({
 }: ImageFadeProps) {
   const [index, setIndex] = useState(0)
   const count = images.length
+  const reduce = useReducedMotion()
 
   useEffect(() => {
-    if (count <= 1) return
+    if (reduce || count <= 1) return
     const id = window.setInterval(() => {
       setIndex((current) => (current + 1) % count)
     }, intervalMs)
     return () => window.clearInterval(id)
-  }, [count, intervalMs])
+  }, [count, intervalMs, reduce])
 
   if (count === 0) return null
 
@@ -54,7 +55,7 @@ export function ImageFade({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: 'easeInOut' }}
+          transition={{ duration: reduce ? 0 : 0.8, ease: 'easeInOut' }}
         >
           <ResponsiveImage
             name={current.name}
@@ -81,11 +82,13 @@ export function ImageFade({
               type="button"
               aria-label={`Toon foto ${i + 1}`}
               aria-current={i === index}
-              className={`size-2.5 border border-white/40 transition-colors ${
-                i === index ? 'bg-accent' : 'bg-white/50 hover:bg-white'
-              }`}
+              className="inline-flex size-11 cursor-pointer items-center justify-center"
               onClick={() => setIndex(i)}
-            />
+            >
+              <span
+                className={`block size-2.5 ${i === index ? 'bg-accent' : 'bg-white/70'}`}
+              />
+            </button>
           ))}
         </div>
       ) : null}

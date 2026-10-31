@@ -1,10 +1,11 @@
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { ResponsiveImage, HERO_ABOUT_WIDTHS } from './ResponsiveImage'
 
 export type FadeSlide = {
   name: string
   alt: string
+  imgClassName?: string
 }
 
 type ImageFadeProps = {
@@ -17,6 +18,8 @@ type ImageFadeProps = {
   imgClassName?: string
   overlayClassName?: string
   showDots?: boolean
+  /** Blur a copy of the photo behind the left (or lower, on small screens) edge. */
+  focusVeil?: boolean
 }
 
 export function ImageFade({
@@ -29,45 +32,71 @@ export function ImageFade({
   imgClassName = 'h-full w-full object-cover object-center',
   overlayClassName,
   showDots = true,
+  focusVeil = false,
 }: ImageFadeProps) {
-  const [index, setIndex] = useState(0)
+  const reduceMotion = useReducedMotion()
+  const [slide, setSlide] = useState({ current: 0, under: 0 })
   const count = images.length
+  const index = slide.current
 
   useEffect(() => {
-    if (count <= 1) return
+    if (count <= 1 || reduceMotion) return
     const id = window.setInterval(() => {
-      setIndex((current) => (current + 1) % count)
+      setSlide((state) => ({
+        current: (state.current + 1) % count,
+        under: state.current,
+      }))
     }, intervalMs)
     return () => window.clearInterval(id)
-  }, [count, intervalMs])
+  }, [count, intervalMs, reduceMotion])
 
   if (count === 0) return null
 
-  const current = images[index] ?? images[0]
-
-  return (
-    <div className={`relative overflow-hidden ${className ?? ''}`}>
-      <AnimatePresence mode="sync" initial={false}>
+  const slides = (decorative: boolean) =>
+    images.map((image, i) => {
+      const active = i === slide.current
+      const underneath = i === slide.under
+      return (
         <motion.div
-          key={current.name}
+          key={image.name}
           className="absolute inset-0"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: 'easeInOut' }}
+          initial={false}
+          animate={{ opacity: active || underneath ? 1 : 0 }}
+          transition={{
+            duration: reduceMotion ? 0 : active ? 1.15 : 0,
+            ease: 'easeInOut',
+          }}
+          style={{ zIndex: active ? 2 : underneath ? 1 : 0 }}
         >
           <ResponsiveImage
-            name={current.name}
-            alt={current.alt}
+            name={image.name}
+            alt={decorative ? '' : image.alt}
             widths={widths}
             sizes={sizes}
             pictureClassName={pictureClassName}
-            className={imgClassName}
-            loading={index === 0 ? 'eager' : 'lazy'}
-            fetchPriority={index === 0 ? 'high' : 'auto'}
+            className={image.imgClassName ?? imgClassName}
+            loading={i === 0 ? 'eager' : 'lazy'}
+            fetchPriority={decorative ? 'low' : i === 0 ? 'high' : 'low'}
           />
         </motion.div>
-      </AnimatePresence>
+      )
+    })
+
+  return (
+    <div className={`relative overflow-hidden ${className ?? ''}`}>
+      {slides(false)}
+
+      {focusVeil ? (
+        <div className="hero-focus-veil pointer-events-none absolute inset-0 z-[3]" aria-hidden>
+          <div
+            className="absolute inset-0"
+            style={{ filter: 'blur(14px)', transform: 'scale(1.04)' }}
+          >
+            {slides(true)}
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/30 to-transparent lg:bg-gradient-to-r lg:from-ink/40 lg:via-ink/10 lg:to-transparent" />
+        </div>
+      ) : null}
 
       {overlayClassName ? (
         <div className={`pointer-events-none absolute inset-0 z-10 ${overlayClassName}`} aria-hidden />
@@ -84,7 +113,7 @@ export function ImageFade({
               className={`size-2.5 border border-white/40 transition-colors ${
                 i === index ? 'bg-accent' : 'bg-white/50 hover:bg-white'
               }`}
-              onClick={() => setIndex(i)}
+              onClick={() => setSlide({ current: i, under: index })}
             />
           ))}
         </div>

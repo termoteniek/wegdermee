@@ -32,3 +32,15 @@ body {
 main [id] {
   scroll-margin-top: 5.5rem;
 }
+
+.hero-focus-veil {
+  -webkit-mask-image: linear-gradient(to top, #000 0%, #000 28%, transparent 48%);
+  mask-image: linear-gradient(to top, #000 0%, #000 28%, transparent 48%);
+}
+
+@media (min-width: 1024px) {
+  .hero-focus-veil {
+    -webkit-mask-image: linear-gradient(to right, #000 0%, #000 22%, transparent 48%);
+    mask-image: linear-gradient(to right, #000 0%, #000 22%, transparent 48%);
+  }
+}

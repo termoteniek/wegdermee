@@ -21,9 +21,11 @@ export function TransportPage() {
   return (
     <div className="flex flex-1 flex-col">
       <ServiceHero
-        num="05"
         title="Transport"
         intro="Iets groots gekocht bij IKEA, Brico of een andere winkel? Wij halen het op en brengen het veilig naar u toe."
+        image="Werk/086"
+        imageAlt="De bestelwagen van wegdermee met een medewerker bij de cabine"
+        imageClassName="object-[center_42%]"
       />
 
       <section className="border-t-2 border-ink bg-cream-dark py-20 sm:py-28">

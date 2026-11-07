@@ -27,3 +27,9 @@ FEEDBACK 2
 - Volledig ontruiming, werf verhuizing, vermelden dat we fotos willen of eens langsgaan.
 - Werfontruiming, vermelden geen gevaarlijke stoffen.
 - 
+
+
+
+VRAGEN : 
+- Kleine verhuizingen ? 
+-

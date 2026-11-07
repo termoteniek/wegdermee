@@ -26,9 +26,10 @@ export function VolledigeOntruimingPage() {
   return (
     <div className="flex flex-1 flex-col">
       <ServiceHero
-        num="02"
         title="Volledige ontruiming"
         intro="Moet een pand volledig leeg? Wij halen alles weg — van zolder tot kelder — zodat u verder kunt zonder zorgen."
+        image="Werk/079"
+        imageAlt="Twee medewerkers laden een kast in een volle bestelwagen"
       />
 
       <section className="border-t-2 border-ink bg-cream-dark py-20 sm:py-28">

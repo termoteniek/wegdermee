@@ -21,9 +21,11 @@ export function KleineVerhuizingenPage() {
   return (
     <div className="flex flex-1 flex-col">
       <ServiceHero
-        num="04"
         title="Kleine verhuizingen"
         intro="Een paar meubels of dozen van A naar B — geen volledige verhuis, wel snel en correct geregeld."
+        image="Werk/052"
+        imageAlt="Medewerker draagt een doos met spullen naar buiten"
+        imageClassName="object-[68%_40%]"
       />
 
       <section className="border-t-2 border-ink bg-cream-dark py-20 sm:py-28">

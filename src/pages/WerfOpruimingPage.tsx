@@ -25,9 +25,11 @@ export function WerfOpruimingPage() {
   return (
     <div className="flex flex-1 flex-col">
       <ServiceHero
-        num="03"
         title="Werf opruiming"
         intro="Verbouwing of renovatie? Wij ruimen uw werf op zodat u verder kunt bouwen aan iets nieuws."
+        image="Werk/065"
+        imageAlt="Medewerker rijdt een steekwagen met platen uit een garage"
+        imageClassName="object-[62%_center]"
       />
 
       <section className="border-t-2 border-ink bg-cream-dark py-20 sm:py-28">

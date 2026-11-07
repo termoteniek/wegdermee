@@ -28,9 +28,11 @@ export function RommelophaaldienstPage() {
   return (
     <div className="flex flex-1 flex-col">
       <ServiceHero
-        num="01"
         title="Rommelophaaldienst"
         intro="Te veel spullen, te weinig plaats? Wij halen uw rommel op — groot of klein, u sorteert niet, wij regelen alles."
+        image="Werk/046"
+        imageAlt="Medewerker draagt een plaat en een zak rommel naar buiten"
+        imageClassName="object-[center_35%]"
       />
 
       <section className="border-t-2 border-ink bg-cream-dark py-20 sm:py-28">

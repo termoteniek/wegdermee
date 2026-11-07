@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { FooterPhotos } from './FooterPhotos'
 import { business } from '../lib/site'
 
 const navigation = [
@@ -73,27 +74,37 @@ function TikTokIcon() {
 const socialLinkClassName =
   'inline-flex min-h-11 min-w-11 items-center text-white transition-colors duration-200 hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent lg:min-h-8 lg:min-w-8'
 
-export function Footer() {
+type FooterProps = {
+  showCta?: boolean
+}
+
+export function Footer({ showCta = true }: FooterProps) {
   const year = new Date().getFullYear()
 
   return (
     <footer className="overflow-x-clip bg-ink text-white">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="flex flex-col items-start gap-8 py-14 sm:py-16 lg:flex-row lg:items-center lg:justify-between lg:py-20">
-          <h2 className="font-sans text-[clamp(2rem,4.6vw,4.15rem)] font-extrabold leading-[0.92] tracking-[-0.035em] text-white">
-            Klaar om het
-            <br />
-            weg te halen?
-          </h2>
-          <Link
-            to="/contact"
-            className="group inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-accent-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-          >
-            Boek een ophaling
-            <ArrowIcon />
-          </Link>
+      {showCta ? (
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="flex flex-col items-start gap-8 py-14 sm:py-16 lg:flex-row lg:items-center lg:justify-between lg:py-20">
+            <h2 className="font-sans text-[clamp(2rem,4.6vw,4.15rem)] font-extrabold leading-[0.92] tracking-[-0.035em] text-white">
+              Klaar om het
+              <br />
+              weg te halen?
+            </h2>
+            <Link
+              to="/contact"
+              className="group inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-accent-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              Boek een ophaling
+              <ArrowIcon />
+            </Link>
+          </div>
         </div>
+      ) : null}
 
+      <FooterPhotos />
+
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="relative border-t border-white/12">
           <div
             className="pointer-events-none absolute inset-0 overflow-hidden @container"

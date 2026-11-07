@@ -21,7 +21,7 @@ const selectClassName = `${inputClassName} max-w-full cursor-pointer disabled:cu
 const labelClassName =
   'font-display text-xs font-semibold uppercase tracking-widest text-muted'
 
-const stepLabels = ['Gegevens', 'Dienst', 'Datum', 'Tijd'] as const
+const stepLabels = ['Info', 'Dienst', 'Datum', 'Tijd'] as const
 type Step = 1 | 2 | 3 | 4 | 5
 
 const stepActionsClassName =

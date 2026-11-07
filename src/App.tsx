@@ -32,7 +32,7 @@ function App() {
         <Route
           path="/contact"
           element={
-            <Layout>
+            <Layout showCta={false}>
               <ContactPage />
             </Layout>
           }
@@ -40,7 +40,7 @@ function App() {
         <Route
           path="/diensten/rommelophaaldienst"
           element={
-            <Layout>
+            <Layout showCta={false}>
               <RommelophaaldienstPage />
             </Layout>
           }
@@ -48,7 +48,7 @@ function App() {
         <Route
           path="/diensten/volledige-ontruiming"
           element={
-            <Layout>
+            <Layout showCta={false}>
               <VolledigeOntruimingPage />
             </Layout>
           }
@@ -56,7 +56,7 @@ function App() {
         <Route
           path="/diensten/werf-opruiming"
           element={
-            <Layout>
+            <Layout showCta={false}>
               <WerfOpruimingPage />
             </Layout>
           }
@@ -64,7 +64,7 @@ function App() {
         <Route
           path="/diensten/kleine-verhuizingen"
           element={
-            <Layout>
+            <Layout showCta={false}>
               <KleineVerhuizingenPage />
             </Layout>
           }
@@ -72,7 +72,7 @@ function App() {
         <Route
           path="/diensten/transport"
           element={
-            <Layout>
+            <Layout showCta={false}>
               <TransportPage />
             </Layout>
           }

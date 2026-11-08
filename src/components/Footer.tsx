@@ -15,7 +15,7 @@ const services = [
   { href: '/diensten/rommelophaaldienst', label: 'Rommelophaaldienst' },
   { href: '/diensten/volledige-ontruiming', label: 'Volledige ontruiming' },
   { href: '/diensten/werf-opruiming', label: 'Werf opruiming' },
-  { href: '/diensten/kleine-verhuizingen', label: 'Kleine verhuizingen' },
+  { href: '/diensten/verhuizingen', label: 'Verhuizingen' },
   { href: '/diensten/transport', label: 'Transport' },
 ]
 

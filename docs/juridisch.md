@@ -25,6 +25,7 @@ In het kader van onze activiteiten kunnen wij onder meer volgende gegevens verwe
 - Telefoonnummer
 - Adres (voor ophalingen, ontruimingen of verhuizingen)
 - Betaalinformatie (indien van toepassing)
+- Foto's die u vrijwillig toevoegt aan een aanvraag
 - Eventuele aanvullende informatie die u vrijwillig verstrekt
 
 ### 3. Hoe komen wij aan uw gegevens?
@@ -40,7 +41,7 @@ Wij verkrijgen persoonsgegevens onder andere op volgende manieren:
 
 Wij gebruiken uw persoonsgegevens om:
 
-- Onze diensten uit te voeren en te verbeteren (rommelophaal, volledige ontruiming, werf opruiming, kleine verhuizingen en transport)
+- Onze diensten uit te voeren en te verbeteren (rommelophaal, volledige ontruiming, werf opruiming, verhuizingen en transport)
 - Uw aanvragen, afspraken en betalingen te behandelen
 - Met u te communiceren over uw opdrachten, planning en opvolging
 - Te voldoen aan onze wettelijke en administratieve verplichtingen
@@ -108,7 +109,7 @@ Zie ook onze [algemene voorwaarden](https://wegdermee.com/algemene-voorwaarden).
 
 ### 1. Algemeen
 
-Deze algemene voorwaarden zijn van toepassing op alle bezoekers, klanten en gebruikers van onze website en van onze diensten, waaronder ophalingen, rommelophaal, ontruimingen, werf opruiming, kleine verhuizingen, transport en aanverwante activiteiten ([diensten](https://wegdermee.com/#diensten)).
+Deze algemene voorwaarden zijn van toepassing op alle bezoekers, klanten en gebruikers van onze website en van onze diensten, waaronder ophalingen, rommelophaal, ontruimingen, werf opruiming, verhuizingen, transport en aanverwante activiteiten ([diensten](https://wegdermee.com/#diensten)).
 
 Door onze website te gebruiken of onze diensten te boeken, verklaart u zich akkoord met deze voorwaarden. Indien u niet akkoord gaat, dient u geen gebruik te maken van onze diensten.
 
@@ -125,7 +126,7 @@ Door onze website te gebruiken of onze diensten te boeken, verklaart u zich akko
 
 ### 3. Ons aanbod
 
-Wij verzorgen de ophaling van huishoudelijke en bedrijfsgoederen, volledige ontruimingen, werf opruiming, kleine verhuizingen en transport. U hoeft uw spullen in principe niet te sorteren; wij zorgen voor correcte afvoer conform de geldende regelgeving.
+Wij verzorgen de ophaling van huishoudelijke en bedrijfsgoederen, volledige ontruimingen, werf opruiming, verhuizingen en transport. U hoeft uw spullen in principe niet te sorteren; wij zorgen voor correcte afvoer conform de geldende regelgeving.
 
 Wij behouden ons het recht voor om onze diensten te wijzigen, tijdelijk te schorsen of stop te zetten zonder voorafgaande kennisgeving.
 

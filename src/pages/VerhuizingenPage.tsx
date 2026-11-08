@@ -17,11 +17,11 @@ const included = [
   'Flexibele planning op afspraak',
 ]
 
-export function KleineVerhuizingenPage() {
+export function VerhuizingenPage() {
   return (
     <div className="flex flex-1 flex-col">
       <ServiceHero
-        title="Kleine verhuizingen"
+        title="Verhuizingen"
         intro="Een paar meubels of dozen van A naar B — geen volledige verhuis, wel snel en correct geregeld."
         image="Werk/052"
         imageAlt="Medewerker draagt een doos met spullen naar buiten"
@@ -66,7 +66,7 @@ export function KleineVerhuizingenPage() {
           <FadeIn className="text-center">
             <SectionLabel light>Klaar om te starten?</SectionLabel>
             <h2 className="mt-3 font-display text-4xl font-extrabold uppercase leading-none tracking-tight sm:text-5xl lg:text-6xl">
-              Boek uw kleine verhuizing
+              Boek uw verhuizing
             </h2>
             <p className="mx-auto mt-5 max-w-lg text-lg text-white/60">
               Vraag een vrijblijvende offerte aan of plan direct een afspraak. Wij nemen snel

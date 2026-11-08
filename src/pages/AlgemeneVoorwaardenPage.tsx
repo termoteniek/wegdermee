@@ -9,7 +9,7 @@ export function AlgemeneVoorwaardenPage() {
         <p>
           Deze algemene voorwaarden zijn van toepassing op alle bezoekers, klanten en gebruikers
           van onze website en van onze diensten, waaronder ophalingen, rommelophaal, ontruimingen,
-          werf opruiming, kleine verhuizingen, transport en aanverwante activiteiten (
+          werf opruiming, verhuizingen, transport en aanverwante activiteiten (
           <Link to="/#diensten" className="text-ink underline hover:text-accent">
             diensten
           </Link>
@@ -40,7 +40,7 @@ export function AlgemeneVoorwaardenPage() {
       <LegalSection title="3. Ons aanbod">
         <p>
           Wij verzorgen de ophaling van huishoudelijke en bedrijfsgoederen, volledige ontruimingen,
-          werf opruiming, kleine verhuizingen en transport. U hoeft uw spullen in principe niet te
+          werf opruiming, verhuizingen en transport. U hoeft uw spullen in principe niet te
           sorteren; wij zorgen voor correcte afvoer conform de geldende regelgeving.
         </p>
         <p>

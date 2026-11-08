@@ -106,6 +106,19 @@ export function Hero() {
               Diensten
             </Button>
           </motion.div>
+
+          <motion.p
+            className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 font-display text-sm font-semibold uppercase tracking-[0.14em] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.7)] sm:mt-6 sm:text-base sm:tracking-[0.16em]"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.58, duration: 0.55, ease }}
+          >
+            <span>150+ opdrachten</span>
+            <span className="text-accent" aria-hidden>
+              ·
+            </span>
+            <span>Verzekerd tot €1,5 miljoen</span>
+          </motion.p>
         </div>
       </div>
     </section>

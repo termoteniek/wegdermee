@@ -15,6 +15,7 @@ const included = [
   'Vaste en losse inboedel',
   'Eventuele kelder, zolder of garage',
   'Proper achtergelaten, klaar voor gebruik',
+  'Gratis plaatsbezoek',
 ]
 
 const beforeAfterPairs = [

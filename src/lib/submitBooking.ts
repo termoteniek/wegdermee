@@ -1,4 +1,4 @@
-import type { BookingFormData } from '../types/booking'
+import type { BookingFormData, BookingPhoto } from '../types/booking'
 
 export type SubmitBookingResult =
   | { ok: true }
@@ -6,7 +6,8 @@ export type SubmitBookingResult =
 
 export async function submitBooking(
   form: BookingFormData,
-  honeypot: string
+  honeypot: string,
+  photos: BookingPhoto[] = [],
 ): Promise<SubmitBookingResult> {
   const url = import.meta.env.VITE_GAS_BOOKING_URL?.trim()
   const token = import.meta.env.VITE_GAS_BOOKING_SECRET?.trim()
@@ -24,6 +25,7 @@ export async function submitBooking(
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify({
         ...form,
+        photos,
         token,
         _honeypot: honeypot,
       }),

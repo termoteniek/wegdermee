@@ -55,11 +55,11 @@ export const pageSeoByPath: Record<string, PageSeo> = {
       'Werf opruiming en afvalophaling op bouwplaatsen. wegdermee ruimt snel en correct op in Vlaanderen en Brussel.',
     path: '/diensten/werf-opruiming',
   },
-  '/diensten/kleine-verhuizingen': {
-    title: 'Kleine verhuizingen | wegdermee',
+  '/diensten/verhuizingen': {
+    title: 'Verhuizingen | wegdermee',
     description:
-      'Kleine verhuizingen met wegdermee. Betrouwbaar transport van meubels en inboedel in Oost- en West-Vlaanderen, Antwerpen en Brussel.',
-    path: '/diensten/kleine-verhuizingen',
+      'Verhuizingen met wegdermee. Betrouwbaar transport van meubels en inboedel in Oost- en West-Vlaanderen, Antwerpen en Brussel.',
+    path: '/diensten/verhuizingen',
   },
   '/diensten/transport': {
     title: 'Transport | wegdermee',

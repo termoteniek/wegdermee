@@ -16,14 +16,18 @@ const portraits = [
   {
     name: 'Lars',
     image: 'OverOns/lars',
-    alt: 'Lars van wegdermee',
+    alt: 'Lars Lazeure van wegdermee',
     reverse: true,
-    paragraphs: [] as string[],
+    paragraphs: [
+      'Aangenaam, ik ben Lars Lazeure. Naast mijn studies ben ik een vaste waarde binnen Wegdermee, waar ik mijn kameraad Siebe en zijn bedrijf met veel plezier ondersteun.',
+      'Het was al langer duidelijk dat ik en Siebe een goed team vormden, dus ook bij de eerste ideeën was ik nauw betrokken in het verhaal van Wegdermee. Ik heb het bedrijf van dichtbij zien groeien en mocht zelf ook mijn steentje bijdragen aan de uitbouw ervan. Zo kreeg ik niet alleen de kans om mee te helpen, maar ook om van dichtbij te proeven van het echte ondernemerschap.',
+      'Stilzitten is niets voor mij. Ik steek graag de handen uit de mouwen, dus de kans is groot dat je mij ook tegenkomt tijdens het klussen zodat alles (letterlijk) op wieltjes loopt!',
+    ],
   },
 ] as const
 
 const togetherParagraphs = [
-  'Bij Wegdermee kunt u terecht voor het ophalen van rommel en volledige inboedels of voor volledige ontruimingen van huizen, appartementen en kantoren, maar ook voor kleine verhuizingen en transportdiensten. Heeft u een grote aankoop gedaan, maar geen geschikt vervoer? Ook dan help ik u graag verder. Geen opdracht is te klein: mijn doel is om elke klant snel, correct en met een glimlach verder te helpen.',
+  'Bij Wegdermee kunt u terecht voor het ophalen van rommel en volledige inboedels of voor volledige ontruimingen van huizen, appartementen en kantoren, maar ook voor verhuizingen en transportdiensten. Heeft u een grote aankoop gedaan, maar geen geschikt vervoer? Ook dan help ik u graag verder. Geen opdracht is te klein: mijn doel is om elke klant snel, correct en met een glimlach verder te helpen.',
   'Voor ons staan betrouwbaarheid, duidelijke afspraken en een persoonlijke aanpak centraal. We behandelen uw spullen met zorg en zorgen ervoor dat u zich nergens zorgen over hoeft te maken.',
 ]
 

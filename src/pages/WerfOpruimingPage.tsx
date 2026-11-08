@@ -15,6 +15,7 @@ const included = [
   'U hoeft geen container te regelen',
   'Flexibele timing rond uw werfplanning',
   'Correcte afvoer via erkende kanalen',
+  'Gratis plaatsbezoek',
 ]
 
 const beforeAfterPairs = [

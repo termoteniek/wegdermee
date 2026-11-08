@@ -15,6 +15,7 @@ const included = [
   'Sorteren niet vereist',
   'Correcte afvoer en verwerking',
   'Flexibele planning, 7 op 7 bereikbaar',
+  'Gratis plaatsbezoek',
 ]
 
 const beforeAfterPairs = [

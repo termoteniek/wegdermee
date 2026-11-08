@@ -3,17 +3,24 @@
  *
  * Deploy as Web App (Execute as: Me, Who has access: Anyone).
  * Set FORM_SECRET in Project Settings → Script properties.
+ *
+ * Photos are optional. The site sends up to 10 JPEG files as base64 in
+ * payload.photos. Redeploy this script (new version) after changing it,
+ * otherwise uploads are dropped.
  */
 
 const RECIPIENT_EMAIL = 'info@wegdermee.com';
 
-const HOURLY_SERVICES = ['Kleine verhuizingen', 'Transport'];
+const HOURLY_SERVICES = ['Verhuizingen', 'Transport'];
 
 const CREW_LABELS = {
   '2': '2 man',
   '3': '3 man',
   '4': '4 man',
 };
+
+const MAX_PHOTOS = 10;
+const MAX_PHOTO_CHARS = 1400000;
 
 function doPost(e) {
   try {
@@ -26,15 +33,21 @@ function doPost(e) {
 
     validatePayload(payload);
 
+    const photos = buildPhotoBlobs(payload.photos);
     const subject = buildSubject(payload);
-    const body = buildBody(payload);
-
-    MailApp.sendEmail({
+    const body = buildBody(payload, photos.length);
+    const mail = {
       to: RECIPIENT_EMAIL,
       replyTo: String(payload.email).trim(),
       subject: subject,
       body: body,
-    });
+    };
+
+    if (photos.length) {
+      mail.attachments = photos;
+    }
+
+    MailApp.sendEmail(mail);
 
     return jsonResponse({ success: true });
   } catch (error) {
@@ -108,7 +121,47 @@ function formatCrew(crew) {
   return CREW_LABELS[key] || key || '—';
 }
 
-function buildBody(data) {
+function sanitizePhotoName(name, index) {
+  var base = String(name || '')
+    .replace(/\.[^.]+$/, '')
+    .replace(/[^A-Za-z0-9_-]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 40);
+
+  if (!base) base = 'foto-' + (index + 1);
+  return base + '.jpg';
+}
+
+function buildPhotoBlobs(photos) {
+  if (photos == null || photos === '') return [];
+  if (!Array.isArray(photos)) throw new Error("Ongeldige foto's");
+  if (photos.length > MAX_PHOTOS) throw new Error("Te veel foto's");
+
+  var blobs = [];
+
+  for (var i = 0; i < photos.length; i++) {
+    var photo = photos[i] || {};
+    if (String(photo.type || '') !== 'image/jpeg') {
+      throw new Error('Ongeldig fototype');
+    }
+
+    var raw = String(photo.data || '')
+      .replace(/^data:[^;]+;base64,/, '')
+      .replace(/\s/g, '');
+
+    if (!raw || raw.length > MAX_PHOTO_CHARS || !/^[A-Za-z0-9+/=]+$/.test(raw)) {
+      throw new Error("Ongeldige foto");
+    }
+
+    blobs.push(
+      Utilities.newBlob(Utilities.base64Decode(raw), 'image/jpeg', sanitizePhotoName(photo.name, i))
+    );
+  }
+
+  return blobs;
+}
+
+function buildBody(data, photoCount) {
   const address = [data.straatnaam, data.huisnummer, data.postcode, data.gemeente]
     .filter(Boolean)
     .join(', ');
@@ -141,6 +194,8 @@ function buildBody(data) {
   lines.push('');
   lines.push('--- Beschrijving ---');
   lines.push(data.description ? String(data.description).trim() : '—');
+  lines.push('');
+  lines.push("Foto's: " + (photoCount ? photoCount + ' bijlage(n)' : 'geen'));
   lines.push('');
   lines.push('---');
   lines.push(

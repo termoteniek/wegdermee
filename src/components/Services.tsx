@@ -48,10 +48,10 @@ const services: Service[] = [
   },
   {
     num: '04',
-    title: 'Kleine verhuizingen',
+    title: 'Verhuizingen',
     description:
       'Een paar meubels of dozen van A naar B — geen volledige verhuis, wel snel en correct geregeld.',
-    href: '/diensten/kleine-verhuizingen',
+    href: '/diensten/verhuizingen',
     image: 'Werk/052',
     alt: 'Medewerker draagt een doos met spullen naar buiten',
     imgClassName: 'object-center',

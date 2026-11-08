@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo, useRef, useState, type FormEvent } from 'react'
+import { useMemo, useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { formatEuro } from '../../lib/pricing'
 import { submitBooking } from '../../lib/submitBooking'
@@ -12,20 +12,22 @@ import {
   volumeOptions,
   crewOptions,
   type BookingFormData,
+  type BookingPhoto,
 } from '../../types/booking'
+import { PhotoUpload } from './PhotoUpload'
 import { DateTimePicker } from './DateTimePicker'
 
 const inputClassName =
   'mt-2 w-full min-w-0 border-b-2 border-ink bg-transparent py-2 text-ink outline-none focus:border-accent'
 const selectClassName = `${inputClassName} max-w-full cursor-pointer disabled:cursor-not-allowed disabled:opacity-50`
 const labelClassName =
-  'font-display text-xs font-semibold uppercase tracking-widest text-muted'
+  'font-display text-xs font-semibold uppercase tracking-wide text-muted'
 
 const stepLabels = ['Info', 'Dienst', 'Datum', 'Tijd'] as const
 type Step = 1 | 2 | 3 | 4 | 5
 
 const stepActionsClassName =
-  'flex shrink-0 flex-col gap-3 border-t border-ink/10 pt-8 sm:flex-row'
+  'flex shrink-0 flex-col gap-3 border-t border-ink/10 pt-6 sm:flex-row'
 
 const primaryButtonClassName =
   'bg-accent font-display text-lg font-bold uppercase tracking-wide text-white transition-colors hover:bg-accent-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-accent'
@@ -81,50 +83,10 @@ export function BookingForm() {
   const [submitError, setSubmitError] = useState<string | null>(null)
   const [acceptedTerms, setAcceptedTerms] = useState(false)
   const [honeypot, setHoneypot] = useState('')
-  const shellRef = useRef<HTMLDivElement>(null)
-  const stepStackRef = useRef<HTMLDivElement>(null)
-  const [lockedWidth, setLockedWidth] = useState<number | null>(null)
-  const [stepAreaHeight, setStepAreaHeight] = useState(0)
-
-  useLayoutEffect(() => {
-    const parent = shellRef.current?.parentElement
-    if (!parent) return
-
-    const syncWidth = () => {
-      const width = parent.clientWidth
-      if (width > 0) {
-        setLockedWidth(width)
-      }
-    }
-
-    syncWidth()
-    const observer = new ResizeObserver(syncWidth)
-    observer.observe(parent)
-    return () => observer.disconnect()
-  }, [])
-
-  useLayoutEffect(() => {
-    setStepAreaHeight(0)
-  }, [lockedWidth])
-
-  useLayoutEffect(() => {
-    const stack = stepStackRef.current
-    if (!stack || stepAreaHeight > 0) return
-
-    const height = stack.getBoundingClientRect().height
-    if (height > 0) {
-      setStepAreaHeight(height)
-    }
-  }, [stepAreaHeight])
+  const [photos, setPhotos] = useState<BookingPhoto[]>([])
 
   function stepPanelClass(active: boolean) {
-    const base = 'flex w-full min-w-0 flex-col'
-
-    if (stepAreaHeight > 0) {
-      return `${base} absolute inset-0 ${active ? 'z-10' : 'hidden'}`
-    }
-
-    return `${base} col-start-1 row-start-1 ${active ? 'z-10' : 'pointer-events-none invisible z-0'}`
+    return `flex w-full min-w-0 flex-col ${active ? '' : 'hidden'}`
   }
 
   function updateField<K extends keyof BookingFormData>(key: K, value: BookingFormData[K]) {
@@ -150,7 +112,7 @@ export function BookingForm() {
     setSubmitting(true)
     setSubmitError(null)
 
-    const result = await submitBooking(form, honeypot)
+    const result = await submitBooking(form, honeypot, photos)
 
     setSubmitting(false)
 
@@ -192,15 +154,7 @@ export function BookingForm() {
   }, [form.service])
 
   return (
-    <div
-      ref={shellRef}
-      className="w-full min-w-0 max-w-full overflow-x-hidden border-2 border-white/15 bg-cream p-8 text-ink sm:p-10"
-      style={
-        lockedWidth
-          ? { width: lockedWidth, minWidth: lockedWidth, maxWidth: lockedWidth }
-          : undefined
-      }
-    >
+    <div className="w-full min-w-0 max-w-full border-2 border-white/15 bg-cream p-6 text-ink sm:p-8">
       <input
         type="text"
         name="website"
@@ -227,24 +181,18 @@ export function BookingForm() {
               >
                 {value}
               </span>
-              <span className="min-w-0 truncate font-display text-[10px] font-semibold uppercase tracking-wide text-muted sm:text-xs sm:tracking-widest">
+              <span className="min-w-0 truncate font-display text-[11px] font-semibold uppercase tracking-wide text-muted sm:text-xs">
                 {label}
               </span>
               {value < stepLabels.length && (
-                <span className="hidden h-px flex-1 bg-ink/15 sm:block" aria-hidden />
+                <span className="hidden h-px min-w-2 flex-1 bg-ink/15 sm:block" aria-hidden />
               )}
             </div>
           )
         })}
       </div>
 
-      <div
-        ref={stepStackRef}
-        className={`relative mt-8 w-full min-w-0 ${
-          stepAreaHeight === 0 ? 'grid [&>*]:col-start-1 [&>*]:row-start-1' : ''
-        }`}
-        style={stepAreaHeight > 0 ? { minHeight: stepAreaHeight } : undefined}
-      >
+      <div className="relative mt-8 w-full min-w-0">
         <form
           onSubmit={handleStepOneSubmit}
           className={stepPanelClass(step === 1)}
@@ -455,9 +403,11 @@ export function BookingForm() {
                 </select>
               </label>
             )}
+          </div>
 
+          <div className="mt-6 flex flex-col gap-6">
             {showEstimatedPrice && (
-              <div className="sm:col-span-2 border-l-4 border-accent px-4 py-3">
+              <div className="border-l-4 border-accent px-4 py-3">
                 <p className={labelClassName}>Geschatte prijs</p>
                 <p
                   className={`mt-2 text-ink ${
@@ -479,16 +429,18 @@ export function BookingForm() {
               </div>
             )}
 
-            <label className="block sm:col-span-2">
+            <label className="block">
               <span className={labelClassName}>Beschrijving</span>
               <textarea
-                rows={4}
+                rows={3}
                 value={form.description}
                 onChange={(event) => updateField('description', event.target.value)}
                 placeholder="Wat moet er weg? Bijv. oude meubels, groenafval, resten van een verbouwing…"
                 className={`${inputClassName} resize-none placeholder:text-muted-light`}
               />
             </label>
+
+            <PhotoUpload photos={photos} onChange={setPhotos} />
           </div>
           </div>
 

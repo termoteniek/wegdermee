@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom'
 
 const routerBasename =
   import.meta.env.BASE_URL === '/'
@@ -11,7 +11,7 @@ import { ContactPage } from './pages/ContactPage'
 import { RommelophaaldienstPage } from './pages/RommelophaaldienstPage'
 import { VolledigeOntruimingPage } from './pages/VolledigeOntruimingPage'
 import { WerfOpruimingPage } from './pages/WerfOpruimingPage'
-import { KleineVerhuizingenPage } from './pages/KleineVerhuizingenPage'
+import { VerhuizingenPage } from './pages/VerhuizingenPage'
 import { TransportPage } from './pages/TransportPage'
 import { PrivacyPage } from './pages/PrivacyPage'
 import { AlgemeneVoorwaardenPage } from './pages/AlgemeneVoorwaardenPage'
@@ -62,12 +62,16 @@ function App() {
           }
         />
         <Route
-          path="/diensten/kleine-verhuizingen"
+          path="/diensten/verhuizingen"
           element={
             <Layout showCta={false}>
-              <KleineVerhuizingenPage />
+              <VerhuizingenPage />
             </Layout>
           }
+        />
+        <Route
+          path="/diensten/kleine-verhuizingen"
+          element={<Navigate to="/diensten/verhuizingen" replace />}
         />
         <Route
           path="/diensten/transport"

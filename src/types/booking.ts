@@ -25,7 +25,7 @@ export const serviceOptions: ServiceOption[] = [
   { value: 'rommelophaaldienst', label: 'Rommelophaaldienst' },
   { value: 'volledige-ontruiming', label: 'Volledige ontruiming' },
   { value: 'werf-opruiming', label: 'Werf opruiming' },
-  { value: 'kleine-verhuizingen', label: 'Kleine verhuizingen' },
+  { value: 'verhuizingen', label: 'Verhuizingen' },
   { value: 'transport', label: 'Transport' },
 ]
 
@@ -61,9 +61,9 @@ export const pricedServiceValues = new Set([
   'werf-opruiming',
 ])
 
-export const hourlyServiceValues = new Set(['kleine-verhuizingen', 'transport'])
+export const hourlyServiceValues = new Set(['verhuizingen', 'transport'])
 
-export const volumeExcludedServiceValues = new Set(['kleine-verhuizingen', 'transport'])
+export const volumeExcludedServiceValues = new Set(['verhuizingen', 'transport'])
 
 export function getServiceByLabel(serviceLabel: string) {
   return serviceOptions.find((option) => option.label === serviceLabel)
@@ -81,6 +81,14 @@ export function isVolumeSelectableForService(serviceLabel: string) {
 export function isHourlyService(serviceLabel: string) {
   const service = getServiceByLabel(serviceLabel)
   return service != null && hourlyServiceValues.has(service.value)
+}
+
+export const MAX_BOOKING_PHOTOS = 10
+
+export type BookingPhoto = {
+  name: string
+  type: 'image/jpeg'
+  data: string
 }
 
 export type BookingFormData = {

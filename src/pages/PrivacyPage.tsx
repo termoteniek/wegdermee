@@ -29,6 +29,7 @@ export function PrivacyPage() {
             'Telefoonnummer',
             'Adres (voor ophalingen, ontruimingen of verhuizingen)',
             'Betaalinformatie (indien van toepassing)',
+            "Foto's die u vrijwillig toevoegt aan een aanvraag",
             'Eventuele aanvullende informatie die u vrijwillig verstrekt',
           ]}
         />
@@ -50,7 +51,7 @@ export function PrivacyPage() {
         <p>Wij gebruiken uw persoonsgegevens om:</p>
         <LegalList
           items={[
-            'Onze diensten uit te voeren en te verbeteren (rommelophaal, volledige ontruiming, werf opruiming, kleine verhuizingen en transport)',
+            'Onze diensten uit te voeren en te verbeteren (rommelophaal, volledige ontruiming, werf opruiming, verhuizingen en transport)',
             'Uw aanvragen, afspraken en betalingen te behandelen',
             'Met u te communiceren over uw opdrachten, planning en opvolging',
             'Te voldoen aan onze wettelijke en administratieve verplichtingen',

@@ -32,3 +32,8 @@ Footer :
 
 
 
+- Foto uploaden mogelijk maken in forms.
+- Kleine verhuizing -> gwn verhuizingen
+- 150+ OPDRACHTEN, VERZEKERD TOT €1,5 MILJOEN in hero
+- Na het gratis plaatsbezoek -> vermelden op eerste 3 diensten
+- 

@@ -89,12 +89,12 @@ export function Services() {
                   to={service.href}
                   className="group flex w-full flex-col gap-4 py-8 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:flex-row sm:items-center sm:gap-8 sm:py-10 lg:gap-12 lg:py-12"
                 >
-                  <div className="relative aspect-[4/3] w-40 shrink-0 overflow-hidden sm:w-44 lg:w-52">
+                  <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden sm:w-44 lg:w-52">
                     <ResponsiveImage
                       name={service.image}
                       alt={service.alt}
                       widths={SERVICE_WIDTHS}
-                      sizes="(max-width: 640px) 160px, (max-width: 1024px) 176px, 208px"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 176px, 208px"
                       className={`h-full w-full object-cover ${service.imgClassName ?? 'object-center'}`}
                       pictureClassName="absolute inset-0 block h-full w-full"
                     />

@@ -85,7 +85,7 @@ export function Footer({ showCta = true }: FooterProps) {
     <footer className="overflow-x-clip bg-ink text-white">
       {showCta ? (
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="flex flex-col items-start gap-8 py-14 sm:py-16 lg:flex-row lg:items-center lg:justify-between lg:py-20">
+          <div className="flex flex-col items-center gap-8 py-14 text-center sm:flex-row sm:items-center sm:justify-between sm:py-16 sm:text-left lg:py-20">
             <h2 className="font-sans text-[clamp(2rem,4.6vw,4.15rem)] font-extrabold leading-[0.92] tracking-[-0.035em] text-white">
               Klaar om het
               <br />
@@ -110,7 +110,7 @@ export function Footer({ showCta = true }: FooterProps) {
             className="pointer-events-none absolute inset-0 overflow-hidden @container"
             aria-hidden
           >
-            <p className="absolute right-[-0.045em] bottom-[-0.22em] hidden select-none whitespace-nowrap font-sans text-[19.5cqw] font-extrabold leading-[0.72] tracking-[-0.075em] text-[#343434] lg:block">
+            <p className="absolute bottom-[-0.22em] left-1/2 hidden w-max -translate-x-1/2 select-none whitespace-nowrap font-sans text-[19.5cqw] font-extrabold leading-[0.72] tracking-[-0.075em] text-[#343434] lg:block">
               WegDerMee
             </p>
           </div>
@@ -128,7 +128,7 @@ export function Footer({ showCta = true }: FooterProps) {
               </p>
             </div>
 
-            <nav aria-label="Navigatie">
+            <nav aria-label="Navigatie" className="hidden lg:block">
               <h3 className="text-sm leading-6 text-white/55">Navigatie</h3>
               <ul className="mt-3">
                 {navigation.map((link) => (
@@ -141,7 +141,7 @@ export function Footer({ showCta = true }: FooterProps) {
               </ul>
             </nav>
 
-            <nav aria-label="Diensten">
+            <nav aria-label="Diensten" className="hidden lg:block">
               <h3 className="text-sm leading-6 text-white/55">Diensten</h3>
               <ul className="mt-3">
                 {services.map((service) => (
@@ -197,26 +197,28 @@ export function Footer({ showCta = true }: FooterProps) {
           </div>
         </div>
 
-        <div className="grid gap-3 border-t border-white/12 py-6 text-sm text-white/55 sm:grid-cols-3 sm:items-center">
-          <p>© {year} wegdermee</p>
-          <nav aria-label="Juridisch" className="flex gap-6 sm:justify-center">
+        <div className="flex flex-col gap-3 border-t border-white/12 py-6 text-sm text-white/55 sm:grid sm:grid-cols-3 sm:items-center">
+          <nav aria-label="Juridisch" className="flex justify-center gap-6 sm:order-2">
             {legalLinks.map((link) => (
               <Link key={link.href} to={link.href} className={legalLinkClassName}>
                 {link.label}
               </Link>
             ))}
           </nav>
-          <p className="sm:text-right">
-            Gemaakt door{' '}
-            <a
-              href="https://motea.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-white/70 underline-offset-4 transition-colors duration-200 hover:text-white hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-            >
-              MOTEA
-            </a>
-          </p>
+          <div className="flex items-center justify-between gap-4 sm:contents">
+            <p className="sm:order-1">© {year} wegdermee</p>
+            <p className="sm:order-3 sm:text-right">
+              Gemaakt door{' '}
+              <a
+                href="https://motea.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-white/70 underline-offset-4 transition-colors duration-200 hover:text-white hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              >
+                MOTEA
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

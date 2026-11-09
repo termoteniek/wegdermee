@@ -47,7 +47,7 @@ function Portrait({
           name={name}
           alt={alt}
           widths={[...HERO_ABOUT_WIDTHS]}
-          sizes="(max-width: 1024px) 100vw, 38vw"
+          sizes="(max-width: 768px) 85vw, (max-width: 1024px) 320px, 38vw"
           className="aspect-[2/3] w-full object-cover"
           pictureClassName="block w-full"
           loading="lazy"
@@ -83,7 +83,7 @@ export function About() {
           {portraits.map((person) => (
             <article key={person.name} className="grid items-center gap-8 lg:grid-cols-12 lg:gap-16">
               <FadeIn className={person.reverse ? 'lg:col-span-4 lg:col-start-9' : 'lg:col-span-4'}>
-                <div className="w-[85%] lg:w-full">
+                <div className="w-[85%] md:mx-auto md:w-80 lg:mx-0 lg:w-full">
                   <Portrait
                     name={person.image}
                     alt={person.alt}
@@ -116,11 +116,13 @@ export function About() {
 
           <article className="grid items-center gap-8 border-t-2 border-ink pt-16 lg:grid-cols-12 lg:gap-16 lg:pt-20">
             <FadeIn className="lg:col-span-5">
-              <Portrait
-                name="OverOns/samen"
-                alt="Siebe en Lars van wegdermee"
-                frameTo="right"
-              />
+              <div className="md:mx-auto md:w-80 lg:mx-0 lg:w-full">
+                <Portrait
+                  name="OverOns/samen"
+                  alt="Siebe en Lars van wegdermee"
+                  frameTo="right"
+                />
+              </div>
             </FadeIn>
 
             <FadeIn delay={0.08} className="lg:col-span-6 lg:col-start-7">

@@ -1,7 +1,7 @@
 import { assetUrl } from '../lib/assetUrl'
 
 type ResponsiveImageProps = {
-  /** Logical basename without width suffix or extension, e.g. `VoorEnNa/Voor1` */
+  /** Logical basename without width suffix or extension, e.g. `VoorEnNa/Voor1`. Served from `media/`. */
   name: string
   alt: string
   widths: number[]
@@ -15,7 +15,8 @@ type ResponsiveImageProps = {
 }
 
 function srcFor(name: string, width: number) {
-  return assetUrl(`${name}-${width}.webp`)
+  const file = name.replaceAll('/', '-').toLowerCase()
+  return assetUrl(`media/${file}-${width}.webp`)
 }
 
 function srcSet(name: string, widths: number[]) {

@@ -55,7 +55,7 @@ export function Hero() {
         aria-hidden
       />
 
-      <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-7xl items-end px-5 pt-24 pb-8 sm:px-8 sm:pb-12 lg:items-center lg:pt-28 lg:pb-20">
+      <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-7xl items-end px-5 pt-24 pb-28 sm:px-8 sm:pb-12 lg:items-center lg:pt-28 lg:pb-20">
         <div className="w-full min-w-0 max-w-xl lg:max-w-2xl">
           <motion.p
             className="font-display text-xs font-semibold uppercase tracking-[0.28em] text-accent sm:text-sm"
